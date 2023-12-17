@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://fr2slx4dxb6h"]
+[gd_scene load_steps=2 format=3 uid="uid://fr2slx4dxb6h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ujdfh"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ujdfh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.56732)
