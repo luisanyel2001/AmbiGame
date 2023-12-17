@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://smtcevjpdh7g"]
+
+[ext_resource type="Script" path="res://addons/realtimecollaboration/my_button.gd" id="1_fo6ar"]
+
+[node name="MyButton" type="Button"]
+offset_left = 103.0
+offset_top = 55.0
+offset_right = 433.0
+offset_bottom = 166.0
+text = "Hola"
+script = ExtResource("1_fo6ar")
