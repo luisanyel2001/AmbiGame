@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AmbiGame"
-run/main_scene="res://Scenes/node_3d.tscn"
+run/main_scene="res://UI/control.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="res://UI/control.tscn"
