@@ -69,7 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2353)
 transform = Transform3D(-1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, 0.0548582, 0.794477, -0.0154085)
 
 [node name="INT_008" type="MeshInstance3D" parent="VehicleBody3D/INT_008"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27217, 0, 5.10365e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27217, 2.47833, 5.10365e-07)
 mesh = SubResource("ArrayMesh_shsdc")
 skeleton = NodePath("")
 
