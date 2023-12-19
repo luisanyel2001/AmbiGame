@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgk4yigi3gmeo"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_iaou6"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_iaou6")
+
+[node name="pantalla_previa" type="Node2D" parent="."]
+
+[node name="Iniciar" type="Button" parent="pantalla_previa"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="pantalla_previa/Iniciar" to="." method="_on_iniciar_pressed"]
