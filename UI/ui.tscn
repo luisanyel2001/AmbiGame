@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgk4yigi3gmeo"]
+[gd_scene load_steps=7 format=3 uid="uid://cgk4yigi3gmeo"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_iaou6"]
+[ext_resource type="Texture2D" uid="uid://c6iy227xdutog" path="res://imgs/iniciar.png" id="2_uknhy"]
+[ext_resource type="Texture2D" uid="uid://1ghkloid8xjd" path="res://imgs/salir.png" id="3_wvfno"]
+[ext_resource type="Texture2D" uid="uid://m6w37aw75cgu" path="res://imgs/instrucciones.png" id="4_jida6"]
+[ext_resource type="Texture2D" uid="uid://cprfwucr8nhp6" path="res://imgs/cuadro_stats1.png" id="5_ym23x"]
+[ext_resource type="Texture2D" uid="uid://bt5k70hguaasd" path="res://imgs/restart.png" id="6_nq4b3"]
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_iaou6")
@@ -8,7 +13,62 @@ script = ExtResource("1_iaou6")
 [node name="pantalla_previa" type="Node2D" parent="."]
 
 [node name="Iniciar" type="Button" parent="pantalla_previa"]
-offset_right = 8.0
-offset_bottom = 8.0
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 30.9414
+offset_top = 209.012
+offset_right = 151.941
+offset_bottom = 332.012
+
+[node name="Sprite2D" type="Sprite2D" parent="pantalla_previa/Iniciar"]
+position = Vector2(60, 65)
+scale = Vector2(0.636246, 0.610977)
+texture = ExtResource("2_uknhy")
+
+[node name="Salir" type="Button" parent="pantalla_previa"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 30.0
+offset_top = 516.0
+offset_right = 154.0
+offset_bottom = 636.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="pantalla_previa/Salir"]
+position = Vector2(62, 62)
+scale = Vector2(0.209591, 0.205078)
+texture = ExtResource("3_wvfno")
+
+[node name="Instrucciones" type="Button" parent="pantalla_previa"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 31.0
+offset_top = 366.0
+offset_right = 152.0
+offset_bottom = 489.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="pantalla_previa/Instrucciones"]
+position = Vector2(60, 63)
+scale = Vector2(0.678665, 0.650407)
+texture = ExtResource("4_jida6")
+
+[node name="pantalla_instrucciones" type="Node2D" parent="."]
+visible = false
+
+[node name="fondo_instrucc" type="Sprite2D" parent="pantalla_instrucciones"]
+position = Vector2(581, 217.75)
+scale = Vector2(2.64516, 3.29063)
+texture = ExtResource("5_ym23x")
+
+[node name="Salir_Instru" type="Button" parent="pantalla_instrucciones"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 544.0
+offset_top = 527.0
+offset_right = 638.0
+offset_bottom = 629.0
+
+[node name="botonSalir2" type="Sprite2D" parent="pantalla_instrucciones/Salir_Instru"]
+position = Vector2(47, 50)
+scale = Vector2(0.561135, 0.54955)
+texture = ExtResource("6_nq4b3")
 
 [connection signal="pressed" from="pantalla_previa/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="pantalla_previa/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="pantalla_previa/Instrucciones" to="." method="_on_instrucciones_pressed"]
+[connection signal="pressed" from="pantalla_instrucciones/Salir_Instru" to="." method="_on_salir_instru_pressed"]
