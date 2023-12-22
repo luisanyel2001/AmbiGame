@@ -65,11 +65,11 @@ script = ExtResource("1_jn2cf")
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2353)
 
-[node name="INT_008" type="VehicleWheel3D" parent="VehicleBody3D"]
+[node name="WheelBody" type="VehicleWheel3D" parent="VehicleBody3D"]
 transform = Transform3D(-1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, 0.0548582, 0.794477, -0.0154085)
 
-[node name="INT_008" type="MeshInstance3D" parent="VehicleBody3D/INT_008"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27217, 2.47833, 5.10365e-07)
+[node name="WheelMesh" type="MeshInstance3D" parent="VehicleBody3D/WheelBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38851, 0.500672, 0.699539)
 mesh = SubResource("ArrayMesh_shsdc")
 skeleton = NodePath("")
 
