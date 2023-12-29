@@ -20,6 +20,10 @@ var _player_info = {}
 
 #Count of players
 var _players_loaded = 0
+
+var real = false
+
+var global_scene : SceneTree
 	
 #Is called when the node and its children 
 #have all added to the scene tree and are ready
@@ -31,6 +35,13 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	
+	
+	var scene = EditorInterface.get_edited_scene_root()
+	print("carga: " + scene.scene_file_path.get_file())
+	
+	
+
 
 
 #Create a server 
@@ -128,7 +139,7 @@ func _on_server_disconnected():
 
 
 # Call local is required if the server is also a player.
-@rpc
+@rpc("any_peer", "call_local", "reliable")
 func _update_player_transform():
 	var current_scene = EditorInterface.get_edited_scene_root()
 	if current_scene is Node3D:
@@ -136,23 +147,53 @@ func _update_player_transform():
 		var position = EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform
 		print("La ubicacion del id: " + str(multiplayer.get_remote_sender_id()) + " es: " + str(position))
 	
+	
+# Call local is required if the server is also a player.
+#@rpc("any_peer", "call_local", "reliable")
+func _get_scene_transform():
+	print("Entro escena get")
+	var current_scene = EditorInterface.get_edited_scene_root()
+	if current_scene is Node3D:
+		#Get camera position
+		var scene_root = current_scene.get_tree().root
+		print(scene_root.to_string())
+		transverse_scene(scene_root)
+
+var old_pos
+
+func transverse_scene(node):
+	if node is Node3D:
+		print("El objeto:" + node.name+"Es 3D")
+		print("Basis: " + str(node.transform))
+	if node.name == "Floor":
+		print("Este")
+		old_pos = node.position
+		print("ori:"+str(old_pos))
+		old_pos.x = old_pos.x + 1
+		print("mod:"+str(old_pos))
+		node.position = old_pos
+		print("new:" + str(node.transform))
+	# Transverse chiilds
+	for i in range(node.get_child_count()):
+		transverse_scene(node.get_child(i))
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func _process(delta):
-	pass
-	"""
-	if Engine.get_process_frames() % 2 == 0:
+	if real == true:
 		if Engine.is_editor_hint():
 			if multiplayer.multiplayer_peer != null:
 				_update_player_transform.rpc()
-			#if multiplayer.is_server():
-				
-			#else:
-				#_update_player_transform.rpc_id(multiplayer.get_remote_sender_id())
+		
 			
+	
 	"""
-
+	#Reducir a cada dos frames
+	if Engine.get_process_frames() % 2 == 0:
+	"""
+func _test():
+	print("Cambio")
 
 #------------------------------Buttons-------------------------------
 func _on_btn_start_host_pressed():
@@ -181,4 +222,13 @@ func _on_btn_update_peer_list_pressed():
 
 
 func _on_btn_test_pressed():
-	_update_player_transform.rpc()
+	if real == false:
+		real = true
+	else:
+		real = false
+	#_update_player_transform.rpc()
+	
+
+
+func _on_btn_test_2_pressed():
+	_get_scene_transform()

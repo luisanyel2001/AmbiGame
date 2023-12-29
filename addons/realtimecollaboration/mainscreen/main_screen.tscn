@@ -158,7 +158,16 @@ offset_left = 132.0
 offset_top = 506.0
 offset_right = 227.0
 offset_bottom = 541.0
-text = "Test"
+text = "Toggle real"
+
+[node name="btn_test_2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 466.0
+offset_right = 224.0
+offset_bottom = 494.0
+text = "test
+"
 
 [connection signal="pressed" from="btn_start_host" to="." method="_on_btn_start_host_pressed"]
 [connection signal="pressed" from="btn_stop_host" to="." method="_on_btn_stop_host_pressed"]
@@ -166,3 +175,4 @@ text = "Test"
 [connection signal="pressed" from="btn_disconnect_client" to="." method="_on_btn_disconnect_client_pressed"]
 [connection signal="pressed" from="btn_update_peer_list" to="." method="_on_btn_update_peer_list_pressed"]
 [connection signal="pressed" from="btn_test" to="." method="_on_btn_test_pressed"]
+[connection signal="pressed" from="btn_test_2" to="." method="_on_btn_test_2_pressed"]
