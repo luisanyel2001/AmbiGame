@@ -225,15 +225,6 @@ func _on_btn_test_pressed():
 		real = false
 	#_update_player_transform.rpc()
 	
-
-
-func _on_btn_test_2_pressed():
-	_mover_cuadro().rpc()
-	#_update_player_transform.rpc()
-	#print(_global_scene)
-	#_get_scene_transform()
-	
-
 @rpc("any_peer", "call_local", "reliable")
 func _mover_cuadro():
 	var current_scene_root = EditorInterface.get_edited_scene_root()
@@ -243,6 +234,23 @@ func _mover_cuadro():
 			print(busqueda)
 			print(busqueda.position)
 			busqueda.position.x = busqueda.position.x + 2
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _mandar_datos(value = "Nada"):
+	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
+	
+
+
+func _on_btn_test_2_pressed():
+	_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
+	#_mover_cuadro().rpc()
+	#_update_player_transform.rpc()
+	#print(_global_scene)
+	#_get_scene_transform()
+	
+
+
 		
 
 	
