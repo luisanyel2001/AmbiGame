@@ -23,7 +23,7 @@ var _players_loaded = 0
 
 var real = false
 
-var global_scene : SceneTree
+var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export en UI
 	
 #Is called when the node and its children 
 #have all added to the scene tree and are ready
@@ -152,27 +152,20 @@ func _update_player_transform():
 #@rpc("any_peer", "call_local", "reliable")
 func _get_scene_transform():
 	print("Entro escena get")
-	var current_scene = EditorInterface.get_edited_scene_root()
-	if current_scene is Node3D:
-		#Get camera position
-		var scene_root = current_scene.get_tree().root
-		print(scene_root.to_string())
-		transverse_scene(scene_root)
+	var current_scene_root = EditorInterface.get_edited_scene_root()
+	print("Escena:" + current_scene_root.to_string())
+	if current_scene_root is Node3D:
+		transverse_scene(current_scene_root)
 
-var old_pos
 
 func transverse_scene(node):
 	if node is Node3D:
-		print("El objeto:" + node.name+"Es 3D")
-		print("Basis: " + str(node.transform))
-	if node.name == "Floor":
-		print("Este")
-		old_pos = node.position
-		print("ori:"+str(old_pos))
-		old_pos.x = old_pos.x + 1
-		print("mod:"+str(old_pos))
-		node.position = old_pos
-		print("new:" + str(node.transform))
+		print("Nombre a buscar: " + node.name)
+		var se = _global_scene.find_child(node.name)
+		if se != null:
+			print("Encuentra")
+			
+		print(se)
 	# Transverse chiilds
 	for i in range(node.get_child_count()):
 		transverse_scene(node.get_child(i))
@@ -181,17 +174,16 @@ func transverse_scene(node):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @rpc("any_peer", "call_local", "reliable")
 func _process(delta):
-	if real == true:
-		if Engine.is_editor_hint():
-			if multiplayer.multiplayer_peer != null:
-				_update_player_transform.rpc()
+	#Reducir a cada dos frames
+	if Engine.get_process_frames() % 100 == 0:
+		if real == true:
+			if Engine.is_editor_hint():
+				if multiplayer.multiplayer_peer != null:
+					_update_player_transform.rpc()
+				_get_scene_transform()
 		
 			
-	
-	"""
-	#Reducir a cada dos frames
-	if Engine.get_process_frames() % 2 == 0:
-	"""
+
 func _test():
 	print("Cambio")
 
@@ -199,6 +191,8 @@ func _test():
 func _on_btn_start_host_pressed():
 	_player_info = {"nickname":$vbx_nickname/ln_nickname.text}
 	_create_server()
+	# Get automatically host scene. Try to create select export scene in gui
+	_global_scene = EditorInterface.get_edited_scene_root()
 	
 
 func _on_btn_stop_host_pressed():
@@ -231,4 +225,9 @@ func _on_btn_test_pressed():
 
 
 func _on_btn_test_2_pressed():
-	_get_scene_transform()
+	print(_global_scene)
+	#_get_scene_transform()
+	
+	
+#Obtiene objetos seleccionados	
+#print(EditorInterface.get_selection().get_selected_nodes())
