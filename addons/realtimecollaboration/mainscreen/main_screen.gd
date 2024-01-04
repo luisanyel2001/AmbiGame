@@ -54,7 +54,7 @@ func _create_server():
 	
 	_players[1] = _player_info
 	player_connected.emit(1, _player_info)
-	print("Servidor creado con exito en el puerto:" + str(_PORT))
+	print("Servidor creado con exito en el puerto:" + str(_PORT) + " en la direccion: " + str(IP.get_local_addresses()) )
 
 
 #Create a client a join in a server
@@ -203,7 +203,8 @@ func _on_btn_stop_host_pressed():
 
 func _on_btn_join_client_pressed():
 	_player_info = {"nickname":$vbx_nickname/ln_nickname.text}
-	_create_client()
+	print($ln_client_ip.text)
+	_create_client($ln_client_ip.text)
 
 
 func _on_btn_disconnect_client_pressed():
