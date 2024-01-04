@@ -12,7 +12,7 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0748035, 0.104689, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20478, 3.53909, -3.48249)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86261, 3.53909, -3.48249)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37785, 0.0661404, 0.0345114)
@@ -21,4 +21,5 @@ mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(0.987645, 0.15671, 0, -0.15671, 0.987645, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_mhb2s")
