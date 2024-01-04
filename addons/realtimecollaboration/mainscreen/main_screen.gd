@@ -250,7 +250,7 @@ func _mover_cuadro(value):
 
 
 @rpc("any_peer", "call_local", "reliable")
-func _actualizar_nodo(value):
+func _actualizar_nodo(value:Node3D):
 	#Que envio
 	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
 	#Actualiza movimiento a todos	
@@ -258,8 +258,6 @@ func _actualizar_nodo(value):
 	if current_scene_root != null: 
 		var busqueda = current_scene_root.find_child("Floor") as Node3D
 		if busqueda != null:
-			print(busqueda.position)
-			print(value.position)
 			busqueda = value
 			print("Moviento exitoso")
 
@@ -267,10 +265,8 @@ func _actualizar_nodo(value):
 
 func _on_btn_test_2_pressed():
 	var current_scene_root = EditorInterface.get_edited_scene_root()
-	var nodo_envio = current_scene_root.find_child("Floor")
-	_actualizar_nodo.rpc(nodo_envio)
-	#var posicion_local = current_scene_root.find_child("Floor").position
-	#_mover_cuadro.rpc(posicion_local)
+	var posicion_local = current_scene_root.find_child("Floor").position
+	_mover_cuadro.rpc(posicion_local)
 	#_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
 	#_mover_cuadro().rpc()
 	#_update_player_transform.rpc()
