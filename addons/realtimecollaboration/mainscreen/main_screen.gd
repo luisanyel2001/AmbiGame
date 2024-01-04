@@ -149,7 +149,7 @@ func _update_player_transform():
 	
 	
 # Call local is required if the server is also a player.
-#@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func _get_scene_transform():
 	print("Entro escena get")
 	var current_scene_root = EditorInterface.get_edited_scene_root()
@@ -180,10 +180,12 @@ func _process(delta):
 			if Engine.is_editor_hint():
 				if multiplayer.multiplayer_peer != null:
 					_update_player_transform.rpc()
-				_get_scene_transform()
+				
+				#Otro codigo
+				#_get_scene_transform()
 		
 			
-
+			
 func _test():
 	print("Cambio")
 
@@ -225,7 +227,8 @@ func _on_btn_test_pressed():
 
 
 func _on_btn_test_2_pressed():
-	print(_global_scene)
+	_update_player_transform.rpc()
+	#print(_global_scene)
 	#_get_scene_transform()
 	
 	
