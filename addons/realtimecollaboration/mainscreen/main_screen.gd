@@ -66,7 +66,7 @@ func _create_client(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
-	print("Cliente creado con exito en el puerto:" + str(_PORT))
+	print("Cliente creado con exito en el puerto:" + str(_PORT) + " en la direccion:" + str(address))
 
 
 func _set_player_info(nickname):
