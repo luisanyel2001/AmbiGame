@@ -225,25 +225,35 @@ func _on_btn_test_pressed():
 		real = false
 	#_update_player_transform.rpc()
 	
-@rpc("any_peer", "call_local", "reliable")
-func _mover_cuadro():
-	var current_scene_root = EditorInterface.get_edited_scene_root()
-	if current_scene_root != null: 
-		var busqueda = current_scene_root.find_child("Floor") as Node3D
-		if busqueda != null:
-			print(busqueda)
-			print(busqueda.position)
-			busqueda.position.x = busqueda.position.x + 2
+
 
 
 @rpc("any_peer", "call_local", "reliable")
 func _mandar_datos(value = "Nada"):
 	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
 	
+	
+@rpc("any_peer", "call_local", "reliable")
+func _mover_cuadro(value):
+	#Que envio
+	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
+	#Actualiza movimiento a todos	
+	var current_scene_root = EditorInterface.get_edited_scene_root()
+	if current_scene_root != null: 
+		var busqueda = current_scene_root.find_child("Floor") as Node3D
+		if busqueda != null:
+			print(busqueda)
+			print(busqueda.position)
+			busqueda.position = value
+			print("Moviento exitoso")
+
 
 
 func _on_btn_test_2_pressed():
-	_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
+	var current_scene_root = EditorInterface.get_edited_scene_root()
+	var posicion_local = current_scene_root.find_child("Floor").position
+	_mover_cuadro.rpc(posicion_local)
+	#_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
 	#_mover_cuadro().rpc()
 	#_update_player_transform.rpc()
 	#print(_global_scene)
