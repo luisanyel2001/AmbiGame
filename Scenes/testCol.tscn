@@ -12,10 +12,16 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0748035, 0.104689, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86261, 3.53909, -3.48249)
+process_mode = 1
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622729, -0.110381, 0.0923436)
+collision_layer = 517
+collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37785, 0.0661404, 0.0345114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37785, 0.0661404, 0.0345113)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")
