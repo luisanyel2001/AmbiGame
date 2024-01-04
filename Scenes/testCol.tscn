@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://gn5vpqs5wvlf"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_rkxel"]
-albedo_color = Color(0.572549, 0.498039, 0.380392, 1)
+albedo_color = Color(0.87451, 0.137255, 0.584314, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23dqf"]
 
@@ -12,10 +12,10 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0748035, 0.104689, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9735, 2.27602, 0.703766)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20478, 3.53909, -3.48249)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0111, 0.0661404, 3.6208)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37785, 0.0661404, 0.0345114)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")
