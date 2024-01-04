@@ -228,10 +228,23 @@ func _on_btn_test_pressed():
 
 
 func _on_btn_test_2_pressed():
-	_update_player_transform.rpc()
+	_mover_cuadro().rpc()
+	#_update_player_transform.rpc()
 	#print(_global_scene)
 	#_get_scene_transform()
 	
+
+@rpc("any_peer", "call_local", "reliable")
+func _mover_cuadro():
+	var current_scene_root = EditorInterface.get_edited_scene_root()
+	if current_scene_root != null: 
+		var busqueda = current_scene_root.find_child("Floor") as Node3D
+		if busqueda != null:
+			print(busqueda)
+			print(busqueda.position)
+			busqueda.position.x = busqueda.position.x + 2
+		
+
 	
 #Obtiene objetos seleccionados	
 #print(EditorInterface.get_selection().get_selected_nodes())
