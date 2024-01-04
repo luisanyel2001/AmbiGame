@@ -258,6 +258,8 @@ func _actualizar_nodo(value):
 	if current_scene_root != null: 
 		var busqueda = current_scene_root.find_child("Floor") as Node3D
 		if busqueda != null:
+			print(busqueda.position)
+			print(value.position)
 			busqueda = value
 			print("Moviento exitoso")
 
