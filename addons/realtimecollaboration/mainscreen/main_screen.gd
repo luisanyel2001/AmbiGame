@@ -243,11 +243,11 @@ func _mover_cuadro(value):
 	#Actualiza movimiento a todos	
 	var current_scene_root = EditorInterface.get_edited_scene_root()
 	if current_scene_root != null: 
-		var busqueda = current_scene_root.find_child("Floor") as Node3D
+		var busqueda = current_scene_root.find_child(value[0]) as Node3D
 		if busqueda != null:
 			print(busqueda)
 			print(busqueda.position)
-			busqueda.position = value
+			busqueda.position = value[1]
 			print("Moviento exitoso")
 			
 
@@ -268,8 +268,12 @@ func _actualizar_nodo(value:Node3D):
 
 func _on_btn_test_2_pressed():
 	var current_scene_root = EditorInterface.get_edited_scene_root()
-	var posicion_local = current_scene_root.find_child("Floor").position
-	_mover_cuadro.rpc(posicion_local)
+	var envio = EditorInterface.get_selection().get_selected_nodes().front()
+	print("Envio")
+	print([str(envio.name), envio.position])
+	_mover_cuadro.rpc([str(envio.name), envio.position])
+	#var posicion_local = current_scene_root.find_child("Floor").position
+	#_mover_cuadro.rpc(EditorInterface.get_selection().get_selected_nodes())
 	#_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
 	#_mover_cuadro().rpc()
 	#_update_player_transform.rpc()
