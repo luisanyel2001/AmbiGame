@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6mgpqhokqdo6"]
+[gd_scene load_steps=17 format=3 uid="uid://b6mgpqhokqdo6"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_b4jly"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_donbf"]
@@ -7,8 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://chumpejwiub7f" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_tac_glove_low.tscn" id="4_yx8wl"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="5_ufcsb"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_ah7e3"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_sye5v"]
 [ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="8_mokwa"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="11_iksjj"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="11_jhdxu"]
+[ext_resource type="PackedScene" uid="uid://cgk4yigi3gmeo" path="res://UI/ui.tscn" id="12_bvlmh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mc8hx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bufpa"]
 size = Vector2(10, 10)
@@ -38,6 +43,12 @@ tracker = &"left_hand"
 
 [node name="FunctionPickup" parent="XROrigin3D/XRController3D" instance=ExtResource("5_ufcsb")]
 
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D" instance=ExtResource("6_sye5v")]
+show_laser = 2
+laser_length = 1
+laser_material = SubResource("StandardMaterial3D_mc8hx")
+show_target = true
+
 [node name="XRController3D2" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
@@ -45,6 +56,11 @@ tracker = &"right_hand"
 [node name="RightHand" parent="XROrigin3D/XRController3D2" instance=ExtResource("4_yx8wl")]
 
 [node name="FunctionPickup" parent="XROrigin3D/XRController3D2" instance=ExtResource("5_ufcsb")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D2" instance=ExtResource("6_sye5v")]
+show_laser = 2
+laser_length = 1
+show_target = true
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="XROrigin3D"]
 top_level = true
@@ -76,3 +92,11 @@ shape = SubResource("BoxShape3D_exbgv")
 
 [node name="PickableObject" parent="." instance=ExtResource("11_iksjj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13404, -1.83425)
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("11_jhdxu")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.00721204, 1.81058, -3.52028)
+screen_size = Vector2(2700, 1200)
+scene = ExtResource("12_bvlmh")
+viewport_size = Vector2(1300, 800)
+alpha_scissor_threshold = 0.831
+unshaded = true
