@@ -180,9 +180,10 @@ func _process(delta):
 			if Engine.is_editor_hint():
 				if multiplayer.multiplayer_peer != null:
 					_update_player_transform.rpc()
-					var current_scene_root = EditorInterface.get_edited_scene_root()
-					var posicion_local = current_scene_root.find_child("Floor").position
-					_mover_cuadro.rpc(posicion_local)
+					var envio = EditorInterface.get_selection().get_selected_nodes().front()
+					print("Envio")
+					print([str(envio.name), envio.position])
+					_mover_cuadro.rpc([str(envio.name), envio.position])
 				
 				#Otro codigo
 				#_get_scene_transform()

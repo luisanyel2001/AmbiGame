@@ -21,11 +21,11 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150886, 0.0661404, 1.29634)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13236, 0.0661404, -5.37357)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(0.987645, 0.15671, 0, -0.15671, 0.987645, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.987645, 0.15671, 0, -0.15671, 0.987645, 0, 0, 0, 1, -2.01429, 0, -5.0854)
 shape = SubResource("ConcavePolygonShape3D_mhb2s")
