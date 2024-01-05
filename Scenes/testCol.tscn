@@ -16,7 +16,7 @@ process_mode = 1
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622729, -0.110381, 0.0923436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96389, -0.446816, 0.33514)
 collision_layer = 517
 collision_mask = 521
 
