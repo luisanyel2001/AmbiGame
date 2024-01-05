@@ -239,11 +239,12 @@ func _mandar_datos(value = "Nada"):
 @rpc("any_peer", "call_local", "reliable")
 func _mover_cuadro(value):
 	#Que envio
-	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
+	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio algo")
 	#Actualiza movimiento a todos	
 	var current_scene_root = EditorInterface.get_edited_scene_root()
 	if current_scene_root != null: 
-		var busqueda = current_scene_root.find_child(value[0]) as Node3D
+		print("Buscara: " + str(value[0]))
+		var busqueda = current_scene_root.find_child(str(value[0])) as Node3D
 		if busqueda != null:
 			print(busqueda)
 			print(busqueda.position)
