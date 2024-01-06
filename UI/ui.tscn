@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgk4yigi3gmeo"]
+[gd_scene load_steps=8 format=3 uid="uid://cgk4yigi3gmeo"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_iaou6"]
 [ext_resource type="Texture2D" uid="uid://c6iy227xdutog" path="res://imgs/iniciar.png" id="2_uknhy"]
@@ -7,46 +7,73 @@
 [ext_resource type="Texture2D" uid="uid://cprfwucr8nhp6" path="res://imgs/cuadro_stats1.png" id="5_ym23x"]
 [ext_resource type="Texture2D" uid="uid://bt5k70hguaasd" path="res://imgs/restart.png" id="6_nq4b3"]
 
+[sub_resource type="SystemFont" id="SystemFont_x323c"]
+font_names = PackedStringArray("Century Gothic")
+
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_iaou6")
 
 [node name="pantalla_previa" type="Node2D" parent="."]
 
 [node name="Iniciar" type="Button" parent="pantalla_previa"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 30.9414
-offset_top = 209.012
-offset_right = 151.941
-offset_bottom = 332.012
+self_modulate = Color(1, 1, 1, 0.360784)
+offset_left = 394.0
+offset_top = 87.0
+offset_right = 777.0
+offset_bottom = 210.0
 
 [node name="Sprite2D" type="Sprite2D" parent="pantalla_previa/Iniciar"]
 position = Vector2(60, 65)
 scale = Vector2(0.636246, 0.610977)
 texture = ExtResource("2_uknhy")
 
+[node name="Label" type="Label" parent="pantalla_previa/Iniciar"]
+offset_left = 167.0
+offset_top = 7.0
+offset_right = 389.0
+offset_bottom = 112.0
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = SubResource("SystemFont_x323c")
+text = "Iniciar"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="Salir" type="Button" parent="pantalla_previa"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 30.0
-offset_top = 516.0
-offset_right = 154.0
-offset_bottom = 636.0
+offset_left = 1047.0
+offset_top = 548.0
+offset_right = 1128.0
+offset_bottom = 632.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="pantalla_previa/Salir"]
-position = Vector2(62, 62)
-scale = Vector2(0.209591, 0.205078)
+position = Vector2(43, 45)
+scale = Vector2(0.166765, 0.158122)
 texture = ExtResource("3_wvfno")
 
 [node name="Instrucciones" type="Button" parent="pantalla_previa"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 31.0
-offset_top = 366.0
-offset_right = 152.0
-offset_bottom = 489.0
+self_modulate = Color(1, 1, 1, 0.266667)
+offset_left = 394.0
+offset_top = 251.0
+offset_right = 787.0
+offset_bottom = 374.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="pantalla_previa/Instrucciones"]
 position = Vector2(60, 63)
 scale = Vector2(0.678665, 0.650407)
 texture = ExtResource("4_jida6")
+
+[node name="Label" type="Label" parent="pantalla_previa/Instrucciones"]
+offset_left = 167.0
+offset_top = 7.0
+offset_right = 379.0
+offset_bottom = 112.0
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = SubResource("SystemFont_x323c")
+text = "Instrucciones"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="pantalla_instrucciones" type="Node2D" parent="."]
 visible = false

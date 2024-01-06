@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://p1ovveh67ayl"]
+
+[sub_resource type="SystemFont" id="SystemFont_knryv"]
+font_names = PackedStringArray("Century Gothic")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 174.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 222.0
+
+[node name="Label" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+text = "Presiona cualquier boton para iniciar"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -4.0
+offset_top = 135.0
+offset_right = 1144.0
+offset_bottom = 158.0
+theme_override_colors/font_color = Color(0, 0.631373, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_knryv")
+text = "TEXTO DE PRUEBA"
+horizontal_alignment = 1
