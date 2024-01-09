@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d2i3pven6pmul"]
+
+[node name="Cronometer" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+offset_right = 333.0
+offset_bottom = 62.0

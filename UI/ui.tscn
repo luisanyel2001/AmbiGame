@@ -28,6 +28,7 @@ scale = Vector2(0.636246, 0.610977)
 texture = ExtResource("2_uknhy")
 
 [node name="Label" type="Label" parent="pantalla_previa/Iniciar"]
+layout_mode = 0
 offset_left = 167.0
 offset_top = 7.0
 offset_right = 389.0
@@ -64,6 +65,7 @@ scale = Vector2(0.678665, 0.650407)
 texture = ExtResource("4_jida6")
 
 [node name="Label" type="Label" parent="pantalla_previa/Instrucciones"]
+layout_mode = 0
 offset_left = 167.0
 offset_top = 7.0
 offset_right = 379.0
