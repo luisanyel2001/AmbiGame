@@ -179,17 +179,25 @@ func _process(delta):
 		if real == true:
 			if Engine.is_editor_hint():
 				if multiplayer.multiplayer_peer != null:
+					var data_scene = _get_text_current_scene()
+					print(data_scene['content'])
+					print(data_scene['time'])
+					_peer_compare_scenes.rpc(data_scene['content'], data_scene['time'])
+					
+					"""
 					_update_player_transform.rpc()
 					var envio = EditorInterface.get_selection().get_selected_nodes().front()
 					print("Envio")
 					print([str(envio.name), envio.position])
 					_mover_cuadro.rpc([str(envio.name), envio.position])
+					"""
 				
 				
-				
+				"""
 				var result = compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
-				_test_reload()
+				_create_copy_curent_scene()
 				print("Resultado: " + str(result))
+				"""
 				#Otro codigo
 				#_get_scene_transform()
 		
@@ -272,31 +280,30 @@ func _actualizar_nodo(value:Node3D):
 			print("Moviento exitoso")
 
 
-
-func _test_reload():
-	
-	#EditorInterface.reload_scene_from_path("res://name.tscn")
-	#print(get_tree().edited_scene_root.scene_file_path)
-	
-	var current_scene_root = EditorInterface.get_edited_scene_root()
-	print(current_scene_root.scene_file_path)
+@rpc("any_peer", "call_local", "reliable")
+func _create_copy_curent_scene():
 	var scene = PackedScene.new()
 	
-	#var scenec = load("res://scene.tscn").instantiate()
-	# Only `node` and `body` are now packed.
-	var result = scene.pack(current_scene_root)
+	var result = scene.pack(EditorInterface.get_edited_scene_root())
+	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
+	
 	if result == OK:
 		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
-
-	print("Actualizado con exito")
+	print("Copia con exito")
+	#return path_copy
 	
 
 func _on_btn_test_2_pressed():
-	_test_reload()
-	compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
+	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
+	var content1 = file1.get_as_text()
+	_mandar_datos(content1)
+	
 	"""
+	compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
+	_create_copy_curent_scene()
+	
 	var envio = EditorInterface.get_selection().get_selected_nodes().front()
 	print("Envio")
 	print([str(envio.name), envio.position])
@@ -313,6 +320,53 @@ func _on_btn_test_2_pressed():
 	#Obtiene objetos seleccionados	
 	#print(EditorInterface.get_selection().get_selected_nodes())
 	
+func _get_text_current_scene():
+	var file1 = FileAccess.open(EditorInterface.get_edited_scene_root().scene_file_path, FileAccess.READ)
+	# Obtiene la fecha de modificación de los archivos
+	var time1 = FileAccess.get_modified_time(EditorInterface.get_edited_scene_root().scene_file_path)
+   	# Obtiene el contenido de los archivos
+	var content1 = file1.get_as_text()
+	# Cierra los archivos después de obtener la información
+	file1.close()	
+	return {'content':content1, 'time': time1}
+
+	
+@rpc("any_peer", "call_local", "reliable")
+func _peer_compare_scenes(content2: String, time2: int):
+	var file1 = FileAccess.open(EditorInterface.get_edited_scene_root().scene_file_path, FileAccess.READ)
+
+	# Obtiene la fecha de modificación de los archivos
+	var time1 = FileAccess.get_modified_time(EditorInterface.get_edited_scene_root().scene_file_path)
+
+   	# Obtiene el contenido de los archivos
+	var content1 = file1.get_as_text()
+
+	# Cierra los archivos después de obtener la información
+	file1.close()
+
+	# Compara el contenido (usando MD5)
+	var hash1 = content1.md5_text()
+	var hash2 = content2.md5_text()
+	
+	print(hash1)
+	print(hash2)
+
+	if hash1 == hash2:
+		print(0)   # Ambos archivos tienen el mismo contenido
+	else:
+		if time1 > time2: 
+			#Actualiza el viejo
+			#writeFile(scene_path2, content1)
+			#EditorInterface.reload_scene_from_path(scene_path2)
+			#get_tree().change_scene_to_file(scene_path2)
+			print(1) 	# El primer archivo tiene un contenido diferente y es reciente
+		else:
+			#Actualiza el viejo
+			writeFile(EditorInterface.get_edited_scene_root(), content2)
+			EditorInterface.reload_scene_from_path(EditorInterface.get_edited_scene_root().scene_file_path)
+			#get_tree().change_scene_to_file(scene_path1)
+			print(-1)	# El primer archivo tiene un contenido diferente y es antiguo
+
 
 
 func compare_scene_files(scene_path1: String, scene_path2: String) -> int:
