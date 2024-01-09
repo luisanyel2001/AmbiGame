@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv7mags2degix"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_rkxel"]
-albedo_color = Color(0.0509804, 0.160784, 0.584314, 1)
+albedo_color = Color(0.0509804, 0.670588, 0.584314, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23dqf"]
 
@@ -21,7 +21,7 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7386, -0.85149, 17.7695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.72868, -3.8831, -13.059)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")

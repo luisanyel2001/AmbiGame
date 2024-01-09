@@ -175,14 +175,12 @@ func transverse_scene(node):
 @rpc("any_peer", "call_local", "reliable")
 func _process(delta):
 	#Reducir a cada dos frames
-	if Engine.get_process_frames() % 100 == 0:
+	if Engine.get_process_frames() % 300 == 0:
 		if real == true:
 			if Engine.is_editor_hint():
 				if multiplayer.multiplayer_peer != null:
 					var data_scene = _get_text_current_scene()
-					print(data_scene['content'])
-					print(data_scene['time'])
-					_peer_compare_scenes.rpc(data_scene['content'], data_scene['time'])
+					_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
 					
 					"""
 					_update_player_transform.rpc()
@@ -280,7 +278,7 @@ func _actualizar_nodo(value:Node3D):
 			print("Moviento exitoso")
 
 
-@rpc("any_peer", "call_local", "reliable")
+
 func _create_copy_curent_scene():
 	var scene = PackedScene.new()
 	
@@ -296,9 +294,10 @@ func _create_copy_curent_scene():
 	
 
 func _on_btn_test_2_pressed():
-	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
-	var content1 = file1.get_as_text()
-	_mandar_datos(content1)
+	#var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
+	#var content1 = file1.get_as_text()
+	#_mandar_datos(content1)
+
 	
 	"""
 	compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
@@ -321,7 +320,8 @@ func _on_btn_test_2_pressed():
 	#print(EditorInterface.get_selection().get_selected_nodes())
 	
 func _get_text_current_scene():
-	var file1 = FileAccess.open(EditorInterface.get_edited_scene_root().scene_file_path, FileAccess.READ)
+	_create_copy_curent_scene()
+	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
 	# Obtiene la fecha de modificación de los archivos
 	var time1 = FileAccess.get_modified_time(EditorInterface.get_edited_scene_root().scene_file_path)
    	# Obtiene el contenido de los archivos
@@ -330,6 +330,13 @@ func _get_text_current_scene():
 	file1.close()	
 	return {'content':content1, 'time': time1}
 
+
+@rpc("any_peer", "call_local", "reliable")
+func _peer_update_scene(content: String):
+	writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content)
+	EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
+	print("Escena actualizada")
+	
 	
 @rpc("any_peer", "call_local", "reliable")
 func _peer_compare_scenes(content2: String, time2: int):
@@ -350,6 +357,8 @@ func _peer_compare_scenes(content2: String, time2: int):
 	
 	print(hash1)
 	print(hash2)
+	print(time1)
+	print(time2)
 
 	if hash1 == hash2:
 		print(0)   # Ambos archivos tienen el mismo contenido
@@ -359,12 +368,13 @@ func _peer_compare_scenes(content2: String, time2: int):
 			#writeFile(scene_path2, content1)
 			#EditorInterface.reload_scene_from_path(scene_path2)
 			#get_tree().change_scene_to_file(scene_path2)
+			_peer_update_scene.rpc_id(multiplayer.get_remote_sender_id(),content1)
 			print(1) 	# El primer archivo tiene un contenido diferente y es reciente
 		else:
 			#Actualiza el viejo
-			writeFile(EditorInterface.get_edited_scene_root(), content2)
-			EditorInterface.reload_scene_from_path(EditorInterface.get_edited_scene_root().scene_file_path)
-			#get_tree().change_scene_to_file(scene_path1)
+			writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content2)
+			#EditorInterface.reload_scene_from_path(EditorInterface.get_edited_scene_root().scene_file_path)
+			EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
 			print(-1)	# El primer archivo tiene un contenido diferente y es antiguo
 
 
