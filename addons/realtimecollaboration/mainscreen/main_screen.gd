@@ -279,21 +279,13 @@ func _actualizar_nodo(value:Node3D):
 
 
 
-func _create_copy_curent_scene():
-	var scene = PackedScene.new()
-	
-	var result = scene.pack(EditorInterface.get_edited_scene_root())
-	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
-	
-	if result == OK:
-		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
-		if error != OK:
-			push_error("An error occurred while saving the scene to disk.")
-	print("Copia con exito")
-	#return path_copy
+
 	
 
 func _on_btn_test_2_pressed():
+	
+	var data_scene = _get_text_current_scene()
+	_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
 	#var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
 	#var content1 = file1.get_as_text()
 	#_mandar_datos(content1)
@@ -319,11 +311,25 @@ func _on_btn_test_2_pressed():
 	#Obtiene objetos seleccionados	
 	#print(EditorInterface.get_selection().get_selected_nodes())
 	
+func _create_copy_curent_scene():
+	var scene = PackedScene.new()
+	
+	var result = scene.pack(EditorInterface.get_edited_scene_root())
+	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
+	
+	if result == OK:
+		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
+		if error != OK:
+			push_error("An error occurred while saving the scene to disk.")
+	print("Copia con exito")
+	#return path_copy
+	
+	
 func _get_text_current_scene():
 	_create_copy_curent_scene()
 	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
 	# Obtiene la fecha de modificación de los archivos
-	var time1 = FileAccess.get_modified_time(EditorInterface.get_edited_scene_root().scene_file_path)
+	var time1 = FileAccess.get_modified_time("res://name.tscn")
    	# Obtiene el contenido de los archivos
 	var content1 = file1.get_as_text()
 	# Cierra los archivos después de obtener la información
@@ -340,16 +346,9 @@ func _peer_update_scene(content: String):
 	
 @rpc("any_peer", "call_local", "reliable")
 func _peer_compare_scenes(content2: String, time2: int):
-	var file1 = FileAccess.open(EditorInterface.get_edited_scene_root().scene_file_path, FileAccess.READ)
-
-	# Obtiene la fecha de modificación de los archivos
-	var time1 = FileAccess.get_modified_time(EditorInterface.get_edited_scene_root().scene_file_path)
-
-   	# Obtiene el contenido de los archivos
-	var content1 = file1.get_as_text()
-
-	# Cierra los archivos después de obtener la información
-	file1.close()
+	var data_scene = _get_text_current_scene()
+	var content1 = data_scene['content']
+	var time1 = data_scene['time']
 
 	# Compara el contenido (usando MD5)
 	var hash1 = content1.md5_text()
