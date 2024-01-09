@@ -185,6 +185,11 @@ func _process(delta):
 					print([str(envio.name), envio.position])
 					_mover_cuadro.rpc([str(envio.name), envio.position])
 				
+				
+				
+				var result = compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
+				_test_reload()
+				print("Resultado: " + str(result))
 				#Otro codigo
 				#_get_scene_transform()
 		
@@ -268,12 +273,36 @@ func _actualizar_nodo(value:Node3D):
 
 
 
-func _on_btn_test_2_pressed():
+func _test_reload():
+	
+	#EditorInterface.reload_scene_from_path("res://name.tscn")
+	#print(get_tree().edited_scene_root.scene_file_path)
+	
 	var current_scene_root = EditorInterface.get_edited_scene_root()
+	print(current_scene_root.scene_file_path)
+	var scene = PackedScene.new()
+	
+	#var scenec = load("res://scene.tscn").instantiate()
+	# Only `node` and `body` are now packed.
+	var result = scene.pack(current_scene_root)
+	if result == OK:
+		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
+		if error != OK:
+			push_error("An error occurred while saving the scene to disk.")
+
+	print("Actualizado con exito")
+	
+
+func _on_btn_test_2_pressed():
+	_test_reload()
+	compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
+	"""
 	var envio = EditorInterface.get_selection().get_selected_nodes().front()
 	print("Envio")
 	print([str(envio.name), envio.position])
 	_mover_cuadro.rpc([str(envio.name), envio.position])
+	"""
+	
 	#var posicion_local = current_scene_root.find_child("Floor").position
 	#_mover_cuadro.rpc(EditorInterface.get_selection().get_selected_nodes())
 	#_mandar_datos.rpc(str(EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform))
@@ -281,11 +310,52 @@ func _on_btn_test_2_pressed():
 	#_update_player_transform.rpc()
 	#print(_global_scene)
 	#_get_scene_transform()
+	#Obtiene objetos seleccionados	
+	#print(EditorInterface.get_selection().get_selected_nodes())
 	
 
 
-		
+func compare_scene_files(scene_path1: String, scene_path2: String) -> int:
+	var file1 = FileAccess.open(scene_path1, FileAccess.READ)
+	var file2 = FileAccess.open(scene_path2, FileAccess.READ)
 
+	# Obtiene la fecha de modificación de los archivos
+	var time1 = FileAccess.get_modified_time(scene_path1)
+	var time2 = FileAccess.get_modified_time(scene_path2)
+
+   	# Obtiene el contenido de los archivos
+	var content1 = file1.get_as_text()
+	var content2 = file2.get_as_text()
+
+	# Cierra los archivos después de obtener la información
+	file1.close()
+	file2.close()
+
+	# Compara el contenido (usando MD5)
+	var hash1 = content1.md5_text()
+	var hash2 = content2.md5_text()
 	
-#Obtiene objetos seleccionados	
-#print(EditorInterface.get_selection().get_selected_nodes())
+	print(hash1)
+	print(hash2)
+
+	if hash1 == hash2:
+		return 0   # Ambos archivos tienen el mismo contenido
+	else:
+		if time1 > time2: 
+			#Actualiza el viejo
+			writeFile(scene_path2, content1)
+			EditorInterface.reload_scene_from_path(scene_path2)
+			#get_tree().change_scene_to_file(scene_path2)
+			return 1 	# El primer archivo tiene un contenido diferente y es reciente
+		else:
+			#Actualiza el viejo
+			writeFile(scene_path1, content2)
+			EditorInterface.reload_scene_from_path(scene_path1)
+			#get_tree().change_scene_to_file(scene_path1)
+			return -1	# El primer archivo tiene un contenido diferente y es antiguo
+
+
+func writeFile(path_file,content):
+	var file = FileAccess.open(path_file, FileAccess.WRITE)
+	file.store_string(content)
+
