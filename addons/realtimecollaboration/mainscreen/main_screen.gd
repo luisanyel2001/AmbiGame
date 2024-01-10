@@ -179,10 +179,15 @@ func _process(delta):
 		if real == true:
 			if Engine.is_editor_hint():
 				if multiplayer.multiplayer_peer != null:
+					var envio = EditorInterface.get_selection().get_selected_nodes().front()
+					print("Envio")
+					print([str(envio.name), envio.position])
+					_mover_cuadro.rpc([str(envio.name), envio.position])
+					"""
 					var data_scene = _get_text_current_scene()
 					_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
 					
-					"""
+					
 					_update_player_transform.rpc()
 					var envio = EditorInterface.get_selection().get_selected_nodes().front()
 					print("Envio")
@@ -279,15 +284,25 @@ func _actualizar_nodo(value:Node3D):
 
 
 
-
+func _local_update_scene(content: String):
+	if Engine.is_editor_hint():
+		writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content)
+		#EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
+		#EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file("res://Scenes/CarroPersona.tscn")
+		print(EditorInterface.get_edited_scene_root().get_parent().get_parent().get_tree_string_pretty())
+		#get_tree().change_scene_to_file("res://Scenes/CarroPersona.tscn")
+		#"res://Scenes/CarroPersona.tscn"
+		print("Escena actualizada")
 	
 
 func _on_btn_test_2_pressed():
 	
-	var data_scene = _get_text_current_scene()
-	_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
-	#var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
-	#var content1 = file1.get_as_text()
+	#var data_scene = _get_text_current_scene()
+	#_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
+	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
+	var content1 = file1.get_as_text()
+	_local_update_scene(content1)
+	
 	#_mandar_datos(content1)
 
 	
@@ -318,6 +333,7 @@ func _create_copy_curent_scene():
 	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
 	
 	if result == OK:
+		
 		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
