@@ -299,9 +299,30 @@ func _on_btn_test_2_pressed():
 	
 	#var data_scene = _get_text_current_scene()
 	#_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
-	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
-	var content1 = file1.get_as_text()
-	_local_update_scene(content1)
+	#var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
+	#var content1 = file1.get_as_text()
+	#_local_update_scene(content1)
+	var scene = PackedScene.new()
+	var envio = EditorInterface.get_selection().get_selected_nodes().front()
+	print(envio.position)
+	var result = scene.pack(envio)
+	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
+
+	if result == OK:
+		var error = ResourceSaver.save(scene, "res://obj.tscn")  # Or "user://..."
+		if error != OK:
+			push_error("An error occurred while saving the scene to disk.")
+
+	#var abc = preload("res://obj.tscn").instantiate()
+	#EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position
+	#print(abc.position)
+	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position)
+	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").get_property_list())
+	
+	var abc = preload("res://obj.tscn").instantiate()
+	var bcd = ResourceLoader.load("res://obj.tscn")
+	#print(abc.transform)
+	#print(bcd.get_state())
 	
 	#_mandar_datos(content1)
 
