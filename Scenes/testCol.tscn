@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv7mags2degix"]
+[gd_scene load_steps=6 format=3 uid="uid://dv7mags2degix"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_rkxel"]
 albedo_color = Color(0.0509804, 0.670588, 0.584314, 1)
@@ -7,6 +7,11 @@ albedo_color = Color(0.0509804, 0.670588, 0.584314, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mhb2s"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_6pnjb"]
+albedo_color = Color(0.0509804, 0.670588, 0.584314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ipdq3"]
 
 [node name="TestNodo" type="Node3D"]
 
@@ -19,11 +24,17 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.95948)
+transform = Transform3D(0.999391, 0.00060908, 0.0348942, 0, 0.999847, -0.0174524, -0.0348995, 0.0174418, 0.999238, 0, 0, 1.85752)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(0.987645, 0.15671, 0, -0.15671, 0.987645, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.02793)
 shape = SubResource("ConcavePolygonShape3D_mhb2s")
+
+[node name="Test3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999391, 0.00060908, 0.0348942, 0, 0.999847, -0.0174524, -0.0348995, 0.0174418, 0.999238, 5, 0, 1.85752)
+material_override = SubResource("ORMMaterial3D_6pnjb")
+mesh = SubResource("PlaneMesh_ipdq3")
+skeleton = NodePath("../..")

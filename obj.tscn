@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsdqqvxyjowds"]
+[gd_scene load_steps=2 format=3 uid="uid://b35iho62chpn0"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_rkxel"]
-albedo_color = Color(0.0509804, 0.670588, 0.584314, 1)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mhb2s"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_23dqf"]
-
-[node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.95948)
-material_override = SubResource("ORMMaterial3D_rkxel")
-mesh = SubResource("PlaneMesh_23dqf")
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" type="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.02793)
+shape = SubResource("ConcavePolygonShape3D_mhb2s")

@@ -28,7 +28,6 @@ var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export 
 #Is called when the node and its children 
 #have all added to the scene tree and are ready
 func _ready():
-	
 	#Init. Links to calls
 	multiplayer.multiplayer_peer = null
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -184,8 +183,6 @@ func _process(delta):
 					print("Envio")
 					print([str(envio.name), envio.position])
 					_mover_cuadro.rpc([str(envio.name), envio.position])
-				
-					
 					"""
 					var data_scene = _get_text_current_scene()
 					_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
@@ -299,48 +296,28 @@ func _local_update_scene(content: String):
 	
 
 func _on_btn_test_2_pressed():
-	#var abc = EditorInterface.get_edited_scene_root().find_child("MeshInstance3D")
+	var abc = EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").basis
+	print(abc)
 	#var data_scene = _get_text_current_scene()
 	#_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
 	#var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
 	#var content1 = file1.get_as_text()
 	#_local_update_scene(content1)
-
+	"""
 	var scene = PackedScene.new()
 	var envio = EditorInterface.get_selection().get_selected_nodes().front()
-	var my_o = envio.get_owner()
+	print(envio.position)
 	var result = scene.pack(envio)
 	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
 
 	if result == OK:
-		var error = ResourceSaver.save(scene, "res://obj.tscn")  # ResourceSaver.FLAG_CHANGE_PATH|ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS
+		var error = ResourceSaver.save(scene, "res://obj.tscn")  # Or "user://..."
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
-
-	var new_node = load("res://obj.tscn")
-	#var new_node = ResourceLoader.load("res://obj.tscn")
-	var instance = new_node.instantiate() as MeshInstance3D
-	instance.name = "Test3d"
-	
-	#print(instance.name)
-	EditorInterface.get_edited_scene_root().add_child(instance)
-	instance.set_owner(my_o)
-	instance.instan
-	#print(EditorInterface.get_edited_scene_root().find_child("Test3d"))
-	#print(find_child("MeshInstance3D"))
-	#remove_child(find_child("MeshInstance3D"))
-	print(EditorInterface.get_edited_scene_root().find_child(EditorInterface.get_edited_scene_root().get_children()[1].name))
-	EditorInterface.get_edited_scene_root().get_children()[1].position.x = 5
-	print(EditorInterface.get_edited_scene_root().find_child("Test3d"))
-	#print(EditorInterface.get_edited_scene_root().owner)
-	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
-	print("Exito")
-
 
 	#var abc = preload("res://obj.tscn").instantiate()
 	#EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position
 	#print(abc.position)
-	"""
 	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position)
 	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").get_property_list())
 	
