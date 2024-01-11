@@ -121,3 +121,7 @@ shape = SubResource("ConvexPolygonShape3D_bghyi")
 [node name="SnapZone" parent="Floor" instance=ExtResource("8_5cc7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309294, -0.6494)
 snap_require = "Box"
+
+[node name="GridMap" type="GridMap" parent="."]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

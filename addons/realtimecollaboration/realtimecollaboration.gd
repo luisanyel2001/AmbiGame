@@ -16,13 +16,17 @@ func _enter_tree():
 	# Hide the main panel. Very much required.
 	_make_visible(false)
 	
-	# Get name of editor current scene 
-	var player_scene = get_editor_interface().get_edited_scene_root()
-	if player_scene != null:
-		print(player_scene.scene_file_path.get_file())	
-	else:
-		print("La escena es nula")	
+	#Connect signal on change
+	get_undo_redo().history_changed.connect(_emit_signal)
 	
+	
+func _emit_signal():
+	main_panel_instance.one_update.emit()
+
+func _test():
+	print(EditorInterface.get_selection().get_selected_nodes().front())
+	print("Cambio")
+
 
 func _exit_tree():
 	# Clean-up of the plugin goes here.
@@ -51,6 +55,14 @@ func _get_plugin_icon():
 	
 	
 """
+# Get name of editor current scene 
+	var player_scene = get_editor_interface().get_edited_scene_root()
+	if player_scene != null:
+		print(player_scene.scene_file_path.get_file())	
+	else:
+		print("La escena es nula")	
+
+
 INIT VARIABLES
 # A class member to hold the dock during the plugin life cycle.
 var dock
