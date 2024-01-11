@@ -205,6 +205,7 @@ func _on_btn_test_2_pressed():
 #Se ejecuta cuando se modifica
 func _on_scene_update_modify():
 	if multiplayer.multiplayer_peer != null:
+		print("Entro modify")
 		var data_selected = _get_selected_object()
 		if data_selected == null:
 			print("No tienes nada seleccionado")
@@ -216,62 +217,71 @@ func _on_scene_update_modify():
 
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_modify(data):
-	if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
-		print("Llamada a si mismo, no hace nada")
-	else:
-		print("Llamada desde otro, si hace")
-		writeFile(data['data'],_RECEIVE_PATH)
-		#Create instance
-		var new_node = load(_RECEIVE_PATH)
-		var instance = new_node.instantiate()
-		#Replace node
-		var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
-		if search != null:
-			search.replace_by(instance)
+	if data != null:
+		print("Entro modify peer")
+		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
+			print("Llamada a si mismo, no hace nada")
+		else:
+			print("Llamada desde otro, si hace")
+			writeFile(data['data'],_RECEIVE_PATH)
+			#Create instance
+			var new_node = load(_RECEIVE_PATH)
+			var instance = new_node.instantiate()
+			#Replace node
+			var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
+			if search != null:
+				search.replace_by(instance)
 		
 		
 		
 #Se ejecuta cuando se agrega o elimina nodo
 func _on_scene_update_add(node):
-	if multiplayer.multiplayer_peer != null:
-		if node is Node3D:
-			var search = _global_scene.find_child(node.name)
-			print("Antes de entrar")
-			print(node.name)
-			if search == null:
-				print("Entro")
-				#_create_copy(node, _SEND_PATH)
-				#var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
-				#_peer_on_scene_update_add.rpc(data)
+	if node != null:
+		if multiplayer.multiplayer_peer != null:
+			if node is Node3D:
+				print("Entro add")
+				var search = _global_scene.find_child(node.name)
+				print("Antes de entrar")
+				print(node.name)
+				if search == null:
+					print("Entro")
+					_create_copy(node, _SEND_PATH)
+					var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
+					_peer_on_scene_update_add.rpc(data)
 		
 			
 			
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_add(data):
-	if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
-		print("Llamada a si mismo, no hace nada")
-	else:
-		print("Llamada desde otro, si hace")
-		writeFile(data['data'],_RECEIVE_PATH)
-		#Create instance
-		var new_node = load(_RECEIVE_PATH)
-		var instance = new_node.instantiate()
-		#Replace node
-		print("Se buscara el padre agregar: " + data['parent'])
-		var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
-		if search != null:
-			search.add_child(instance)
+	if data != null:
+		print("Entro add peer")
+		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
+			print("Llamada a si mismo, no hace nada")
+		else:
+			print("Llamada desde otro, si hace")
+			writeFile(data['data'],_RECEIVE_PATH)
+			#Create instance
+			var new_node = load(_RECEIVE_PATH)
+			var instance = new_node.instantiate()
+			#Replace node
+			print("Se buscara el padre agregar: " + data['parent'])
+			var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+			if search != null:
+				search.add_child(instance)
 		
 		
 func _on_scene_update_remove(node):
-	if multiplayer.multiplayer_peer != null:
-		if node is Node3D:
-			_peer_on_scene_update_remove.rpc(node.name)
+	if node != null:
+		if multiplayer.multiplayer_peer != null:
+			if node is Node3D:
+				print("Entro remove")
+				_peer_on_scene_update_remove.rpc(node.name)
 			
 			
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_remove(nameNode):
 	#Remove old node
+	print("Entro remove peer")
 	print("Se buscara el padre remover: " + nameNode)
 	var search = EditorInterface.get_edited_scene_root().find_child(nameNode)
 	if search != null:
