@@ -6,12 +6,16 @@ signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
 
-signal one_update
+signal scene_update
 
 #Attributes
 var _DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 var _PORT = 135
 var _MAX_CONNECTIONS = 20
+
+#Paths for temp files
+var _SEND_PATH = "res://sendtemp.tscn"
+var _RECEIVE_PATH = "res://receivetemp.tscn"
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -30,15 +34,10 @@ var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export 
 #Is called when the node and its children 
 #have all added to the scene tree and are ready
 func _ready():
-	#get_undo_redo().history_changed.connect(_test)
-	#_global_scene.get_tree().node_added.connect(_test)
-	#_global_scene.get_tree().tree_changed.connect(_test)
-	#_global_scene.get_tree().node_configuration_warning_changed.connect(_test2)
-	#_global_scene.child_order_changed.connect(_test)
 	#Links to calls editor plugin
-	one_update.connect(_test)
-	_global_scene.get_tree().node_added.connect(_test2)
-	_global_scene.get_tree().node_removed.connect(_test2)
+	scene_update.connect(_on_scene_update_modify)
+	_global_scene.get_tree().node_added.connect(_on_scene_update_add_delete)
+	_global_scene.get_tree().node_removed.connect(_on_scene_update_add_delete)
 	#Init. Links to calls
 	multiplayer.multiplayer_peer = null
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -47,14 +46,23 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	
 	var scene = EditorInterface.get_edited_scene_root()
 	print("carga: " + scene.scene_file_path.get_file())
 	
-	
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+@rpc("any_peer", "call_local", "reliable")
+func _process(delta):
+	#Reducir a cada dos frames
+	if Engine.get_process_frames() % 300 == 0:
+		if real == true:
+			if Engine.is_editor_hint():
+				if multiplayer.multiplayer_peer != null:
+					_update_player_transform.rpc()
 
+
+#-------------------------Library Server---------------------------
 #Create a server 
 func _create_server():
 	var peer = ENetMultiplayerPeer.new()
@@ -149,94 +157,6 @@ func _on_server_disconnected():
 	print("Server desconectado")
 
 
-# Call local is required if the server is also a player.
-@rpc("any_peer", "call_local", "reliable")
-func _update_player_transform():
-	var current_scene = EditorInterface.get_edited_scene_root()
-	if current_scene is Node3D:
-		#Get camera position
-		var position = EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform
-		print("La ubicacion del id: " + str(multiplayer.get_remote_sender_id()) + " es: " + str(position))
-	
-	
-# Call local is required if the server is also a player.
-@rpc("any_peer", "call_local", "reliable")
-func _get_scene_transform():
-	print("Entro escena get")
-	var current_scene_root = EditorInterface.get_edited_scene_root()
-	print("Escena:" + current_scene_root.to_string())
-	if current_scene_root is Node3D:
-		transverse_scene(current_scene_root)
-
-
-func transverse_scene(node):
-	if node is Node3D:
-		print("Nombre a buscar: " + node.name)
-		var se = _global_scene.find_child(node.name)
-		if se != null:
-			print("Encuentra")
-			
-		print(se)
-	# Transverse chiilds
-	for i in range(node.get_child_count()):
-		transverse_scene(node.get_child(i))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-@rpc("any_peer", "call_local", "reliable")
-func _process(delta):
-	#Reducir a cada dos frames
-	if Engine.get_process_frames() % 300 == 0:
-		if real == true:
-			if Engine.is_editor_hint():
-				if multiplayer.multiplayer_peer != null:
-					var envio = EditorInterface.get_selection().get_selected_nodes().front()
-					print("Envio")
-					print([str(envio.name), envio.position])
-					_mover_cuadro.rpc([str(envio.name), envio.position])
-				
-					
-					"""
-					var data_scene = _get_text_current_scene()
-					_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
-					
-					
-					_update_player_transform.rpc()
-					var envio = EditorInterface.get_selection().get_selected_nodes().front()
-					print("Envio")
-					print([str(envio.name), envio.position])
-					_mover_cuadro.rpc([str(envio.name), envio.position])
-					"""
-				
-				
-				"""
-				var result = compare_scene_files(EditorInterface.get_edited_scene_root().scene_file_path, "res://name.tscn")
-				_create_copy_curent_scene()
-				print("Resultado: " + str(result))
-				"""
-				#Otro codigo
-				#_get_scene_transform()
-		
-			
-			
-
-#Se ejecuta cuando se modifica
-func _test():
-	_test_peer.rpc()
-
-@rpc("any_peer", "call_local", "reliable")
-func _test_peer():
-	print(str(multiplayer.get_remote_sender_id()))
-	print("Entro a test")
-
-
-#Se ejecuta cuando se agrega o elimina nodo
-@rpc("any_peer", "call_local", "reliable")
-func _test2(node):
-	if node is Node3D:
-		print("Es 3D")
-		print(str(node))
-
 #------------------------------Buttons-------------------------------
 func _on_btn_start_host_pressed():
 	_player_info = {"nickname":$vbx_nickname/ln_nickname.text}
@@ -271,65 +191,107 @@ func _on_btn_test_pressed():
 		real = true
 	else:
 		real = false
-	#_update_player_transform.rpc()
-	
-
-
-
-@rpc("any_peer", "call_local", "reliable")
-func _mandar_datos(value = "Nada"):
-	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
-	
-	
-@rpc("any_peer", "call_local", "reliable")
-func _mover_cuadro(value):
-	#Que envio
-	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio algo")
-	#Actualiza movimiento a todos	
-	var current_scene_root = EditorInterface.get_edited_scene_root()
-	if current_scene_root != null: 
-		print("Buscara: " + str(value[0]))
-		var busqueda = current_scene_root.find_child(str(value[0])) as Node3D
-		if busqueda != null:
-			print(busqueda)
-			print(busqueda.position)
-			busqueda.position = value[1]
-			print("Moviento exitoso")
-			
-
-
-@rpc("any_peer", "call_local", "reliable")
-func _actualizar_nodo(value:Node3D):
-	#Que envio
-	print("El id: " + str(multiplayer.get_remote_sender_id()) + " envio: " + str(value))
-	#Actualiza movimiento a todos	
-	var current_scene_root = EditorInterface.get_edited_scene_root()
-	if current_scene_root != null: 
-		var busqueda = current_scene_root.find_child("Floor") as Node3D
-		if busqueda != null:
-			busqueda = value
-			print("Moviento exitoso")
-
-
-
-func _local_update_scene(content: String):
-	if Engine.is_editor_hint():
-		writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content)
-		#EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
-		#EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file("res://Scenes/CarroPersona.tscn")
-		print(EditorInterface.get_edited_scene_root().get_parent().get_parent().get_tree_string_pretty())
-		#get_tree().change_scene_to_file("res://Scenes/CarroPersona.tscn")
-		#"res://Scenes/CarroPersona.tscn"
-		print("Escena actualizada")
-	
-
-func _get_selected_object():
-	var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
-	return EditorInterface.get_selection().get_selected_nodes().front()
-
 
 func _on_btn_test_2_pressed():
+	pass
 	
+	
+#----------------------Signal_functions-----------------------------
+#Se ejecuta cuando se modifica
+func _on_scene_update_modify():
+	if multiplayer.multiplayer_peer != null:
+		var data_selected = _get_selected_object()
+		_create_copy(data_selected['node'], _SEND_PATH)
+		var data = {'data':readFile(_SEND_PATH),'parent':data_selected['parent']}
+		_peer_on_scene_update_modify.rpc(data)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _peer_on_scene_update_modify(data):
+	if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
+		print("Llamada a si mismo, no hace nada")
+	else:
+		print("Llamada desde otro, si hace")
+		writeFile(data['data'],_RECEIVE_PATH)
+		
+		#Create instance
+		var new_node = load(_RECEIVE_PATH)
+		var instance = new_node.instantiate()
+		
+		#Remove old node
+		EditorInterface.get_edited_scene_root().find_child(instance.name).queue_free()
+		#Add new node
+		EditorInterface.get_edited_scene_root().find_child(data['parent']).add_child(instance)
+		instance.set_owner(EditorInterface.get_edited_scene_root())
+		
+		
+#Se ejecuta cuando se agrega o elimina nodo
+func _on_scene_update_add_delete(node):
+	if multiplayer.multiplayer_peer != null:
+		if node is Node3D:
+			_peer_on_scene_update_add_delete.rpc()
+			
+			
+@rpc("any_peer", "call_local", "reliable")
+func _peer_on_scene_update_add_delete(node):
+	print("Es 3D")
+	print(str(node))
+
+
+	
+#--------------------------Peer_functions-----------------------
+# Call local is required if the server is also a player.
+@rpc("any_peer", "call_local", "reliable")
+func _update_player_transform():
+	var current_scene = EditorInterface.get_edited_scene_root()
+	if current_scene is Node3D:
+		#Get camera position
+		var position = EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_transform
+		print("La ubicacion del id: " + str(multiplayer.get_remote_sender_id()) + " es: " + str(position))
+
+
+@rpc("any_peer", "call_local", "reliable")
+func _peer_send_data(value = "Nada"):
+	print("ID: " + str(multiplayer.get_remote_sender_id()) + " sent: " + str(value))
+	
+	
+#---------------------Local_Functions-------------------------
+
+func readFile(path_file):
+	var file = FileAccess.open(path_file, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	return content
+	
+
+func writeFile(content,path_file):
+	var file = FileAccess.open(path_file, FileAccess.WRITE)
+	file.store_string(content)
+
+
+func _get_selected_object():
+	var selected = EditorInterface.get_selection().get_selected_nodes().front()
+	var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
+	var selected_reply = {'node':selected, 'parent':parent}
+	return selected_reply
+
+	
+func _create_copy(node,path):
+	var scene = PackedScene.new()
+	var result = scene.pack(node)
+	
+	if result == OK:
+		var error = ResourceSaver.save(scene, "res://ambi.tscn")  # Or "user://..."
+		if error != OK:
+			push_error("An error occurred while saving the scene to disk.")
+			
+	print("Node copy: " + node.name + " created successfully") #return path_copy
+	
+	
+	
+
+
+	"""
 	#print(EditorInterface.get_edited_scene_root().get_tree().tree_changed)
 	#_create_copy(_get_selected_object())
 	
@@ -352,7 +314,7 @@ func _on_btn_test_2_pressed():
 	#var abc = preload("res://obj.tscn").instantiate()
 	#EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position
 	#print(abc.position)
-	"""
+	
 	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").position)
 	print(EditorInterface.get_edited_scene_root().find_child("MeshInstance3D").get_property_list())
 	
@@ -383,125 +345,6 @@ func _on_btn_test_2_pressed():
 	#_get_scene_transform()
 	#Obtiene objetos seleccionados	
 	#print(EditorInterface.get_selection().get_selected_nodes())
-	
-func _create_copy(node):
-	var scene = PackedScene.new()
-	
-	var result = scene.pack(node)
-	
-	if result == OK:
-		var error = ResourceSaver.save(scene, "res://ambi.tscn")  # Or "user://..."
-		if error != OK:
-			push_error("An error occurred while saving the scene to disk.")
-			
-	print("Copia con exito")
-	#return path_copy
-	
-	
-func _get_text_current_scene():
-	#_create_copy()
-	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
-	# Obtiene la fecha de modificación de los archivos
-	var time1 = FileAccess.get_modified_time("res://name.tscn")
-   	# Obtiene el contenido de los archivos
-	var content1 = file1.get_as_text()
-	# Cierra los archivos después de obtener la información
-	file1.close()	
-	return {'content':content1, 'time': time1}
-
-
-@rpc("any_peer", "call_local", "reliable")
-func _peer_update_scene(content: String):
-	writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content)
-	EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
-	print("Escena actualizada")
-	
-	
-@rpc("any_peer", "call_local", "reliable")
-func _peer_compare_scenes(content2: String, time2: int):
-	var data_scene = _get_text_current_scene()
-	var content1 = data_scene['content']
-	var time1 = data_scene['time']
-
-	# Compara el contenido (usando MD5)
-	var hash1 = content1.md5_text()
-	var hash2 = content2.md5_text()
-	
-	print(hash1)
-	print(hash2)
-	print(time1)
-	print(time2)
-
-	if hash1 == hash2:
-		print(0)   # Ambos archivos tienen el mismo contenido
-	else:
-		if time1 > time2: 
-			#Actualiza el viejo
-			#writeFile(scene_path2, content1)
-			#EditorInterface.reload_scene_from_path(scene_path2)
-			#get_tree().change_scene_to_file(scene_path2)
-			_peer_update_scene.rpc_id(multiplayer.get_remote_sender_id(),content1)
-			print(1) 	# El primer archivo tiene un contenido diferente y es reciente
-		else:
-			#Actualiza el viejo
-			writeFile(EditorInterface.get_edited_scene_root().scene_file_path, content2)
-			#EditorInterface.reload_scene_from_path(EditorInterface.get_edited_scene_root().scene_file_path)
-			EditorInterface.get_edited_scene_root().get_tree().change_scene_to_file(EditorInterface.get_edited_scene_root().scene_file_path)
-			print(-1)	# El primer archivo tiene un contenido diferente y es antiguo
-
-
-
-func compare_scene_files(scene_path1: String, scene_path2: String) -> int:
-	var file1 = FileAccess.open(scene_path1, FileAccess.READ)
-	var file2 = FileAccess.open(scene_path2, FileAccess.READ)
-
-	# Obtiene la fecha de modificación de los archivos
-	var time1 = FileAccess.get_modified_time(scene_path1)
-	var time2 = FileAccess.get_modified_time(scene_path2)
-
-   	# Obtiene el contenido de los archivos
-	var content1 = file1.get_as_text()
-	var content2 = file2.get_as_text()
-
-	# Cierra los archivos después de obtener la información
-	file1.close()
-	file2.close()
-
-	# Compara el contenido (usando MD5)
-	var hash1 = content1.md5_text()
-	var hash2 = content2.md5_text()
-	
-	print(hash1)
-	print(hash2)
-
-	if hash1 == hash2:
-		return 0   # Ambos archivos tienen el mismo contenido
-	else:
-		if time1 > time2: 
-			#Actualiza el viejo
-			writeFile(scene_path2, content1)
-			EditorInterface.reload_scene_from_path(scene_path2)
-			#get_tree().change_scene_to_file(scene_path2)
-			return 1 	# El primer archivo tiene un contenido diferente y es reciente
-		else:
-			#Actualiza el viejo
-			writeFile(scene_path1, content2)
-			EditorInterface.reload_scene_from_path(scene_path1)
-			#get_tree().change_scene_to_file(scene_path1)
-			return -1	# El primer archivo tiene un contenido diferente y es antiguo
-
-
-func readFile(path_file):
-	var file = FileAccess.open(path_file, FileAccess.READ)
-	var content = file.get_as_text()
-	file.close()
-	return content
-	
-
-func writeFile(path_file,content):
-	var file = FileAccess.open(path_file, FileAccess.WRITE)
-	file.store_string(content)
-
 
 """
 var scene = PackedScene.new()

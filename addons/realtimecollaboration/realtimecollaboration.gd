@@ -17,16 +17,8 @@ func _enter_tree():
 	_make_visible(false)
 	
 	#Connect signal on change
-	get_undo_redo().history_changed.connect(_emit_signal)
+	get_undo_redo().history_changed.connect(func():main_panel_instance.scene_update.emit())
 	
-	
-func _emit_signal():
-	main_panel_instance.one_update.emit()
-
-func _test():
-	print(EditorInterface.get_selection().get_selected_nodes().front())
-	print("Cambio")
-
 
 func _exit_tree():
 	# Clean-up of the plugin goes here.
