@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_j4341"]
-size = Vector2(50, 2)
+[sub_resource type="PlaneMesh" id="PlaneMesh_dcxwf"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_j4341")
+[node name="@MeshInstance3D@22457" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6944, 0, 0)
+mesh = SubResource("PlaneMesh_dcxwf")

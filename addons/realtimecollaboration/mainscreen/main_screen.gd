@@ -234,6 +234,7 @@ func _peer_on_scene_update_modify(data):
 				search_replace.queue_free()
 				var search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
 				if search_parent_replace != null:
+					print("Se modificara la instancia:" + instance.name)
 					search_parent_replace.add_child(instance)
 					instance.set_owner(EditorInterface.get_edited_scene_root())
 					print("Se modifico hijo existente.")
