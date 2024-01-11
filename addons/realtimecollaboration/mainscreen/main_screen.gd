@@ -227,16 +227,19 @@ func _peer_on_scene_update_modify(data):
 			#Create instance
 			var new_node = load(_RECEIVE_PATH)
 			var instance = new_node.instantiate()
+			var original_instance_name = instance.name
 			#Replace node
-			var search_replace = EditorInterface.get_edited_scene_root().find_child(instance.name)
+			var search_replace = EditorInterface.get_edited_scene_root().find_child(original_instance_name)
 			if search_replace != null:
 				#search_replace.replace_by(instance)
 				search_replace.queue_free()
+				#EditorInterface.get_edited_scene_root().remove_child(search_replace)
 				var search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
 				if search_parent_replace != null:
 					print("Se modificara la instancia:" + instance.name)
 					search_parent_replace.add_child(instance)
 					instance.set_owner(EditorInterface.get_edited_scene_root())
+					instance.name = original_instance_name
 					print("Se modifico hijo existente.")
 			else:
 				print("Se buscara el padre modificar: " + data['parent'])
