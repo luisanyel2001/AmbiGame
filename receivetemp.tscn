@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
 
-[node name="_Camera3D_21863" type="Camera3D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_j4341"]
+size = Vector2(50, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_j4341")
