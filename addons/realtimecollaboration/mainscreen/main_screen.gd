@@ -36,8 +36,8 @@ var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export 
 func _ready():
 	#Links to calls editor plugin
 	scene_update.connect(_on_scene_update_modify)
-	_global_scene.get_tree().node_added.connect(_on_scene_update_add_delete)
-	_global_scene.get_tree().node_removed.connect(_on_scene_update_add_delete)
+	#_global_scene.get_tree().node_added.connect(_on_scene_update_add)
+	#_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
 	#Init. Links to calls
 	multiplayer.multiplayer_peer = null
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -193,8 +193,10 @@ func _on_btn_test_pressed():
 		real = false
 
 func _on_btn_test_2_pressed():
-	pass
-	
+	#Create instance
+	var new_node = load(_SEND_PATH)
+	var instance = new_node.instantiate()
+	EditorInterface.get_edited_scene_root().find_child(instance.name).replace_by(instance)
 	
 #----------------------Signal_functions-----------------------------
 #Se ejecuta cuando se modifica
@@ -216,29 +218,35 @@ func _peer_on_scene_update_modify(data):
 	else:
 		print("Llamada desde otro, si hace")
 		writeFile(data['data'],_RECEIVE_PATH)
-		
 		#Create instance
 		var new_node = load(_RECEIVE_PATH)
 		var instance = new_node.instantiate()
+		#Replace node
+		EditorInterface.get_edited_scene_root().find_child(instance.name).replace_by(instance)
 		
-		#Remove old node
-		EditorInterface.get_edited_scene_root().find_child(instance.name).queue_free()
-		#Add new node
-		EditorInterface.get_edited_scene_root().find_child(data['parent']).add_child(instance)
-		instance.set_owner(EditorInterface.get_edited_scene_root())
 		
 		
 #Se ejecuta cuando se agrega o elimina nodo
 func _on_scene_update_add_delete(node):
 	if multiplayer.multiplayer_peer != null:
 		if node is Node3D:
-			_peer_on_scene_update_add_delete.rpc()
+			var data_selected = _get_selected_object()
+			if data_selected == null:
+				print("No tienes nada seleccionado")
+			else:
+				_create_copy(data_selected['node'], _SEND_PATH)
+				var data = {'data':readFile(_SEND_PATH),'parent':data_selected['parent']}
+				_peer_on_scene_update_add_delete.rpc(data)
 			
 			
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_add_delete(node):
-	print("Es 3D")
-	print(str(node))
+		pass
+		#Remove old
+		#EditorInterface.get_edited_scene_root().find_child(instance.name).queue_free()
+		#Add new node
+		#EditorInterface.get_edited_scene_root().find_child(data['parent']).add_child(instance)
+		#instance.set_owner(EditorInterface.get_edited_scene_root())
 
 
 	
