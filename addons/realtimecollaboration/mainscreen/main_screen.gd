@@ -194,20 +194,9 @@ func _on_btn_test_pressed():
 
 func _on_btn_test_2_pressed():
 	#Create instance
-	print("Antes de borrar")
-	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
-	var search = EditorInterface.get_edited_scene_root().find_child("Hola")
-	if search:
-		print("Existe en arbol")
-		search.queue_free()
-		await search.tree_exited
-		print("Prueba await")
-		print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
-	else:
-		print("No existe en arbol")
-		
-	print("Despues de borrar")
-	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
+	await writeFile("Holaaaa", _SEND_PATH)
+	var b = readFile(_SEND_PATH)
+	print(b)
 
 	
 	
@@ -233,7 +222,7 @@ func _peer_on_scene_update_modify(data):
 			print("Llamada a si mismo, no hace nada")
 		else:
 			print("Llamada desde otro, si hace")
-			writeFile(data['data'],_RECEIVE_PATH)
+			await writeFile(data['data'],_RECEIVE_PATH)
 			#Create instance
 			var new_node = load(_RECEIVE_PATH)
 			var instance = new_node.instantiate()
@@ -369,6 +358,7 @@ func readFile(path_file):
 func writeFile(content,path_file):
 	var file = FileAccess.open(path_file, FileAccess.WRITE)
 	file.store_string(content)
+	file.close()
 
 
 func _get_selected_object():
