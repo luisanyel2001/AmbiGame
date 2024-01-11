@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
 
-[node name="AudioListener3D" type="AudioListener3D"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_asqeu"]
+
+[node name="@MeshInstance3D@22553" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_asqeu")

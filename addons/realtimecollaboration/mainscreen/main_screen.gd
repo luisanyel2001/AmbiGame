@@ -230,8 +230,9 @@ func _peer_on_scene_update_modify(data):
 func _on_scene_update_add(node):
 	if multiplayer.multiplayer_peer != null:
 		if node is Node3D:
+			print("Entro")
 			_create_copy(node, _SEND_PATH)
-			var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent()}
+			var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
 			_peer_on_scene_update_add.rpc(data)
 		
 			
