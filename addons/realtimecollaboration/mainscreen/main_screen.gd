@@ -272,11 +272,16 @@ func _peer_on_scene_update_add(data):
 			var instance = new_node.instantiate()
 			#Replace node
 			print("Se buscara el padre agregar: " + data['parent'])
-			var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
-			if search != null:
-				search.add_child(instance)
+			if data['parent'] == EditorInterface.get_edited_scene_root().name:
+				EditorInterface.get_edited_scene_root().add_child(instance)
 				instance.set_owner(EditorInterface.get_edited_scene_root())
-				print("Se recibio con exito")
+				print("Se agrego en modificar raiz")
+			else:
+				var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+				if search != null:
+					search.add_child(instance)
+					instance.set_owner(EditorInterface.get_edited_scene_root())
+					print("Se agrego en modificar hijo")
 		
 		
 func _on_scene_update_remove(node):
