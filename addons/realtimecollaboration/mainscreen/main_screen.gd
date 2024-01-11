@@ -232,6 +232,7 @@ func _peer_on_scene_update_modify(data):
 			if search_replace != null:
 				search_replace.replace_by(instance)
 			else:
+				print("Se buscara el padre modificar: " + data['parent'])
 				var search_parent = EditorInterface.get_edited_scene_root().find_child(data['parent'])
 				if search_parent != null:
 					search_parent.add_child(instance)
@@ -247,10 +248,10 @@ func _on_scene_update_add(node):
 			if node is Node3D:
 				print("Entro add")
 				var search = _global_scene.find_child(node.name)
-				print("Antes de entrar")
+				print("Antes de entrar busqueda add")
 				print(node.name)
 				if search == null:
-					print("Entro")
+					print("Llamara peer add")
 					_create_copy(node, _SEND_PATH)
 					var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
 					_peer_on_scene_update_add.rpc(data)
@@ -282,15 +283,18 @@ func _on_scene_update_remove(node):
 	if node != null:
 		if multiplayer.multiplayer_peer != null:
 			if node is Node3D:
-				print("Entro remove")
-				_peer_on_scene_update_remove.rpc(node.name)
+				print("Entro remove" + node.name)
+				var search_remove = EditorInterface.get_edited_scene_root().find_child(node.name)
+				if search_remove:
+					print("Llamara a remove peer")
+					_peer_on_scene_update_remove.rpc(node.name)
 			
 			
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_remove(nameNode):
 	#Remove old node
 	print("Entro remove peer")
-	print("Se buscara el padre remover: " + nameNode)
+	print("Se buscara el nodo a remover: " + nameNode)
 	var search = EditorInterface.get_edited_scene_root().find_child(nameNode)
 	if search != null:
 		search.queue_free()
