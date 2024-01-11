@@ -254,13 +254,13 @@ func _peer_on_scene_update_add(data):
 func _on_scene_update_remove(node):
 	if multiplayer.multiplayer_peer != null:
 		if node is Node3D:
-			_peer_on_scene_update_remove.rpc(node)
+			_peer_on_scene_update_remove.rpc(node.name)
 			
 			
 @rpc("any_peer", "call_local", "reliable")
-func _peer_on_scene_update_remove(node):
+func _peer_on_scene_update_remove(nameNode):
 		#Remove old node
-		EditorInterface.get_edited_scene_root().find_child(node.name).queue_free()
+		EditorInterface.get_edited_scene_root().find_child(nameNode).queue_free()
 
 
 

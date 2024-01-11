@@ -29,4 +29,4 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.02793)
 shape = SubResource("ConcavePolygonShape3D_mhb2s")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
