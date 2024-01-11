@@ -236,11 +236,13 @@ func _on_scene_update_add(node):
 	if multiplayer.multiplayer_peer != null:
 		if node is Node3D:
 			var search = _global_scene.find_child(node.name)
+			print("Antes de entrar")
+			print(node.name)
 			if search == null:
 				print("Entro")
-				_create_copy(node, _SEND_PATH)
-				var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
-				_peer_on_scene_update_add.rpc(data)
+				#_create_copy(node, _SEND_PATH)
+				#var data = {'data':readFile(_SEND_PATH),'parent':node.get_parent().name}
+				#_peer_on_scene_update_add.rpc(data)
 		
 			
 			
