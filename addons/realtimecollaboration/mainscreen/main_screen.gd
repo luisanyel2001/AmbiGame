@@ -333,7 +333,7 @@ func _get_selected_object():
 	if selected == null:
 		return null
 	else:
-		var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
+		var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent().name
 		var selected_reply = {'node':selected, 'parent':parent}
 		return selected_reply
 
