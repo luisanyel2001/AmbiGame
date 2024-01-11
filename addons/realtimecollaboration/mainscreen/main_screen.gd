@@ -233,11 +233,16 @@ func _peer_on_scene_update_modify(data):
 				search_replace.replace_by(instance)
 			else:
 				print("Se buscara el padre modificar: " + data['parent'])
-				var search_parent = EditorInterface.get_edited_scene_root().find_child(data['parent'])
-				if search_parent != null:
-					search_parent.add_child(instance)
+				if data['parent'] == EditorInterface.get_edited_scene_root().name:
+					EditorInterface.get_edited_scene_root().add_child(instance)
 					instance.set_owner(EditorInterface.get_edited_scene_root())
-					print("Se recibio con exito")
+					print("Se agrego en modificar raiz")
+				else:
+					var search_parent = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+					if search_parent != null:
+						search_parent.add_child(instance)
+						instance.set_owner(EditorInterface.get_edited_scene_root())
+						print("Se agrego en modificar hijo.")
 		
 		
 		
