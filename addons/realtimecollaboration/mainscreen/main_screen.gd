@@ -194,12 +194,14 @@ func _on_btn_test_pressed():
 
 func _on_btn_test_2_pressed():
 	#Create instance
-	var new_node = load(_SEND_PATH)
-	var instance = new_node.instantiate()
+	#_create_copy(EditorInterface.get_edited_scene_root().find_child("Floor"), _RECEIVE_PATH)
+	var new_node = load(_RECEIVE_PATH)
+	var instance = new_node.instantiate() as StaticBody3D
+	instance.scene_file_path = ""
 	print(instance.name)
-	var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
-	if search != null:
-		search.replace_by(instance)
+	EditorInterface.get_edited_scene_root().add_child(instance)
+	instance.set_owner(EditorInterface.get_edited_scene_root())
+	
 	
 #----------------------Signal_functions-----------------------------
 #Se ejecuta cuando se modifica
@@ -227,6 +229,7 @@ func _peer_on_scene_update_modify(data):
 			#Create instance
 			var new_node = load(_RECEIVE_PATH)
 			var instance = new_node.instantiate()
+			instance.scene_file_path = ""
 			#EditorInterface.get_edited_scene_root().set_editable_instance(instance,true)
 			var original_instance_name = instance.name
 			#Replace node
@@ -290,6 +293,7 @@ func _peer_on_scene_update_add(data):
 			#Create instance
 			var new_node = load(_RECEIVE_PATH)
 			var instance = new_node.instantiate()
+			instance.scene_file_path = ""
 			#Replace node
 			print("Se buscara el padre agregar: " + data['parent'])
 			if data['parent'] == EditorInterface.get_edited_scene_root().name:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene format=3 uid="uid://05wv7gjbj3nk"]
 
-[ext_resource type="PackedScene" uid="uid://05wv7gjbj3nk" path="res://receivetemp.tscn" id="1_2mkam"]
-
-[node name="TestNodo" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10195, 0, 4.07187)
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." instance=ExtResource("1_2mkam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.272, 0, 0)
+[node name="Floor" type="StaticBody3D"]
+process_mode = 1
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92333, 0, -0.522672)
+collision_layer = 517
+collision_mask = 521
