@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tcn0n"]
-size = Vector2(10, 10)
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.47324, 0, 0)
+[node name="Hola" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_tcn0n")

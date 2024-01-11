@@ -196,12 +196,16 @@ func _on_btn_test_2_pressed():
 	#Create instance
 	print("Antes de borrar")
 	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
-	var search = EditorInterface.get_edited_scene_root().find_child("temp")
+	var search = EditorInterface.get_edited_scene_root().find_child("Hola")
 	if search:
 		print("Existe en arbol")
-		EditorInterface.get_edited_scene_root().get_tree().remove_meta("temp")
+		search.queue_free()
+		await search.tree_exited
+		print("Prueba await")
+		print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 	else:
 		print("No existe en arbol")
+		
 	print("Despues de borrar")
 	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 
@@ -243,6 +247,7 @@ func _peer_on_scene_update_modify(data):
 				search_replace.name = "temp"
 				print(search_replace)
 				search_replace.queue_free() 
+				await search_replace.tree_exited
 				#EditorInterface.get_edited_scene_root().remove_child(search_replace)
 				print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 				var search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
@@ -331,6 +336,7 @@ func _peer_on_scene_update_remove(nameNode):
 	var search = EditorInterface.get_edited_scene_root().find_child(nameNode)
 	if search != null:
 		search.queue_free()
+		await search.tree_exited
 
 
 
