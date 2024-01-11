@@ -281,7 +281,7 @@ func _peer_on_scene_update_add(data):
 				if search != null:
 					search.add_child(instance)
 					instance.set_owner(EditorInterface.get_edited_scene_root())
-					print("Se agrego en modificar hijo")
+					print("Se agrego en modificar hijo.")
 		
 		
 func _on_scene_update_remove(node):
