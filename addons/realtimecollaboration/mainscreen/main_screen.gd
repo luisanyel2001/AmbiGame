@@ -221,8 +221,11 @@ func _process(delta):
 			
 
 #Se ejecuta cuando se modifica
-@rpc("any_peer", "call_local", "reliable")
 func _test():
+	_test_peer.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func _test_peer():
 	print(str(multiplayer.get_remote_sender_id()))
 	print("Entro a test")
 
