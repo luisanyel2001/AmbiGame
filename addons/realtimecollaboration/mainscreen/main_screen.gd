@@ -194,13 +194,17 @@ func _on_btn_test_pressed():
 
 func _on_btn_test_2_pressed():
 	#Create instance
-	#_create_copy(EditorInterface.get_edited_scene_root().find_child("Floor"), _RECEIVE_PATH)
-	var new_node = load(_RECEIVE_PATH)
-	var instance = new_node.instantiate() as StaticBody3D
-	instance.scene_file_path = ""
-	print(instance.name)
-	EditorInterface.get_edited_scene_root().add_child(instance)
-	instance.set_owner(EditorInterface.get_edited_scene_root())
+	print("Antes de borrar")
+	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
+	var search = EditorInterface.get_edited_scene_root().find_child("temp")
+	if search:
+		print("Existe en arbol")
+		EditorInterface.get_edited_scene_root().get_tree().remove_meta("temp")
+	else:
+		print("No existe en arbol")
+	print("Despues de borrar")
+	print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
+
 	
 	
 #----------------------Signal_functions-----------------------------
