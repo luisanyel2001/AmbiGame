@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene load_steps=3 format=3 uid="uid://05wv7gjbj3nk"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_6w3np"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gxklp"]
 
-[node name="_MeshInstance3D_22144" type="MeshInstance3D"]
-cast_shadow = 0
-mesh = SubResource("ImmediateMesh_6w3np")
+[sub_resource type="PlaneMesh" id="PlaneMesh_23dqf"]
+
+[node name="@MeshInstance3D@22224" type="MeshInstance3D"]
+transform = Transform3D(0.999391, 0.000609083, 0.0348942, -0.000798465, 0.999985, 0.00541365, -0.0348904, -0.0054386, 0.999376, 11.7209, 0.0347489, -9.20258)
+material_override = SubResource("ORMMaterial3D_gxklp")
+mesh = SubResource("PlaneMesh_23dqf")
+skeleton = NodePath("../..")
