@@ -196,7 +196,10 @@ func _on_btn_test_2_pressed():
 	#Create instance
 	var new_node = load(_SEND_PATH)
 	var instance = new_node.instantiate()
-	EditorInterface.get_edited_scene_root().find_child(instance.name).replace_by(instance)
+	print(instance.name)
+	var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
+	if search != null:
+		search.replace_by(instance)
 	
 #----------------------Signal_functions-----------------------------
 #Se ejecuta cuando se modifica
@@ -222,7 +225,9 @@ func _peer_on_scene_update_modify(data):
 		var new_node = load(_RECEIVE_PATH)
 		var instance = new_node.instantiate()
 		#Replace node
-		EditorInterface.get_edited_scene_root().find_child(instance.name).replace_by(instance)
+		var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
+		if search != null:
+			search.replace_by(instance)
 		
 		
 		
@@ -248,7 +253,10 @@ func _peer_on_scene_update_add(data):
 		var new_node = load(_RECEIVE_PATH)
 		var instance = new_node.instantiate()
 		#Replace node
-		EditorInterface.get_edited_scene_root().find_child(data['parent']).add_child(instance)
+		print("Se buscara el padre agregar: " + data['parent'])
+		var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+		if search != null:
+			search.add_child(instance)
 		
 		
 func _on_scene_update_remove(node):
@@ -259,8 +267,11 @@ func _on_scene_update_remove(node):
 			
 @rpc("any_peer", "call_local", "reliable")
 func _peer_on_scene_update_remove(nameNode):
-		#Remove old node
-		EditorInterface.get_edited_scene_root().find_child(nameNode).queue_free()
+	#Remove old node
+	print("Se buscara el padre remover: " + nameNode)
+	var search = EditorInterface.get_edited_scene_root().find_child(nameNode)
+	if search != null:
+		search.queue_free()
 
 
 
