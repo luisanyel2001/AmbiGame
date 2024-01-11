@@ -36,7 +36,7 @@ var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export 
 func _ready():
 	#Links to calls editor plugin
 	scene_update.connect(_on_scene_update_modify)
-	_global_scene.get_tree().node_added.connect(_on_scene_update_add)
+	#_global_scene.get_tree().node_added.connect(_on_scene_update_add)
 	_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
 	#Init. Links to calls
 	multiplayer.multiplayer_peer = null
@@ -228,9 +228,15 @@ func _peer_on_scene_update_modify(data):
 			var new_node = load(_RECEIVE_PATH)
 			var instance = new_node.instantiate()
 			#Replace node
-			var search = EditorInterface.get_edited_scene_root().find_child(instance.name)
-			if search != null:
-				search.replace_by(instance)
+			var search_replace = EditorInterface.get_edited_scene_root().find_child(instance.name)
+			if search_replace != null:
+				search_replace.replace_by(instance)
+			else:
+				var search_parent = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+				if search_parent != null:
+					search_parent.add_child(instance)
+					instance.set_owner(EditorInterface.get_edited_scene_root())
+					print("Se recibio con exito")
 		
 		
 		
@@ -268,6 +274,8 @@ func _peer_on_scene_update_add(data):
 			var search = EditorInterface.get_edited_scene_root().find_child(data['parent'])
 			if search != null:
 				search.add_child(instance)
+				instance.set_owner(EditorInterface.get_edited_scene_root())
+				print("Se recibio con exito")
 		
 		
 func _on_scene_update_remove(node):
