@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://05wv7gjbj3nk"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gxklp"]
+albedo_color = Color(1, 0.25098, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_23dqf"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(0.999391, 0.000609083, 0.0348942, -0.000798465, 0.999985, 0.00541365, -0.0348904, -0.0054386, 0.999376, 5.20951, 0.0347489, -9.20258)
+material_override = SubResource("ORMMaterial3D_gxklp")
+mesh = SubResource("PlaneMesh_23dqf")
+skeleton = NodePath("../..")
