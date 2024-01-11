@@ -21,7 +21,7 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(0.999391, 0.00060908, 0.0348942, 0, 0.999847, -0.0174524, -0.0348995, 0.0174418, 0.999238, 2.6762, 0, -14.7613)
+transform = Transform3D(0.999391, 0.00060908, 0.0348942, 0, 0.999847, -0.0174524, -0.0348995, 0.0174418, 0.999238, 1.55119, 0, -14.7613)
 material_override = SubResource("ORMMaterial3D_rkxel")
 mesh = SubResource("PlaneMesh_23dqf")
 skeleton = NodePath("../..")

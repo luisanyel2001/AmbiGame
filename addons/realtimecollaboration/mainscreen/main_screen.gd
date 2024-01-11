@@ -201,9 +201,12 @@ func _on_btn_test_2_pressed():
 func _on_scene_update_modify():
 	if multiplayer.multiplayer_peer != null:
 		var data_selected = _get_selected_object()
-		_create_copy(data_selected['node'], _SEND_PATH)
-		var data = {'data':readFile(_SEND_PATH),'parent':data_selected['parent']}
-		_peer_on_scene_update_modify.rpc(data)
+		if data_selected == null:
+			print("No tienes nada seleccionado")
+		else:
+			_create_copy(data_selected['node'], _SEND_PATH)
+			var data = {'data':readFile(_SEND_PATH),'parent':data_selected['parent']}
+			_peer_on_scene_update_modify.rpc(data)
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -271,9 +274,12 @@ func writeFile(content,path_file):
 
 func _get_selected_object():
 	var selected = EditorInterface.get_selection().get_selected_nodes().front()
-	var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
-	var selected_reply = {'node':selected, 'parent':parent}
-	return selected_reply
+	if selected == null:
+		return null
+	else:
+		var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
+		var selected_reply = {'node':selected, 'parent':parent}
+		return selected_reply
 
 	
 func _create_copy(node,path):
@@ -281,7 +287,7 @@ func _create_copy(node,path):
 	var result = scene.pack(node)
 	
 	if result == OK:
-		var error = ResourceSaver.save(scene, "res://ambi.tscn")  # Or "user://..."
+		var error = ResourceSaver.save(scene, path) 
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
 			
