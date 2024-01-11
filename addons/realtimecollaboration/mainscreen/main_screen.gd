@@ -220,14 +220,16 @@ func _process(delta):
 			
 			
 
-	
+#Se ejecuta cuando se modifica
+@rpc("any_peer", "call_local", "reliable")
 func _test():
-	#if node is Node3D:
+	print(str(multiplayer.get_remote_sender_id()))
 	print("Entro a test")
-	
-	
+
+
+#Se ejecuta cuando se agrega o elimina nodo
+@rpc("any_peer", "call_local", "reliable")
 func _test2(node):
-	#print("Nombre:" + node.name)
 	if node is Node3D:
 		print("Es 3D")
 		print(str(node))
@@ -318,18 +320,26 @@ func _local_update_scene(content: String):
 		print("Escena actualizada")
 	
 
+func _get_selected_object():
+	var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent()
+	return EditorInterface.get_selection().get_selected_nodes().front()
+
+
 func _on_btn_test_2_pressed():
 	
 	#print(EditorInterface.get_edited_scene_root().get_tree().tree_changed)
-	"""
-	var text = readFile("res://obj.tscn")
-	writeFile("res://copy.tscn",text)
+	#_create_copy(_get_selected_object())
 	
-	var new_node = load("res://copy.tscn")
-	var instance = new_node.instantiate() as MeshInstance3D
+	var text = readFile("res://ambi.tscn")
+	
+	writeFile("res://temp.tscn",text)
+	var new_node = load("res://temp.tscn")
+	var instance = new_node.instantiate()# as MeshInstance3D
+	instance.name = "Hola"
 	EditorInterface.get_edited_scene_root().find_child("Floor").add_child(instance)
 	instance.set_owner(EditorInterface.get_edited_scene_root())
-	"""
+
+
 	#var abc = EditorInterface.get_edited_scene_root().find_child("MeshInstance3D")
 	#var data_scene = _get_text_current_scene()
 	#_peer_compare_scenes.rpc_id(1,data_scene['content'], data_scene['time'])
@@ -371,23 +381,22 @@ func _on_btn_test_2_pressed():
 	#Obtiene objetos seleccionados	
 	#print(EditorInterface.get_selection().get_selected_nodes())
 	
-func _create_copy_curent_scene():
+func _create_copy(node):
 	var scene = PackedScene.new()
 	
-	var result = scene.pack(EditorInterface.get_edited_scene_root())
-	#var path_copy = EditorInterface.get_edited_scene_root().scene_file_path
+	var result = scene.pack(node)
 	
 	if result == OK:
-		
-		var error = ResourceSaver.save(scene, "res://name.tscn")  # Or "user://..."
+		var error = ResourceSaver.save(scene, "res://ambi.tscn")  # Or "user://..."
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
+			
 	print("Copia con exito")
 	#return path_copy
 	
 	
 func _get_text_current_scene():
-	_create_copy_curent_scene()
+	#_create_copy()
 	var file1 = FileAccess.open("res://name.tscn", FileAccess.READ)
 	# Obtiene la fecha de modificación de los archivos
 	var time1 = FileAccess.get_modified_time("res://name.tscn")
