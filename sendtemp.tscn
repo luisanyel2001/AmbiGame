@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene load_steps=3 format=3 uid="uid://05wv7gjbj3nk"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_agnjb"]
-size = Vector2(20, 10)
+[ext_resource type="PackedScene" uid="uid://05wv7gjbj3nk" path="res://receivetemp.tscn" id="1_chvyc"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11135, 0, 0)
-mesh = SubResource("PlaneMesh_agnjb")
+[sub_resource type="PlaneMesh" id="PlaneMesh_u48ik"]
+
+[node name="TestNodo" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29556, 0, 4.07187)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+process_mode = 1
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5876, 0, -0.522672)
+collision_layer = 517
+collision_mask = 521
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor" instance=ExtResource("1_chvyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07012, 0, 0)
+mesh = SubResource("PlaneMesh_u48ik")
+
+[node name="MeshInstance3D2" parent="Floor/MeshInstance3D2" instance=ExtResource("1_chvyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68771, 0, 0)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.272, 0, 0)

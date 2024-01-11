@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://05wv7gjbj3nk"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_agnjb"]
-size = Vector2(10, 2)
+[ext_resource type="PackedScene" uid="uid://05wv7gjbj3nk" path="res://receivetemp.tscn" id="1_2mkam"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1449, -0.0179892, 0.0254221)
-mesh = SubResource("PlaneMesh_agnjb")
+[node name="TestNodo" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10195, 0, 4.07187)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." instance=ExtResource("1_2mkam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.272, 0, 0)
