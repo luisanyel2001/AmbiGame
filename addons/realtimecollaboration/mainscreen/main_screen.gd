@@ -15,7 +15,12 @@ var _MAX_CONNECTIONS = 20
 
 #Paths for temp files
 var _SEND_PATH = "res://sendtemp.tscn"
-var _RECEIVE_PATH = "res://receivetemp.tscn"
+var _RECEIVE_PATH_COUNTER = 0
+var _RECEIVE_PATH = "res://rt0.tscn"
+func _generate_new_receive_path():
+	_RECEIVE_PATH_COUNTER += 1 
+	var new_path = "res://rt" + str(_RECEIVE_PATH_COUNTER) + ".tscn"
+	_RECEIVE_PATH = new_path
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -193,10 +198,13 @@ func _on_btn_test_pressed():
 		real = false
 
 func _on_btn_test_2_pressed():
-	#Create instance
-	await writeFile("Holaaaa", _SEND_PATH)
-	var b = readFile(_SEND_PATH)
-	print(b)
+	#_create_copy(_global_scene.find_child("MeshInstance3D"),_SEND_PATH)
+	print(_RECEIVE_PATH)
+	_generate_new_receive_path()
+	#_create_copy(_global_scene,_global_scene.scene_file_path)
+	#_global_scene.set_editable_instance(h,true)
+	#print(_global_scene.is_editable_instance(h))
+	
 
 	
 	
@@ -226,8 +234,8 @@ func _peer_on_scene_update_modify(data):
 			await writeFile(data['data'],_RECEIVE_PATH)
 			print(readFile(_RECEIVE_PATH))
 			#Create instance
-			var new_node = load(_RECEIVE_PATH)
-			var instance = new_node.instantiate()
+			var instance = load(_RECEIVE_PATH).instantiate()
+			_generate_new_receive_path()
 			instance.scene_file_path = ""
 			#EditorInterface.get_edited_scene_root().set_editable_instance(instance,true)
 			var original_instance_name = instance.name
@@ -249,6 +257,7 @@ func _peer_on_scene_update_modify(data):
 					instance.set_owner(EditorInterface.get_edited_scene_root())
 					print("Se modifico hijo existente.")
 					print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
+					print(EditorInterface.get_edited_scene_root().find_child(instance.name).to_string())
 			else:
 				print("Se buscara el padre modificar: " + data['parent'])
 				if data['parent'] == EditorInterface.get_edited_scene_root().name:
@@ -261,6 +270,7 @@ func _peer_on_scene_update_modify(data):
 						search_parent.add_child(instance)
 						instance.set_owner(EditorInterface.get_edited_scene_root())
 						print("Se agrego en modificar hijo.")
+			EditorInterface.save_scene()
 		
 		
 		
@@ -346,7 +356,7 @@ func _update_player_transform():
 @rpc("any_peer", "call_local", "reliable")
 func _peer_send_data(value = "Nada"):
 	print("ID: " + str(multiplayer.get_remote_sender_id()) + " sent: " + str(value))
-	
+
 	
 #---------------------Local_Functions-------------------------
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv7mags2degix"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tcn0n"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ymxnc"]
+size = Vector2(10, 20)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hbk30"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -18,7 +19,8 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_tcn0n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9568, 0, 0)
+mesh = SubResource("PlaneMesh_ymxnc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("ConcavePolygonShape3D_hbk30")
