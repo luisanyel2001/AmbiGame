@@ -15,12 +15,9 @@ var _MAX_CONNECTIONS = 20
 
 #Paths for temp files
 var _SEND_PATH = "res://sendtemp.tscn"
-var _RECEIVE_PATH_COUNTER = 0
-var _RECEIVE_PATH = "res://rt0.tscn"
-func _generate_new_receive_path():
-	_RECEIVE_PATH_COUNTER += 1 
-	var new_path = "res://rt" + str(_RECEIVE_PATH_COUNTER) + ".tscn"
-	_RECEIVE_PATH = new_path
+var _RECEIVE_PATH = "res://receivetemp.tscn"
+var _RECEIVE_CACHE = []
+
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -43,6 +40,7 @@ func _ready():
 	scene_update.connect(_on_scene_update_modify)
 	#_global_scene.get_tree().node_added.connect(_on_scene_update_add)
 	_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
+	EditorInterface.get_selection().selection_changed.connect(_on_is_selected_change)
 	#Init. Links to calls
 	multiplayer.multiplayer_peer = null
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -199,16 +197,29 @@ func _on_btn_test_pressed():
 
 func _on_btn_test_2_pressed():
 	#_create_copy(_global_scene.find_child("MeshInstance3D"),_SEND_PATH)
-	print(_RECEIVE_PATH)
-	_generate_new_receive_path()
-	#_create_copy(_global_scene,_global_scene.scene_file_path)
-	#_global_scene.set_editable_instance(h,true)
-	#print(_global_scene.is_editable_instance(h))
+	#var h = load(_RECEIVE_PATH).instantiate()
+	var h = ResourceLoader.load(_RECEIVE_PATH,"",ResourceLoader.CACHE_MODE_IGNORE).instantiate()
+	h.scene_file_path = ""
+	_global_scene.add_child(h)
+	h.set_owner(_global_scene)
+	print(_global_scene.get_tree_string_pretty())
+	
 	
 
 	
 	
 #----------------------Signal_functions-----------------------------
+func _on_is_selected_change():
+	var selected = EditorInterface.get_selection().get_selected_nodes()
+	if selected != []:
+		selected = selected.front().name
+		print("Elemento seleccionado:" + selected)
+		if selected in _RECEIVE_CACHE:
+			EditorInterface.save_scene()
+			_RECEIVE_CACHE.erase(selected)
+	
+
+
 #Se ejecuta cuando se modifica
 func _on_scene_update_modify():
 	if multiplayer.multiplayer_peer != null:
@@ -234,8 +245,7 @@ func _peer_on_scene_update_modify(data):
 			await writeFile(data['data'],_RECEIVE_PATH)
 			print(readFile(_RECEIVE_PATH))
 			#Create instance
-			var instance = load(_RECEIVE_PATH).instantiate()
-			_generate_new_receive_path()
+			var instance = ResourceLoader.load(_RECEIVE_PATH,"",ResourceLoader.CACHE_MODE_IGNORE).instantiate()
 			instance.scene_file_path = ""
 			#EditorInterface.get_edited_scene_root().set_editable_instance(instance,true)
 			var original_instance_name = instance.name
@@ -246,7 +256,7 @@ func _peer_on_scene_update_modify(data):
 				search_replace.name = "temp"
 				print(search_replace)
 				search_replace.queue_free() 
-				await search_replace.tree_exited
+				#await search_replace.tree_exited
 				#EditorInterface.get_edited_scene_root().remove_child(search_replace)
 				print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 				var search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
@@ -270,7 +280,8 @@ func _peer_on_scene_update_modify(data):
 						search_parent.add_child(instance)
 						instance.set_owner(EditorInterface.get_edited_scene_root())
 						print("Se agrego en modificar hijo.")
-			EditorInterface.save_scene()
+			#Append peer change to array cache
+			_RECEIVE_CACHE.append(instance.name)
 		
 		
 		

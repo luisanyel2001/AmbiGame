@@ -1,10 +1,8 @@
-[gd_scene format=3 uid="uid://05wv7gjbj3nk"]
+[gd_scene load_steps=2 format=3 uid="uid://xqtoen36ni27"]
 
-[node name="Floor" type="StaticBody3D"]
-process_mode = 1
-process_thread_group = 1
-process_thread_group_order = 0
-process_thread_messages = 0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92333, 0, -0.522672)
-collision_layer = 517
-collision_mask = 521
+[sub_resource type="PlaneMesh" id="PlaneMesh_ymxnc"]
+size = Vector2(100, 100)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1178, 0, 0)
+mesh = SubResource("PlaneMesh_ymxnc")
