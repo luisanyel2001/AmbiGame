@@ -215,10 +215,11 @@ func _on_is_selected_change():
 		selected = selected.front().name
 		print("Elemento seleccionado:" + selected)
 		if selected in _RECEIVE_CACHE:
-			EditorInterface.save_scene()
 			_RECEIVE_CACHE.erase(selected)
+			EditorInterface.save_scene()#Try use EditorInterface.call_deferred("save_scene")
+			
 	
-
+	
 
 #Se ejecuta cuando se modifica
 func _on_scene_update_modify():
@@ -385,10 +386,11 @@ func writeFile(content,path_file):
 
 
 func _get_selected_object():
-	var selected = EditorInterface.get_selection().get_selected_nodes().front()
+	var selected = EditorInterface.get_selection().get_selected_nodes()
 	if selected == null:
 		return null
 	else:
+		selected = selected.front()
 		var parent = EditorInterface.get_selection().get_selected_nodes().front().get_parent().name
 		var selected_reply = {'node':selected, 'parent':parent}
 		return selected_reply

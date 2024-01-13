@@ -7,7 +7,7 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 albedo_color = Color(0.0431373, 1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ymxnc"]
-size = Vector2(30, 20)
+size = Vector2(60, 20)
 
 [node name="TestNodo" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29556, 0, -0.189982)
@@ -22,9 +22,10 @@ collision_layer = 517
 collision_mask = 521
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.93416, 2.40193, -1.32529)
 shape = SubResource("ConcavePolygonShape3D_hbk30")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70806, 0, -29.3088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87427, 0, -14.4227)
 material_override = SubResource("ORMMaterial3D_gyccv")
 mesh = SubResource("PlaneMesh_ymxnc")
