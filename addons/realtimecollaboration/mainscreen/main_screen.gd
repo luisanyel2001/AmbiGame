@@ -387,7 +387,7 @@ func writeFile(content,path_file):
 
 func _get_selected_object():
 	var selected = EditorInterface.get_selection().get_selected_nodes()
-	if selected == null:
+	if selected == []:
 		return null
 	else:
 		selected = selected.front()
