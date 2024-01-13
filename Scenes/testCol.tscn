@@ -1,31 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv7mags2degix"]
+[gd_scene load_steps=2 format=3 uid="uid://dv7mags2degix"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hbk30"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gyccv"]
-albedo_color = Color(0.0431373, 1, 1, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ymxnc"]
-size = Vector2(60, 20)
+[sub_resource type="CylinderMesh" id="CylinderMesh_tfenn"]
+top_radius = 3.145
+bottom_radius = 2.44
+height = 17.12
 
 [node name="TestNodo" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29556, 0, -0.189982)
 
-[node name="Floor" type="StaticBody3D" parent="."]
-process_mode = 1
-process_thread_group = 1
-process_thread_group_order = 0
-process_thread_messages = 0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92333, 0, -0.522672)
-collision_layer = 517
-collision_mask = 521
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.93416, 2.40193, -1.32529)
-shape = SubResource("ConcavePolygonShape3D_hbk30")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87427, 0, -14.4227)
-material_override = SubResource("ORMMaterial3D_gyccv")
-mesh = SubResource("PlaneMesh_ymxnc")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_tfenn")

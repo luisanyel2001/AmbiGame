@@ -31,13 +31,14 @@ var _players_loaded = 0
 
 var real = false
 
-var _global_scene = EditorInterface.get_edited_scene_root() #Cambiar por export en UI
+var _global_scene# = EditorInterface.get_edited_scene_root() #Cambiar por export en UI
 	
 #Is called when the node and its children 
 #have all added to the scene tree and are ready
 func _ready():
 	#Links to calls editor plugin
 	scene_update.connect(_on_scene_update_modify)
+	_global_scene = EditorInterface.get_edited_scene_root()
 	#_global_scene.get_tree().node_added.connect(_on_scene_update_add)
 	_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
 	EditorInterface.get_selection().selection_changed.connect(_on_is_selected_change)
@@ -49,8 +50,8 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	var scene = EditorInterface.get_edited_scene_root()
-	print("carga: " + scene.scene_file_path.get_file())
+	
+	print("carga: " + _global_scene.scene_file_path.get_file())
 	
 
 

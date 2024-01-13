@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://xqtoen36ni27"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gyccv"]
-albedo_color = Color(0.0431373, 1, 1, 1)
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ruj1a"]
+albedo_color = Color(1, 0.0117647, 1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ymxnc"]
-size = Vector2(60, 20)
+[sub_resource type="PlaneMesh" id="PlaneMesh_gq6c4"]
+size = Vector2(100, 100)
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99867, 0, -14.4227)
-material_override = SubResource("ORMMaterial3D_gyccv")
-mesh = SubResource("PlaneMesh_ymxnc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 136.316)
+material_override = SubResource("ORMMaterial3D_ruj1a")
+mesh = SubResource("PlaneMesh_gq6c4")
