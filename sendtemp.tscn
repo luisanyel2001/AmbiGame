@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://xqtoen36ni27"]
+[gd_scene load_steps=9 format=3 uid="uid://xqtoen36ni27"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd" id="1_2o68v"]
 [ext_resource type="PackedScene" uid="uid://c7wdwa5pm85j0" path="res://UI/cronometro.tscn" id="2_hy5sg"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d_body.gd" id="3_g584d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pplf3"]
+transparency = 1
+albedo_color = Color(0.847059, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_fvdlt"]
 resource_local_to_scene = true
@@ -11,23 +15,21 @@ size = Vector2(3, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_aow65"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wk2a3"]
-transparency = 2
-alpha_scissor_threshold = 0.345
-alpha_antialiasing_mode = 0
-cull_mode = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nt72"]
+transparency = 1
+albedo_color = Color(0.847059, 0, 0, 1)
 albedo_texture = SubResource("ViewportTexture_aow65")
-texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6vqvi"]
 resource_local_to_scene = true
 size = Vector3(3, 2, 0.02)
 
 [node name="Viewport_Timer" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.29727, -3.26098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.90105, -3.26098)
 script = ExtResource("1_2o68v")
 scene = ExtResource("2_hy5sg")
 viewport_size = Vector2(350, 200)
+material = SubResource("StandardMaterial3D_pplf3")
 transparent = 2
 alpha_scissor_threshold = 0.345
 unshaded = false
@@ -42,7 +44,7 @@ render_target_update_mode = 1
 
 [node name="Screen" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_fvdlt")
-surface_material_override/0 = SubResource("StandardMaterial3D_wk2a3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2nt72")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 5242881

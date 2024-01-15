@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6mgpqhokqdo6"]
+[gd_scene load_steps=19 format=3 uid="uid://b6mgpqhokqdo6"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_b4jly"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_donbf"]
@@ -23,6 +23,10 @@ size = Vector2(10, 10)
 size = Vector3(9.77463, 0.571167, 9.78656)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_exbgv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pplf3"]
+transparency = 1
+albedo_color = Color(0.847059, 0, 0, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_b4jly")
@@ -102,9 +106,13 @@ viewport_size = Vector2(1200, 700)
 alpha_scissor_threshold = 0.831
 unshaded = true
 
-[node name="Viewport_Timer" parent="." instance=ExtResource("11_jhdxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.29727, -3.26098)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Viewport_Timer" parent="CanvasLayer" instance=ExtResource("11_jhdxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.90105, -3.26098)
 scene = ExtResource("13_6nmvm")
 viewport_size = Vector2(350, 200)
+material = SubResource("StandardMaterial3D_pplf3")
 transparent = 2
 alpha_scissor_threshold = 0.345
