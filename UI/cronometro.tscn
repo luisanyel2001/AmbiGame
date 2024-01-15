@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7wdwa5pm85j0"]
+
+[ext_resource type="Script" path="res://UI/crono_script.gd" id="1_2wrwo"]
+[ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="2_utryi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 345.0
+offset_bottom = 66.0
+script = ExtResource("1_2wrwo")
+
+[node name="Minutos" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 106.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("2_utryi")
+theme_override_font_sizes/font_size = 50
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Segundos" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 1.0
+offset_right = 211.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("2_utryi")
+theme_override_font_sizes/font_size = 50
+text = "00."
+horizontal_alignment = 2
+
+[node name="Miliseg" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 209.0
+offset_right = 315.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("2_utryi")
+theme_override_font_sizes/font_size = 50
+text = "000"
+horizontal_alignment = 2
