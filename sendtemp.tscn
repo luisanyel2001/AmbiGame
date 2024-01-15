@@ -1,3 +1,55 @@
-[gd_scene format=3 uid="uid://xqtoen36ni27"]
+[gd_scene load_steps=8 format=3 uid="uid://xqtoen36ni27"]
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd" id="1_2o68v"]
+[ext_resource type="PackedScene" uid="uid://c7wdwa5pm85j0" path="res://UI/cronometro.tscn" id="2_hy5sg"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d_body.gd" id="3_g584d"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fvdlt"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aow65"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wk2a3"]
+transparency = 2
+alpha_scissor_threshold = 0.345
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_aow65")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6vqvi"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
+
+[node name="Viewport_Timer" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.29727, -3.26098)
+script = ExtResource("1_2o68v")
+scene = ExtResource("2_hy5sg")
+viewport_size = Vector2(350, 200)
+transparent = 2
+alpha_scissor_threshold = 0.345
+unshaded = false
+filter = true
+
+[node name="Viewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+gui_embed_subwindows = true
+size = Vector2i(350, 200)
+render_target_update_mode = 1
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_fvdlt")
+surface_material_override/0 = SubResource("StandardMaterial3D_wk2a3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 5242881
+collision_mask = 0
+script = ExtResource("3_g584d")
+viewport_size = Vector2(350, 200)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+shape = SubResource("BoxShape3D_6vqvi")

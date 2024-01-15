@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6mgpqhokqdo6"]
+[gd_scene load_steps=18 format=3 uid="uid://b6mgpqhokqdo6"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_b4jly"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_donbf"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="11_iksjj"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="11_jhdxu"]
 [ext_resource type="PackedScene" uid="uid://cgk4yigi3gmeo" path="res://UI/ui.tscn" id="12_bvlmh"]
+[ext_resource type="PackedScene" uid="uid://c7wdwa5pm85j0" path="res://UI/cronometro.tscn" id="13_6nmvm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mc8hx"]
 
@@ -94,7 +95,7 @@ shape = SubResource("BoxShape3D_exbgv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13404, -1.83425)
 
 [node name="Viewport_UI_Options" parent="." instance=ExtResource("11_jhdxu")]
-transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.282993, 1.98039, -4.05125)
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.282993, 1.98039, -5.48933)
 screen_size = Vector2(2700, 1200)
 scene = ExtResource("12_bvlmh")
 viewport_size = Vector2(1200, 700)
@@ -102,5 +103,8 @@ alpha_scissor_threshold = 0.831
 unshaded = true
 
 [node name="Viewport_Timer" parent="." instance=ExtResource("11_jhdxu")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Viewport_Timer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.29727, -3.26098)
+scene = ExtResource("13_6nmvm")
+viewport_size = Vector2(350, 200)
+transparent = 2
+alpha_scissor_threshold = 0.345

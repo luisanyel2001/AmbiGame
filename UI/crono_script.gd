@@ -22,3 +22,10 @@ func formateo_tiempo() -> String:
 	return "%02d:%02d.%03d" % [minutos, segundos, mseg]
 	
 
+#Boton prueba detener y almacenar tiempo transcurrido
+func _on_button_pressed():
+	stop()
+	#Global.tiempo_transcurrido = formateo_tiempo()
+	#$tiempo_trans.text = Global.tiempo_transcurrido
+	$tiempo_trans.text = formateo_tiempo() #muestra tiempo pausado en label
+	print("El tiempo se detuvo")
