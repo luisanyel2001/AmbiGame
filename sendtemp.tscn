@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://xqtoen36ni27"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd" id="1_2o68v"]
 [ext_resource type="PackedScene" uid="uid://c7wdwa5pm85j0" path="res://UI/cronometro.tscn" id="2_hy5sg"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d_body.gd" id="3_g584d"]
@@ -55,3 +56,6 @@ viewport_size = Vector2(350, 200)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
 shape = SubResource("BoxShape3D_6vqvi")
+=======
+[node name="XROrigin3D" type="XROrigin3D"]
+>>>>>>> Stashed changes
