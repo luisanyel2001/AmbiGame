@@ -8,3 +8,5 @@ project
 project.godot
 receivetemp
 sendtemp
+receivetemp.txt
+sendtemp.txt
