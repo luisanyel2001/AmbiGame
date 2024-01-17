@@ -43,13 +43,13 @@ func _ready():
 	_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
 	EditorInterface.get_selection().selection_changed.connect(_on_is_selected_change)
 	#Init. Links to calls
-	multiplayer.multiplayer_peer = null
+	
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	
+	multiplayer.multiplayer_peer = null
 	
 	print("carga: " + _global_scene.scene_file_path.get_file())
 	

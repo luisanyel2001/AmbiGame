@@ -1,9 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://xqtoen36ni27"]
+[gd_scene format=3 uid="uid://dbe7mysnpyn3x"]
 
-[ext_resource type="Script" path="res://Scenes/car.gd" id="1_yodgn"]
-
-[node name="car" type="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019498, 2.42892, 0.0031805)
-mass = 50.0
-gravity_scale = 1.5
-script = ExtResource("1_yodgn")
+[node name="Handle8" type="Node3D"]
+transform = Transform3D(0.999999, 7.10543e-15, 7.10543e-15, -1.38778e-17, 0.707107, -0.707107, -3.55271e-15, 0.707107, 0.707107, 8.88178e-16, 0.141, 0.141)

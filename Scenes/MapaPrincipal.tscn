@@ -96,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.480956, -2.06577)
 shape = SubResource("BoxShape3D_exbgv")
 
 [node name="PickableObject" parent="." instance=ExtResource("11_iksjj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13404, -1.83425)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42097, 1.11545, -1.83425)
 
 [node name="Viewport_UI_Options" parent="." instance=ExtResource("11_jhdxu")]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.282993, 1.98039, -5.48933)

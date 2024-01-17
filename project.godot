@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AmbiGame"
-run/main_scene="res://Scenes/MapaPrincipal.tscn"
+run/main_scene="res://Scenes/TestVR.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,7 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://8ca3nhx4bfnf"]
+[gd_scene load_steps=29 format=3 uid="uid://cjucb0fmd6cs7"]
 
 [ext_resource type="Texture2D" uid="uid://dfur4i7ajempw" path="res://Propts/Car/STEERING_WHEELS_01_001_COLOR_BASIC.png" id="1_4dko2"]
-[ext_resource type="Script" path="res://Scenes/car.gd" id="1_xx77k"]
+[ext_resource type="PackedScene" uid="uid://cqgu4as38muhx" path="res://Scenes/Player/player_xr.tscn" id="1_7my0o"]
+[ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_watuh"]
+[ext_resource type="Script" path="res://Scripts/carVR.gd" id="2_d63xt"]
+[ext_resource type="PackedScene" uid="uid://bou3jthi7fnki" path="res://Propts/xr_interactables/wheel.tscn" id="5_iyiet"]
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="6_5nfc0"]
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="7_uv3ev"]
+[ext_resource type="PackedScene" uid="uid://dh8grd7s3n8kg" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_snap.tscn" id="8_xx1nk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -88,7 +94,26 @@ size = Vector2(5, 10)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_daq2o"]
 points = PackedVector3Array(-2.57937, -0.079334, -5.07738, 2.65873, 0.079334, 5.07738, 2.65873, -0.079334, 5.07738, 2.65873, 0.079334, -5.07738, -2.57937, 0.079334, 5.07738, -2.57937, -0.079334, 5.07738, 2.65873, -0.079334, -5.07738, -2.57937, 0.079334, -5.07738)
 
+[sub_resource type="BoxMesh" id="BoxMesh_84e8j"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_neava"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16xmx"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lhgbl"]
+albedo_color = Color(0.0784314, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkcoc"]
+material = SubResource("ORMMaterial3D_lhgbl")
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="prototipoCarro" type="Node3D"]
+script = ExtResource("1_watuh")
+
+[node name="playerXR" parent="." instance=ExtResource("1_7my0o")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3.97531, -5.97672)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sg6oo")
@@ -110,7 +135,7 @@ shape = SubResource("ConcavePolygonShape3D_iqtj6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389454, 0)
 mass = 60.17
 gravity_scale = 2.937
-script = ExtResource("1_xx77k")
+script = ExtResource("2_d63xt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748472, 0)
@@ -177,9 +202,6 @@ mesh = SubResource("ArrayMesh_gwbtl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="car/volante/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3rhem")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, -1.7649e-08, 0.97941, 0.201881, 8.56228e-08, 0.201881, -0.97941, -0.019498, 9.02855, -15.9571)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
@@ -199,3 +221,32 @@ skeleton = NodePath("../floor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor2/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_iqtj6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80647, 1.26398, 0)
+mesh = SubResource("BoxMesh_84e8j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_neava")
+
+[node name="PickableObject" parent="." instance=ExtResource("6_5nfc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83488, 1.87591, -0.346045)
+release_mode = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickableObject"]
+shape = SubResource("BoxShape3D_16xmx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject"]
+mesh = SubResource("BoxMesh_qkcoc")
+
+[node name="ZonaS" parent="PickableObject" instance=ExtResource("7_uv3ev")]
+grab_distance = 0.05
+snap_require = "GrabPointSnap"
+
+[node name="GrabPointSnap" parent="PickableObject" instance=ExtResource("8_xx1nk")]
+require_group = "ZonaS"
+
+[node name="Wheel" parent="." instance=ExtResource("5_iyiet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66233, 1.80088, -2.21556)
