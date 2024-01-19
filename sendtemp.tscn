@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dbe7mysnpyn3x"]
+[gd_scene load_steps=2 format=3 uid="uid://dbe7mysnpyn3x"]
 
-[node name="Handle8" type="Node3D"]
-transform = Transform3D(0.999999, 7.10543e-15, 7.10543e-15, -1.38778e-17, 0.707107, -0.707107, -3.55271e-15, 0.707107, 0.707107, 8.88178e-16, 0.141, 0.141)
+[sub_resource type="NavigationMesh" id="NavigationMesh_nx1yb"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_nx1yb")
