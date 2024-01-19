@@ -6,7 +6,6 @@ var rotacion_inicial
 var max_rotacion = 145  # El máximo ángulo de rotación permitido
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("lo que sea")
 	volante = get_node("volante")
 	rotacion_inicial = volante.rotate_z
 	
