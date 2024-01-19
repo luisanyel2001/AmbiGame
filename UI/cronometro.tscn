@@ -20,7 +20,7 @@ layout_mode = 0
 offset_right = 106.0
 offset_bottom = 102.0
 theme_override_fonts/font = ExtResource("2_utryi")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 25
 text = "00:"
 horizontal_alignment = 2
 
@@ -31,7 +31,7 @@ offset_top = 1.0
 offset_right = 211.0
 offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("2_utryi")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 25
 text = "00."
 horizontal_alignment = 2
 
@@ -41,7 +41,7 @@ offset_left = 209.0
 offset_right = 315.0
 offset_bottom = 102.0
 theme_override_fonts/font = ExtResource("2_utryi")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 
