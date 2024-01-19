@@ -17,6 +17,7 @@ func _ready():
 
 #Al presionar boton Inicio
 func _on_iniciar_pressed():
+#	Global.iniciar_cronometro()
 	game_started.emit()
 	pantalla_previa.visible = false 
 	

@@ -5,6 +5,11 @@ var minutos: int = 0
 var segundos: int = 0
 var mseg: int = 0
 
+"""
+func _ready():
+	set_process(false)
+"""
+
 func _process(delta) -> void:
 	time += delta
 	mseg = fmod(time, 1) * 100
