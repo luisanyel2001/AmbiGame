@@ -50,8 +50,11 @@ func _print_button(button):
 		var player_body = player.get_node("PlayerBody") as XRToolsPlayerBody
 		#movement.enabled = false
 		player_body.enabled = false
-		player.global_transform = player_car.get_node("point_camera").global_transform
+		var point = player_car.get_node("point_camera")
+		player.reparent(point, false)
+		player.global_transform = point.global_transform
 		print(str(button))
+		print(get_tree_string_pretty())
 
 func _print_move(angle):
 	player_car.steering = -angle / 200.0

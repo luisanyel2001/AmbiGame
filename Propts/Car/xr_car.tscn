@@ -172,7 +172,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConvexPolygonShape3D_dgfnp")
 
 [node name="point_camera" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.3, 0.2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.2, 0, 0.2)
 shape = SubResource("BoxShape3D_1yn4a")
 disabled = true
 
