@@ -2,6 +2,11 @@ extends Node3D
 
 var xr_interface: XRInterface
 
+#Falta definir en que momento va a terminar la ejecucion para mostrar escena de game over
+const GameOverScreen = preload("res://UI/GameOver.tscn")
+
+
+
 #enum GameState {IDLE, RUNNING, ENDED}  #pruebas para diferentes señales de juego
 #var game_state
 

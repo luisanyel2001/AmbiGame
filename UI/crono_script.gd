@@ -22,6 +22,7 @@ func _process(delta) -> void:
 	
 func stop() -> void:
 	set_process(false)
+	Global.tiempo_transcurrido = formateo_tiempo()
 	
 func formateo_tiempo() -> String:
 	return "%02d:%02d.%03d" % [minutos, segundos, mseg]

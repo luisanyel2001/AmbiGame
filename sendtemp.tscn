@@ -1,9 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6p86pfk8u0ip"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_47vtp"]
-size = Vector3(200, 3, 200)
+[ext_resource type="FontFile" uid="uid://ci0mf1ehsgqdv" path="res://UI/fonts/game_over.ttf" id="1_hsm3d"]
 
-[node name="floor2" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 2.20309, 2.64777e-14, 0, -3.93006e-14, 1, 0, -2.50367, 6.48608e-14)
-mesh = SubResource("BoxMesh_47vtp")
-skeleton = NodePath("../floor")
+[node name="tiempo_trans" type="Label"]
+offset_left = 274.0
+offset_top = 81.0
+offset_right = 548.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("1_hsm3d")
+theme_override_font_sizes/font_size = 50
+text = "00;00.000"
