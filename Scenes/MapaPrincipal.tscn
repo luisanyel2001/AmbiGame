@@ -110,7 +110,7 @@ unshaded = true
 follow_viewport_enabled = true
 
 [node name="Viewport_Timer" parent="CanvasLayer" instance=ExtResource("11_jhdxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348675, 2.90105, -3.26098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415929, 2.90105, -3.26098)
 scene = ExtResource("13_6nmvm")
 viewport_size = Vector2(350, 200)
 material = SubResource("StandardMaterial3D_pplf3")

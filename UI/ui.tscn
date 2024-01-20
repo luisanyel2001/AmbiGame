@@ -17,7 +17,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_papg8"]
-bg_color = Color(0, 0.486275, 0.819608, 1)
+bg_color = Color(0.00392157, 0.356863, 0.729412, 1)
 border_width_bottom = 5
 border_color = Color(0.0470588, 0.137255, 0.2, 1)
 corner_radius_top_left = 10
