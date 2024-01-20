@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bddj5m7ull6g0" path="res://addons/godot-xr-tools/interactables/interactable_handle.tscn" id="2_da0mb"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_wy6hk"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_eamba"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_js451"]
 albedo_texture = ExtResource("2_aaa1s")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mg3xb"]
-material = SubResource("ORMMaterial3D_eamba")
+material = SubResource("ORMMaterial3D_js451")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.02

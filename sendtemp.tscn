@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://c6p86pfk8u0ip"]
+[gd_scene load_steps=2 format=3 uid="uid://c6p86pfk8u0ip"]
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_47vtp"]
+size = Vector3(200, 3, 200)
+
+[node name="floor2" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 2.20309, 2.64777e-14, 0, -3.93006e-14, 1, 0, -2.50367, 6.48608e-14)
+mesh = SubResource("BoxMesh_47vtp")
+skeleton = NodePath("../floor")

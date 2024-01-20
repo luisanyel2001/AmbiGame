@@ -9,7 +9,7 @@ var max_rotacion = 145  # El máximo ángulo de rotación permitido
 func _ready():
 	print("lo que sea")
 	#volante = get_node("volante")
-	volante = get_parent().get_node("Wheel/HingeOrigin/InteractableHinge") as XRToolsInteractableHinge
+	volante = get_parent().get_node("Wheel/InteractableHinge") as XRToolsInteractableHinge
 	rotacion_inicial = volante.rotate_z
 	volante.hinge_moved.connect(_print_move)
 	control = get_owner().get_node("playerXR").get_node("left_hand") as XRController3D
