@@ -112,13 +112,17 @@ offset_top = 76.0
 offset_right = 1154.0
 offset_bottom = 488.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.486275)
 show_behind_parent = true
-layout_mode = 2
+offset_top = 76.0
+offset_right = 1154.0
+offset_bottom = 488.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_yrhdg")
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect"]
+[node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 82.0
@@ -128,14 +132,15 @@ theme_override_fonts/font = ExtResource("1_b5nom")
 theme_override_font_sizes/font_size = 50
 text = "TIEMPO TRANSCURRIDO:"
 
-[node name="tiempo_trans" type="Label" parent="VBoxContainer/TextureRect"]
+[node name="tiempo_trans" type="Label" parent="TextureRect"]
+layout_mode = 0
 offset_left = 274.0
 offset_top = 81.0
 offset_right = 548.0
 offset_bottom = 114.0
 theme_override_fonts/font = ExtResource("1_b5nom")
 theme_override_font_sizes/font_size = 50
-text = "00;00.000"
+text = "00:00.000"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Reiniciar_Button" to="." method="_on_reiniciar_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Salir_Button" to="." method="_on_salir_button_pressed"]

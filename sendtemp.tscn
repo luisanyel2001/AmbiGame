@@ -9,4 +9,4 @@ offset_right = 548.0
 offset_bottom = 114.0
 theme_override_fonts/font = ExtResource("1_hsm3d")
 theme_override_font_sizes/font_size = 50
-text = "00;00.000"
+text = "00:00.000"

@@ -1,6 +1,8 @@
 extends Node3D
 
 var xr_interface: XRInterface
+signal fin_del_juego
+
 
 #Falta definir en que momento va a terminar la ejecucion para mostrar escena de game over
 const GameOverScreen = preload("res://UI/GameOver.tscn")
@@ -28,6 +30,12 @@ func _ready():
 	else:
 		print("OpenXR not initialized, please check if your headset is connected")
 		
+		
+
+func _exit_tree():
+	emit_signal("fin_del_juego")
+	
+	
 #func game_started():
 	#game_state = GameState.RUNNING
 	
