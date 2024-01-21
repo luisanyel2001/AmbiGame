@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6mgpqhokqdo6"]
+[gd_scene load_steps=21 format=3 uid="uid://b6mgpqhokqdo6"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_b4jly"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_donbf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="11_jhdxu"]
 [ext_resource type="PackedScene" uid="uid://cgk4yigi3gmeo" path="res://UI/ui.tscn" id="12_bvlmh"]
 [ext_resource type="PackedScene" uid="uid://c7wdwa5pm85j0" path="res://UI/cronometro.tscn" id="13_6nmvm"]
+[ext_resource type="PackedScene" uid="uid://2ljc81wo1y84" path="res://UI/controles_viewport.tscn" id="14_4ebap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mc8hx"]
 
@@ -27,6 +28,10 @@ size = Vector3(9.77463, 0.571167, 9.78656)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pplf3"]
 transparency = 1
 albedo_color = Color(0.847059, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe0d4"]
+transparency = 1
+albedo_color = Color(0, 0.584314, 0.905882, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_b4jly")
@@ -116,3 +121,15 @@ viewport_size = Vector2(350, 200)
 material = SubResource("StandardMaterial3D_pplf3")
 transparent = 2
 alpha_scissor_threshold = 0.345
+
+[node name="CanvasLayer_Instrucciones" type="CanvasLayer" parent="."]
+
+[node name="Viewport2Din3D" parent="CanvasLayer_Instrucciones" instance=ExtResource("11_jhdxu")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, -0.0122062, 2.22498, -1.39544)
+screen_size = Vector2(1280, 768)
+scene = ExtResource("14_4ebap")
+viewport_size = Vector2(1280, 768)
+material = SubResource("StandardMaterial3D_qe0d4")
+transparent = 2
+alpha_scissor_threshold = 0.531
+unshaded = true
