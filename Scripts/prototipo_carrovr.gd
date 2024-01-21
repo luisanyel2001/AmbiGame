@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player: XROrigin3D = get_node("playerXR")
+@onready var player: XROrigin3D = get_node("player_car/playerXR")
 @onready var left_controller: XRController3D = player.get_node("left_hand")
 @onready var right_controller: XRController3D = player.get_node("right_hand")
 @onready var player_car: VehicleBody3D = get_node("player_car")
@@ -22,15 +22,13 @@ func _ready():
 		print("OpenXR not initialized, please check if your headset is connected")
 	
 	#Other Init
-	print(str(player))
-	print(str(left_controller))
-	print(str(right_controller))
 	
 	init_rotation = steering.rotate_z
 	
 	#Signals Init
 	steering.hinge_moved.connect(_print_move)
 	left_controller.input_float_changed.connect(_print_float)
+	right_controller.input_float_changed.connect(_print_float2)
 	left_controller.button_pressed.connect(_print_button)
 
 
@@ -48,21 +46,27 @@ func _print_button(button):
 	if button == "ax_button":
 		var movement = left_controller.get_node("MovementDirect") as XRToolsMovementDirect
 		var player_body = player.get_node("PlayerBody") as XRToolsPlayerBody
-		#movement.enabled = false
-		player_body.enabled = false
+		movement.enabled = false
+		#player_body.enabled = false
 		var point = player_car.get_node("point_camera")
-		player.reparent(point, false)
+		#player.reparent(point, false)
 		player.global_transform = point.global_transform
 		print(str(button))
-		print(get_tree_string_pretty())
 
 func _print_move(angle):
-	player_car.steering = -angle / 200.0
-	print(str(angle))
+	player_car.steering = angle / 200.0
 	
 func _print_float(action,value):
 	if action == "trigger":
-		player_car.engine_force = clamp(value,0,100) * 100
-		print(str(action) + str(value))
+		player_car.brake = clamp(value,0,100) * 100
+		print("Freno: " + str(player_car.brake))
+		
+		
+func _print_float2(action,value):
+	if action == "trigger":
+		player_car.engine_force = clamp(value,0,100) * 5000
+		print("Acelerador: " + str(player_car.engine_force))
+
+
 
 
