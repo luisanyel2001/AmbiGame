@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbgss41ecfbe6"]
+
+[ext_resource type="PackedScene" uid="uid://tyxckvpotvp3" path="res://Propts/Tunnel/intersection_tunnel.glb" id="1_4rgm3"]
+
+[node name="intersection_tunnel" instance=ExtResource("1_4rgm3")]

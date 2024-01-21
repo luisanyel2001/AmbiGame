@@ -17,10 +17,12 @@ func _process(delta):
 	
 func _physics_process(delta):
 	#steering = Input.get_axis("right", "left") * .4
+	"""
 	if(draggin):
 		steering = -volante.rotation_degrees.z / 200.0
 	else:
-		steering = 0
+		steering = 0"""
+	steering = lerp(steering, Input.get_axis("right", "left") * .4, 5 * delta)
 	engine_force = Input.get_axis("back", "forward") * 100
 	
 func _on_volante_input_event(viewport, event, shape_idx):

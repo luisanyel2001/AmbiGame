@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck4q1wa1quqwh"]
+
+[ext_resource type="PackedScene" uid="uid://dxw58xwcl0rwq" path="res://Propts/Tunnel/right_road_tunnel.glb" id="1_hoakn"]
+
+[node name="right_road_tunnel" instance=ExtResource("1_hoakn")]
