@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck4q1wa1quqwh"]
+
+[ext_resource type="PackedScene" uid="uid://dxw58xwcl0rwq" path="res://Propts/Tunnel/right_road_tunnel.glb" id="1_hoakn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wt73l"]
+size = Vector3(8, 1, 5)
+
+[node name="right_road_tunnel" instance=ExtResource("1_hoakn")]
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 1, 0)
+shape = SubResource("BoxShape3D_wt73l")
+
+[node name="Area3D2" type="Area3D" parent="." index="4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7.13051, 0, 7.54767)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 1, 0)
+shape = SubResource("BoxShape3D_wt73l")

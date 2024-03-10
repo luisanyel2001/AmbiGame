@@ -1,12 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://8ca3nhx4bfnf"]
+[gd_scene load_steps=45 format=3 uid="uid://8ca3nhx4bfnf"]
 
 [ext_resource type="Texture2D" uid="uid://dfur4i7ajempw" path="res://Propts/Car/STEERING_WHEELS_01_001_COLOR_BASIC.png" id="1_4dko2"]
+[ext_resource type="Script" path="res://Scenes/lvl_prototipo_carro.gd" id="1_t72nm"]
 [ext_resource type="Script" path="res://Scenes/car.gd" id="1_xx77k"]
 [ext_resource type="Script" path="res://Scenes/carTraffic.gd" id="3_lukx7"]
-[ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles/road_tunnel.tscn" id="4_0fi06"]
+[ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="4_0fi06"]
 [ext_resource type="Texture2D" uid="uid://c8pbs5daijpm1" path="res://Propts/lowPolyCars/limousineCar_colors.jpg" id="4_k434k"]
-[ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles/intersection_tunnel.tscn" id="5_0xr6a"]
-[ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles/right_road_tunnel.tscn" id="6_yfpry"]
+[ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="5_0xr6a"]
+[ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="6_yfpry"]
 [ext_resource type="Texture2D" uid="uid://vxw44s3e3ppj" path="res://Propts/lowPolyCars/pickupCar_colors.jpg" id="8_k5iy1"]
 [ext_resource type="Texture2D" uid="uid://cy77hwx16ldql" path="res://Propts/lowPolyCars/policeCar_colors.jpg" id="9_3xu76"]
 [ext_resource type="Texture2D" uid="uid://c33oibpvk1h1c" path="res://Propts/lowPolyCars/suvCar_colors.jpg" id="10_r3ubc"]
@@ -270,7 +271,14 @@ shadow_mesh = SubResource("ArrayMesh_6yyc5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfpqf"]
 size = Vector3(1.57135, 1.08105, 3.19678)
 
+[sub_resource type="BoxMesh" id="BoxMesh_q36iu"]
+size = Vector3(1, 1, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a5bm8"]
+data = PackedVector3Array(-0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, -2.5, -0.5, 0.5, -2.5, 0.5, -0.5, -2.5, -0.5, 0.5, -2.5, -0.5, -0.5, -2.5, 0.5, -0.5, -2.5, 0.5, 0.5, 2.5, 0.5, 0.5, -2.5, 0.5, -0.5, 2.5, 0.5, 0.5, -2.5, 0.5, -0.5, -2.5, 0.5, -0.5, 2.5, -0.5, 0.5, -2.5, -0.5, 0.5, 2.5, -0.5, -0.5, -2.5, -0.5, 0.5, 2.5, -0.5, -0.5, 2.5, -0.5, -0.5, -2.5, 0.5, 0.5, 2.5, -0.5, 0.5, 2.5, 0.5, 0.5, -2.5, -0.5, 0.5, 2.5, -0.5, 0.5, -2.5, 0.5, 0.5, -2.5, -0.5, -0.5, 2.5, 0.5, -0.5, 2.5, -0.5, -0.5, -2.5, 0.5, -0.5, 2.5, 0.5, -0.5, -2.5, -0.5, -0.5, -2.5)
+
 [node name="prototipoCarro" type="Node3D"]
+script = ExtResource("1_t72nm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sg6oo")
@@ -280,7 +288,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="car" type="VehicleBody3D" parent="."]
-transform = Transform3D(-0.997557, 1.95605e-05, -0.0698553, 1.96744e-05, 1, -9.43107e-07, 0.0698553, -2.31459e-06, -0.997557, -50.0807, 1.25647, -75.056)
+transform = Transform3D(-0.0698553, 2.31459e-06, 0.997557, 1.96744e-05, 1, -9.43107e-07, -0.997557, 1.95605e-05, -0.0698553, -50.0807, 1.25647, -75.056)
 mass = 60.17
 script = ExtResource("1_xx77k")
 
@@ -349,6 +357,9 @@ mesh = SubResource("ArrayMesh_gwbtl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="car/volante/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3rhem")
 
+[node name="Camera3D" type="Camera3D" parent="car"]
+transform = Transform3D(-0.999802, -0.0101901, 0.0171193, -0.00758353, 0.989263, 0.145953, -0.0184228, 0.145794, -0.989144, 0.215107, 2.00768, -7.01559)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326786, 0, -0.046484)
 
@@ -356,6 +367,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326786, 0, -0.046484)
 
 [node name="road_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_0fi06")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.9945, 0, 0.046484)
+
+[node name="road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_0fi06")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.138, 0, 126.204)
 
 [node name="intersection_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -88.9496, 0, 0.046484)
@@ -395,9 +409,6 @@ transform = Transform3D(0.999861, 0, -0.0166669, 0, 1, 0, 0.0166669, 0, 0.999861
 
 [node name="right_road_tunnel6" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
 transform = Transform3D(0.693678, 0, -0.720284, 0, 1, 0, 0.720284, 0, 0.693678, 16.5416, 0, 133.945)
-
-[node name="road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_0fi06")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.138, 0, 126.204)
 
 [node name="intersection_tunnel8" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
 transform = Transform3D(0.999847, 0, -0.0174699, 0, 1, 0, 0.0174699, 0, 0.999847, -203.628, 0, 265.005)
@@ -533,14 +544,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0951
 mesh = SubResource("ArrayMesh_avb0y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="carTraffic"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0738678, 3.8147e-06, 0.00298691)
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 0.0738676, 3.8147e-06, 0.00298691)
 shape = SubResource("ConcavePolygonShape3D_ogpdy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="carTraffic"]
 debug_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="carTraffic"]
-transform = Transform3D(0.999971, 0.00760317, 0.000557844, -0.00760317, 0.989262, 0.145954, 0.000557858, -0.145954, 0.989291, -0.4209, 1.9094, 8.07985)
 
 [node name="carTraffic2" type="CharacterBody3D" parent="."]
 transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, 94.0854)
@@ -586,3 +594,22 @@ debug_enabled = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="carTraffic4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031826, -0.0405273, 0.104263)
 shape = SubResource("BoxShape3D_jfpqf")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -75)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735738, -0.44165)
+mesh = SubResource("BoxMesh_q36iu")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735738, -0.44165)
+shape = SubResource("ConcavePolygonShape3D_a5bm8")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 49, 30.6221, -76)
+pixel_size = 1.0
+text = "HOLA"
+
+[connection signal="body_entered" from="Area3D" to="car" method="_on_area_3d_body_entered"]

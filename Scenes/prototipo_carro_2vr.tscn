@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://32ltoogyxcen"]
+
+[ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_c5a66"]
+[ext_resource type="PackedScene" uid="uid://dmyka55ktp4lu" path="res://Propts/Car/xr_car.tscn" id="2_1djwe"]
+[ext_resource type="PackedScene" uid="uid://cqgu4as38muhx" path="res://Propts/Player/player_xr.tscn" id="3_4qffi"]
+[ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_wouxg"]
+[ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="5_he1jj"]
+[ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="6_dnc7j"]
+[ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="8_stof4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_apfot"]
+sky_material = SubResource("ProceduralSkyMaterial_v6dpl")
+
+[sub_resource type="Environment" id="Environment_sg6oo"]
+background_mode = 2
+sky = SubResource("Sky_apfot")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lflqs"]
+albedo_texture = ExtResource("4_wouxg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsbyb"]
+albedo_texture = ExtResource("5_he1jj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_kdqvu"]
+material = SubResource("StandardMaterial3D_rsbyb")
+size = Vector3(500, 1, 500)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hus68"]
+points = PackedVector3Array(-250, -0.5, -250, -250, 0.5, -250, 250, -0.5, -250, -250, -0.5, 250, -250, 0.5, 250, 250, 0.5, -250, 250, -0.5, 250, 250, 0.5, 250)
+
+[node name="prototipoCarro" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
+script = ExtResource("1_c5a66")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sg6oo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 211.418, 205.735, -156.397)
+shadow_enabled = true
+
+[node name="player_car" parent="." instance=ExtResource("2_1djwe")]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 61.8275, 1.61889, -29.2879)
+mass = 200.0
+gravity_scale = 4.0
+
+[node name="playerXR" parent="player_car" instance=ExtResource("3_4qffi")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.297718, -0.529719, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.03192, 50.9409, -5.91964)
+material_override = SubResource("StandardMaterial3D_lflqs")
+mesh = SubResource("BoxMesh_kdqvu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_hus68")
+
+[node name="laberintoTuneles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.03192, 51.4409, -5.91964)
+
+[node name="intersection_tunnel" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -128)
+
+[node name="road_tunnel" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, -128)
+
+[node name="road_tunnel2" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.1421, 0, -97.1508)
+
+[node name="intersection_tunnel2" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 62.2254, 0, -66.0438)
+
+[node name="road_tunnel" parent="." instance=ExtResource("6_dnc7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, -36.3151, 51.4, -134.155)

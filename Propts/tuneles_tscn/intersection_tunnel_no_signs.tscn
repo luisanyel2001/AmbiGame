@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://brq0hdkjc6cd6"]
+
+[ext_resource type="PackedScene" uid="uid://tyxckvpotvp3" path="res://Propts/Tunnel/intersection_tunnel.glb" id="1_gixpu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhbpr"]
+size = Vector3(6, 1, 18)
+
+[node name="intersection_tunnel" instance=ExtResource("1_gixpu")]
+
+[node name="Area3D_left" type="Area3D" parent="." index="3"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 9.617, 1, 9.899)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_left" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")
+
+[node name="Area3D_right" type="Area3D" parent="." index="4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.617, 1, 9.899)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_right" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")
+
+[node name="Area3D_center" type="Area3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175016, 1, -14.1005)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_center" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")

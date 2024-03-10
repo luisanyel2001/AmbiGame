@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbgss41ecfbe6"]
+
+[ext_resource type="PackedScene" uid="uid://tyxckvpotvp3" path="res://Propts/Tunnel/intersection_tunnel.glb" id="1_4rgm3"]
+[ext_resource type="PackedScene" uid="uid://dnxqh0geys6yb" path="res://Propts/Tunnel/doble_sign.glb" id="2_dsyr7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhbpr"]
+size = Vector3(6, 1, 18)
+
+[node name="intersection_tunnel" instance=ExtResource("1_4rgm3")]
+
+[node name="doble_sign" parent="." index="3" instance=ExtResource("2_dsyr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00639898, 0, 4.47736)
+
+[node name="right_signs" type="Node3D" parent="doble_sign" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4064, 0, -4.47736)
+
+[node name="Label3D" type="Label3D" parent="doble_sign/right_signs" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.9, 4.4)
+font_size = 24
+
+[node name="Label3D2" type="Label3D" parent="doble_sign/right_signs" index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.6, 4.4)
+font_size = 24
+
+[node name="Label3D3" type="Label3D" parent="doble_sign/right_signs" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.3, 4.4)
+font_size = 24
+
+[node name="Label3D4" type="Label3D" parent="doble_sign/right_signs" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2, 4.4)
+font_size = 24
+
+[node name="Label3D5" type="Label3D" parent="doble_sign/right_signs" index="4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.7, 4.4)
+font_size = 24
+
+[node name="Label3D6" type="Label3D" parent="doble_sign/right_signs" index="5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.4, 4.4)
+font_size = 24
+
+[node name="Label3D7" type="Label3D" parent="doble_sign/right_signs" index="6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.1, 4.4)
+font_size = 24
+
+[node name="Label3D8" type="Label3D" parent="doble_sign/right_signs" index="7"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 0.8, 4.4)
+font_size = 24
+
+[node name="left_signs" type="Node3D" parent="doble_sign" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00639898, 0, -4.47736)
+
+[node name="Label3D" type="Label3D" parent="doble_sign/left_signs" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.9, 4.4)
+font_size = 24
+
+[node name="Label3D2" type="Label3D" parent="doble_sign/left_signs" index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.6, 4.4)
+font_size = 24
+
+[node name="Label3D3" type="Label3D" parent="doble_sign/left_signs" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.3, 4.4)
+font_size = 24
+
+[node name="Label3D4" type="Label3D" parent="doble_sign/left_signs" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2, 4.4)
+font_size = 24
+
+[node name="Label3D5" type="Label3D" parent="doble_sign/left_signs" index="4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.7, 4.4)
+font_size = 24
+
+[node name="Label3D6" type="Label3D" parent="doble_sign/left_signs" index="5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.4, 4.4)
+font_size = 24
+
+[node name="Label3D7" type="Label3D" parent="doble_sign/left_signs" index="6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 1.1, 4.4)
+font_size = 24
+
+[node name="Label3D8" type="Label3D" parent="doble_sign/left_signs" index="7"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 0.8, 4.4)
+font_size = 24
+
+[node name="Area3D_left" type="Area3D" parent="." index="4"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 9.617, 1, 9.899)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_left" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")
+
+[node name="Area3D_right" type="Area3D" parent="." index="5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -9.617, 1, 9.899)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_right" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")
+
+[node name="Area3D_center" type="Area3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175016, 1, -14.1005)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_center" index="0"]
+shape = SubResource("BoxShape3D_uhbpr")
