@@ -1,16 +1,16 @@
-[gd_scene load_steps=45 format=3 uid="uid://8ca3nhx4bfnf"]
+[gd_scene load_steps=47 format=3 uid="uid://b3qaamu2u75f3"]
 
-[ext_resource type="Texture2D" uid="uid://dfur4i7ajempw" path="res://Propts/Car/STEERING_WHEELS_01_001_COLOR_BASIC.png" id="1_4dko2"]
-[ext_resource type="Script" path="res://Scenes/lvl_prototipo_carro.gd" id="1_t72nm"]
-[ext_resource type="Script" path="res://Scenes/car.gd" id="1_xx77k"]
-[ext_resource type="Script" path="res://Scenes/carTraffic.gd" id="3_lukx7"]
-[ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="4_0fi06"]
-[ext_resource type="Texture2D" uid="uid://c8pbs5daijpm1" path="res://Propts/lowPolyCars/limousineCar_colors.jpg" id="4_k434k"]
-[ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="5_0xr6a"]
-[ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="6_yfpry"]
-[ext_resource type="Texture2D" uid="uid://vxw44s3e3ppj" path="res://Propts/lowPolyCars/pickupCar_colors.jpg" id="8_k5iy1"]
-[ext_resource type="Texture2D" uid="uid://cy77hwx16ldql" path="res://Propts/lowPolyCars/policeCar_colors.jpg" id="9_3xu76"]
-[ext_resource type="Texture2D" uid="uid://c33oibpvk1h1c" path="res://Propts/lowPolyCars/suvCar_colors.jpg" id="10_r3ubc"]
+[ext_resource type="Script" path="res://Scenes/lvl_prototipo_carro.gd" id="1_jhi1d"]
+[ext_resource type="Script" path="res://Scenes/car.gd" id="2_xo76s"]
+[ext_resource type="Texture2D" uid="uid://dfur4i7ajempw" path="res://Propts/Car/STEERING_WHEELS_01_001_COLOR_BASIC.png" id="3_4wk6u"]
+[ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="4_hcbij"]
+[ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="5_1dbyi"]
+[ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="6_ewvfl"]
+[ext_resource type="Script" path="res://Scenes/carTraffic.gd" id="7_nyp2s"]
+[ext_resource type="Texture2D" uid="uid://c8pbs5daijpm1" path="res://Propts/lowPolyCars/limousineCar_colors.jpg" id="8_e800m"]
+[ext_resource type="Texture2D" uid="uid://vxw44s3e3ppj" path="res://Propts/lowPolyCars/pickupCar_colors.jpg" id="9_ionma"]
+[ext_resource type="Texture2D" uid="uid://cy77hwx16ldql" path="res://Propts/lowPolyCars/policeCar_colors.jpg" id="10_dk4l4"]
+[ext_resource type="Texture2D" uid="uid://c33oibpvk1h1c" path="res://Propts/lowPolyCars/suvCar_colors.jpg" id="11_d00vn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,7 +44,7 @@ radial_segments = 12
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqslr"]
 resource_name = "BASIC"
 cull_mode = 2
-albedo_texture = ExtResource("1_4dko2")
+albedo_texture = ExtResource("3_4wk6u")
 metallic = 0.5
 roughness = 0.5
 
@@ -99,7 +99,7 @@ data = PackedVector3Array(300, 0, 300, -300, 0, 300, 300, 0, -300, -300, 0, 300,
 resource_name = "Material.003"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_k434k")
+albedo_texture = ExtResource("8_e800m")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_636f7"]
@@ -143,7 +143,7 @@ data = PackedVector3Array(-2.4025, -0.2492, 0.7495, -2.0637, -0.2492, 0.7495, -2
 resource_name = "Material.005"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("8_k5iy1")
+albedo_texture = ExtResource("9_ionma")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fyn1m"]
@@ -187,7 +187,7 @@ size = Vector3(1.5918, 1.0647, 3.80432)
 resource_name = "Material.002"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("9_3xu76")
+albedo_texture = ExtResource("10_dk4l4")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_uabor"]
@@ -231,7 +231,7 @@ size = Vector3(1.47546, 1.07422, 6.26727)
 resource_name = "Material.006"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("10_r3ubc")
+albedo_texture = ExtResource("11_d00vn")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6yyc5"]
@@ -277,8 +277,13 @@ size = Vector3(1, 1, 5)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a5bm8"]
 data = PackedVector3Array(-0.5, 0.5, 2.5, 0.5, 0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, 2.5, 0.5, -0.5, 2.5, -0.5, -0.5, 2.5, 0.5, 0.5, -2.5, -0.5, 0.5, -2.5, 0.5, -0.5, -2.5, -0.5, 0.5, -2.5, -0.5, -0.5, -2.5, 0.5, -0.5, -2.5, 0.5, 0.5, 2.5, 0.5, 0.5, -2.5, 0.5, -0.5, 2.5, 0.5, 0.5, -2.5, 0.5, -0.5, -2.5, 0.5, -0.5, 2.5, -0.5, 0.5, -2.5, -0.5, 0.5, 2.5, -0.5, -0.5, -2.5, -0.5, 0.5, 2.5, -0.5, -0.5, 2.5, -0.5, -0.5, -2.5, 0.5, 0.5, 2.5, -0.5, 0.5, 2.5, 0.5, 0.5, -2.5, -0.5, 0.5, 2.5, -0.5, 0.5, -2.5, 0.5, 0.5, -2.5, -0.5, -0.5, 2.5, 0.5, -0.5, 2.5, -0.5, -0.5, -2.5, 0.5, -0.5, 2.5, 0.5, -0.5, -2.5, -0.5, -0.5, -2.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_782yw"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ws0yg"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
 [node name="prototipoCarro" type="Node3D"]
-script = ExtResource("1_t72nm")
+script = ExtResource("1_jhi1d")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sg6oo")
@@ -288,9 +293,9 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="car" type="VehicleBody3D" parent="."]
-transform = Transform3D(-0.0698553, 2.31459e-06, 0.997557, 1.96744e-05, 1, -9.43107e-07, -0.997557, 1.95605e-05, -0.0698553, -50.0807, 1.25647, -75.056)
+transform = Transform3D(-0.0698553, 2.31459e-06, 0.997557, 1.96744e-05, 1, -9.43107e-07, -0.997557, 1.95605e-05, -0.0698553, -66.2585, 1.25647, -75.056)
 mass = 60.17
-script = ExtResource("1_xx77k")
+script = ExtResource("2_xo76s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="car"]
 transform = Transform3D(0.0562919, 0.998414, -3.28293e-05, -1.74851e-05, -3.18956e-05, -1, -0.998414, 0.056292, 1.56619e-05, 0.19289, 0.748467, -1.68885)
@@ -365,118 +370,118 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0326786, 0, -0.046484)
 
 [node name="laberintoTuneles" type="Node3D" parent="NavigationRegion3D"]
 
-[node name="road_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_0fi06")]
+[node name="road_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_hcbij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.9945, 0, 0.046484)
 
-[node name="road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_0fi06")]
+[node name="road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("4_hcbij")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.138, 0, 126.204)
 
-[node name="intersection_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -88.9496, 0, 0.046484)
 
-[node name="right_road_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -113.803, -1.90735e-06, 24.2746)
 
-[node name="intersection_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.79, 0, 60.012)
 
-[node name="intersection_tunnel3" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel3" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.731354, 0, 0.681998, 0, 1, 0, -0.681998, 0, 0.731354, -82.4263, 0, 92.6694)
 
-[node name="intersection_tunnel4" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel4" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.0174524, 0, 0.999848, 0, 1, 0, -0.999848, 0, 0.0174524, -48.3966, 0, 93.7786)
 
-[node name="intersection_tunnel5" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel5" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.5784, 0, 69.1206)
 
-[node name="intersection_tunnel6" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel6" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.0283229, 0, 0.999599, 0, 1, 0, -0.999599, 0, -0.0283229, -56.383, 0, 36.8719)
 
-[node name="right_road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel2" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.706847, 0, 0.707366, 0, 1, 0, -0.707366, 0, 0.706847, -35.0213, -1.90735e-06, 14.9999)
 
-[node name="right_road_tunnel3" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel3" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.999986, 0, -0.00513102, 0, 1, 0, 0.00513102, 0, 0.999986, 8.495, 0, 69.1515)
 
-[node name="intersection_tunnel7" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel7" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.716911, 0.00243356, 0.697161, 0, 0.999994, -0.00349065, -0.697165, 0.00250248, 0.716906, -25.6265, 0, 117.018)
 
-[node name="intersection_tunnel9" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel9" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-1, 0, 0.000750497, 0, 1, 0, -0.000750475, 0, -1, 26.1128, 0, 87.547)
 
-[node name="right_road_tunnel5" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel5" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.999861, 0, -0.0166669, 0, 1, 0, 0.0166669, 0, 0.999861, 1.38942, 0, 117.669)
 
-[node name="right_road_tunnel6" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel6" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.693678, 0, -0.720284, 0, 1, 0, 0.720284, 0, 0.693678, 16.5416, 0, 133.945)
 
-[node name="intersection_tunnel8" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel8" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.999847, 0, -0.0174699, 0, 1, 0, 0.0174699, 0, 0.999847, -203.628, 0, 265.005)
 
-[node name="right_road_tunnel4" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel4" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-0.999847, 0, 0.0174698, 0, 1, 0, -0.0174698, 0, -0.999847, -179.838, -1.90735e-06, 290.277)
 
-[node name="intersection_tunnel10" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel10" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.0174698, 0, 0.999847, 0, 1, 0, -0.999847, 0, 0.0174698, -144.106, 0, 290.889)
 
-[node name="intersection_tunnel11" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel11" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.669118, 0, 0.743156, 0, 1, 0, -0.743156, 0, -0.669118, -110.906, 0, 260.101)
 
-[node name="intersection_tunnel12" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel12" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.99939, 0, 0.0349169, 0, 1, 0, -0.0349169, 0, -0.99939, -109.202, 0, 226.095)
 
-[node name="intersection_tunnel13" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel13" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.999847, 0, -0.0174699, 0, 1, 0, 0.0174699, 0, 0.999847, -133.405, 0, 199.85)
 
-[node name="intersection_tunnel14" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel14" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.999941, 0, -0.0108558, 0, 1, 0, 0.0108558, 0, -0.999941, -166.24, 0, 233.086)
 
-[node name="right_road_tunnel7" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel7" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-0.694909, 0, 0.719097, 0, 1, 0, -0.719097, 0, -0.694909, -187.735, -1.90735e-06, 211.346)
 
-[node name="intersection_tunnel15" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel15" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.999883, 0, -0.0153234, 0, 1, 0, 0.0153234, 0, 0.999883, -83.4021, 0, 137.34)
 
-[node name="right_road_tunnel8" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel8" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-0.724413, 0, -0.689367, 0, 1, 0, 0.689367, 0, -0.724413, -106.442, 0, 159.805)
 
-[node name="intersection_tunnel16" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel16" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.724473, 0, 0.689303, 0, 1, 0, -0.689303, 0, 0.724473, -132.731, 0, 158.629)
 
-[node name="right_road_tunnel9" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel9" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.99987, 0, 0.0160912, 0, 1, 0, -0.0160912, 0, 0.99987, -61.7183, 0, -173.499)
 
-[node name="intersection_tunnel17" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel17" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.0160912, 0, -0.999871, 0, 1, 0, 0.999871, 0, 0.0160912, -97.4509, 0, -172.911)
 
-[node name="intersection_tunnel18" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel18" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.693678, 0, -0.720285, 0, 1, 0, 0.720285, 0, 0.693678, -129.599, 0, -141.026)
 
-[node name="intersection_tunnel19" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel19" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.999999, 0, -0.00136138, 0, 1, 0, 0.00136138, 0, 0.999999, -130.161, 0, -106.982)
 
-[node name="intersection_tunnel20" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel20" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.999871, 0, -0.0160912, 0, 1, 0, 0.0160912, 0, -0.999871, -105.091, 0, -81.5644)
 
-[node name="intersection_tunnel21" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel21" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.999014, 0, 0.044404, 0, 1, 0, -0.044404, 0, 0.999014, -73.39, 0, -115.884)
 
-[node name="right_road_tunnel10" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel10" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.718648, 0, -0.695373, 0, 1, 0, 0.695373, 0, 0.718648, -51.1772, 0, -94.8765)
 
-[node name="right_road_tunnel11" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel11" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(0.0109606, 0, -0.99994, 0, 1, 0, 0.99994, 0, 0.0109606, -104.621, 0, -50.4945)
 
-[node name="intersection_tunnel22" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel22" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(0.708611, -0.002463, -0.705595, 1.61849e-10, 0.999994, -0.00349065, 0.7056, 0.00247351, 0.708606, -153.031, 0, -83.8414)
 
-[node name="intersection_tunnel23" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_0xr6a")]
+[node name="intersection_tunnel23" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("5_1dbyi")]
 transform = Transform3D(-0.0153408, 0, 0.999882, 0, 1, 0, -0.999882, 0, -0.0153408, -122.731, 0, -32.5829)
 
-[node name="right_road_tunnel12" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel12" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-0.000575823, 0, -1, 0, 1, 0, 1, 0, -0.000575823, -153.247, 0, -56.8185)
 
-[node name="right_road_tunnel13" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_yfpry")]
+[node name="right_road_tunnel13" parent="NavigationRegion3D/laberintoTuneles" instance=ExtResource("6_ewvfl")]
 transform = Transform3D(-0.709029, 0, -0.705179, 0, 1, 0, 0.705179, 0, -0.709029, -169.277, 0, -41.4064)
 
 [node name="target" type="Marker3D" parent="NavigationRegion3D"]
@@ -501,7 +506,7 @@ mesh = SubResource("PlaneMesh_mpkly")
 shape = SubResource("ConcavePolygonShape3D_i6dwd")
 
 [node name="muroContendedor" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(5.73514, 0, 0, 0, 6.82045, 0, 0, 0, 1, -51.3402, 0, -83.5761)
+transform = Transform3D(5.73514, 0, 0, 0, 6.82045, 0, 0, 0, 1, -61.8411, 0, -83.5761)
 mesh = SubResource("BoxMesh_jdxjb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/muroContendedor"]
@@ -537,7 +542,7 @@ shape = SubResource("BoxShape3D_dxh7d")
 
 [node name="carTraffic" type="CharacterBody3D" parent="."]
 transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, 0.223118)
-script = ExtResource("3_lukx7")
+script = ExtResource("7_nyp2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="carTraffic"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0951118, 3.8147e-06, -0.00148773)
@@ -552,7 +557,7 @@ debug_enabled = true
 
 [node name="carTraffic2" type="CharacterBody3D" parent="."]
 transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, 94.0854)
-script = ExtResource("3_lukx7")
+script = ExtResource("7_nyp2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="carTraffic2"]
 transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 0.0951121, 3.8147e-06, -0.00148773)
@@ -566,8 +571,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0664091, -0.0323486, 0.0764
 shape = SubResource("BoxShape3D_4btt6")
 
 [node name="carTraffic3" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, -88.182)
-script = ExtResource("3_lukx7")
+transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -43.9565, 1.46009, -88.182)
+script = ExtResource("7_nyp2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="carTraffic3"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0951118, 3.8147e-06, -0.00148773)
@@ -582,7 +587,7 @@ shape = SubResource("BoxShape3D_xo2hr")
 
 [node name="carTraffic4" type="CharacterBody3D" parent="."]
 transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -117.085, 1.46009, -38.7767)
-script = ExtResource("3_lukx7")
+script = ExtResource("7_nyp2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="carTraffic4"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0951118, 3.8147e-06, -0.00148773)
@@ -611,5 +616,47 @@ shape = SubResource("ConcavePolygonShape3D_a5bm8")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 49, 30.6221, -76)
 pixel_size = 1.0
 text = "HOLA"
+
+[node name="salida1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.3428, 1.81273, -139.11)
+
+[node name="Area3D" type="Area3D" parent="salida1"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="salida1/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_782yw")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="salida1/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ws0yg")
+
+[node name="salida2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.447, 1.81273, -32.2807)
+
+[node name="Area3D" type="Area3D" parent="salida2"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="salida2/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_782yw")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="salida2/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ws0yg")
+
+[node name="salida3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -151.743, 1.81273, -141.386)
+
+[node name="Area3D" type="Area3D" parent="salida3"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="salida3/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_782yw")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="salida3/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ws0yg")
 
 [connection signal="body_entered" from="Area3D" to="car" method="_on_area_3d_body_entered"]

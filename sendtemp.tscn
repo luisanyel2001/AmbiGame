@@ -1,4 +1,4 @@
 [gd_scene format=3 uid="uid://c6p86pfk8u0ip"]
 
-[node name="laberintoTuneles2" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40.3319, 51.4409, 18.8804)
+[node name="salida1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.3428, 1.81273, -139.11)

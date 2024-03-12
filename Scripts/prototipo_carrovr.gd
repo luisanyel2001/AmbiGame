@@ -6,10 +6,11 @@ extends Node3D
 @onready var player_car: VehicleBody3D = get_node("player_car")
 @onready var steering: XRToolsInteractableHinge = player_car.get_node("steering_wheel/interactable")
 
+
 var init_rotation
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():	
 	#Init XR
 	var interface = XRServer.find_interface("OpenXR")
 	if interface and interface.initialize():
@@ -31,6 +32,9 @@ func _ready():
 	right_controller.input_float_changed.connect(_print_float2)
 	left_controller.button_pressed.connect(_print_button)
 
+
+func _entro(body):
+	print("Entro " + body.to_string())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
