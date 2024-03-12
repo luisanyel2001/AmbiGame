@@ -19,6 +19,8 @@ func _ready():
 	"""
 	$NavigationRegion3D/laberintoTuneles/road_tunnel/Area3D.body_entered.connect(_entro)
 	
+	var a = $NavigationRegion3D/laberintoTuneles/road_tunnel2/Area3D as Area3D 
+	
 	
 func _entro(body):
 	print("Entro " + body.to_string())
