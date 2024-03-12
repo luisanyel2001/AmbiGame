@@ -6,6 +6,8 @@ signal game_started
 @onready var pantalla_previa = $pantalla_previa
 @onready var pantalla_instrucciones = $pantalla_instrucciones
 
+@onready var cronometro = Global.cronometro
+
 #Hacerlo compatible con XR 
 #Usar ViewPort2Din3D
 
@@ -17,7 +19,7 @@ func _ready():
 
 #Al presionar boton Inicio
 func _on_iniciar_pressed():
-#	Global.iniciar_cronometro()
+	#cronometro.start()
 	game_started.emit()
 	pantalla_previa.visible = false 
 	

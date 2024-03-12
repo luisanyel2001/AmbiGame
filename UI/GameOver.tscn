@@ -18,7 +18,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_size = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8gud"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oocm3"]
 bg_color = Color(0.439216, 0.0666667, 0.105882, 1)
 border_width_bottom = 5
 corner_radius_top_left = 10
@@ -26,7 +26,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f3jp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_075f1"]
 bg_color = Color(0.705882, 0.137255, 0.196078, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
@@ -35,7 +35,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s1qo"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kxhh"]
 bg_color = Color(0.376471, 0.0509804, 0.0862745, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
@@ -45,14 +45,14 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_2doyi"]
-Button/styles/hover = SubResource("StyleBoxFlat_d8gud")
-Button/styles/normal = SubResource("StyleBoxFlat_2f3jp")
-Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
+Button/styles/hover = SubResource("StyleBoxFlat_oocm3")
+Button/styles/normal = SubResource("StyleBoxFlat_075f1")
+Button/styles/pressed = SubResource("StyleBoxFlat_2kxhh")
 
 [sub_resource type="Theme" id="Theme_frgtm"]
-Button/styles/hover = SubResource("StyleBoxFlat_d8gud")
-Button/styles/normal = SubResource("StyleBoxFlat_2f3jp")
-Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
+Button/styles/hover = SubResource("StyleBoxFlat_oocm3")
+Button/styles/normal = SubResource("StyleBoxFlat_075f1")
+Button/styles/pressed = SubResource("StyleBoxFlat_2kxhh")
 
 [node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_xbp5y")

@@ -1,19 +1,10 @@
 extends Node
 
-var cronometro = null
-var tiempo_transcurrido = ""
+var cronometro_scene = preload("../UI/cronometro.tscn")
+var cronometro = null 
 
+func _ready():
+	cronometro = cronometro_scene.instantiate()
+	get_tree().root.add_child(cronometro)
 
-"""
-func inicio_cronometro():
-	if cronometro != null:
-		cronometro.start()
-		
-
-func detener_cronometro():
-	if cronometro !=  null:
-		cronometro.stop()
-		
-
-"""
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgk4yigi3gmeo"]
+[gd_scene load_steps=15 format=3 uid="uid://cgk4yigi3gmeo"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_iaou6"]
 [ext_resource type="Texture2D" uid="uid://c6iy227xdutog" path="res://imgs/iniciar.png" id="2_uknhy"]
@@ -35,10 +35,30 @@ Button/styles/pressed = SubResource("StyleBoxFlat_papg8")
 [sub_resource type="SystemFont" id="SystemFont_x323c"]
 font_names = PackedStringArray("Century Gothic")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbwre"]
+bg_color = Color(0, 0.580392, 0.972549, 1)
+border_width_bottom = 5
+border_color = Color(0, 0.486275, 0.819608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0p6s"]
+bg_color = Color(0.00392157, 0.356863, 0.729412, 1)
+border_width_bottom = 5
+border_color = Color(0.0470588, 0.137255, 0.2, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+shadow_offset = Vector2(3, 3)
+
 [sub_resource type="Theme" id="Theme_wuuaq"]
-Button/styles/hover = SubResource("StyleBoxFlat_25res")
-Button/styles/normal = SubResource("StyleBoxFlat_papg8")
-Button/styles/pressed = SubResource("StyleBoxFlat_papg8")
+Button/styles/hover = SubResource("StyleBoxFlat_lbwre")
+Button/styles/normal = SubResource("StyleBoxFlat_u0p6s")
+Button/styles/pressed = SubResource("StyleBoxFlat_u0p6s")
 
 [sub_resource type="SystemFont" id="SystemFont_i3c86"]
 font_names = PackedStringArray("Century Gothic")

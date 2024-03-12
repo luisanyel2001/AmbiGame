@@ -1,8 +1,9 @@
 extends CanvasLayer
 
 func _ready():
-	$tiempo_trans.text = Global.tiempo_transcurrido
-	print(Global.tiempo_transcurrido)
+	pass
+	#$tiempo_trans.text = Global.tiempo_transcurrido
+	#print(Global.tiempo_transcurrido)
 
 
 
