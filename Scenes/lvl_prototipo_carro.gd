@@ -8,7 +8,7 @@ var salida_destino = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-<<<<<<< Updated upstream
+
 	destino = randi() % targets.size()
 	if(destino == 0):
 		salida_destino = "salida1"
@@ -17,10 +17,10 @@ func _ready():
 	elif (destino == 2):
 		salida_destino = "salida3"
 	print("destino: " + salida_destino)
-=======
+
 	hide_textbox()
 	
->>>>>>> Stashed changes
+
 	# Create an HTTP request node and connect its completion signal.
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -35,7 +35,7 @@ func _ready():
 	var area = road.get_node("Area3D") as Area3D
 	area.body_entered.connect(_entro)
 	"""
-<<<<<<< Updated upstream
+
 	$NavigationRegion3D/laberintoTuneles/road_tunnel/Area3D.body_entered.connect(_entro)		
 	$salida1/Area3D.body_entered.connect(func(body): _entro(body, $salida1/Area3D))
 	$salida2/Area3D.body_entered.connect(func(body): _entro(body, $salida2/Area3D))
@@ -48,7 +48,7 @@ func _entro(body, area):
 			print("El objeto entró en el área: " + area.name)
 			print("El nodo padre del área es: " + area.get_parent().name)
 
-=======
+
 	
 	
 	
@@ -58,10 +58,10 @@ func _entro(body, area):
 	
 	var a = $NavigationRegion3D/laberintoTuneles/road_tunnel2/Area3D as Area3D 
 	
-func _entro(body):
+func _entro2(body):
 	
 	print("Entro " + body.to_string())
->>>>>>> Stashed changes
+
 	
 	# Inicializa el cuadro de texto y su funcionalidad aquí
 	change_state(State.READY)
