@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://32ltoogyxcen"]
+[gd_scene load_steps=19 format=3 uid="uid://32ltoogyxcen"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_c5a66"]
 [ext_resource type="PackedScene" uid="uid://dmyka55ktp4lu" path="res://Propts/Car/xr_car.tscn" id="2_1djwe"]
@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_wouxg"]
 [ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="5_he1jj"]
 [ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="6_dnc7j"]
+[ext_resource type="PackedScene" uid="uid://brq0hdkjc6cd6" path="res://Propts/tuneles_tscn/intersection_tunnel_left_signs.tscn" id="8_gonn6"]
 [ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="8_stof4"]
+[ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="9_gstlk"]
+[ext_resource type="PackedScene" uid="uid://cndooa5so653o" path="res://Propts/tuneles_tscn/intersection_tunnel_no_signs.tscn" id="10_aivm2"]
+[ext_resource type="PackedScene" uid="uid://u13yiayji37j" path="res://Propts/tuneles_tscn/intersection_tunnel_right_signs.tscn" id="11_pqiv7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -29,10 +33,10 @@ albedo_texture = ExtResource("5_he1jj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_kdqvu"]
 material = SubResource("StandardMaterial3D_rsbyb")
-size = Vector3(500, 1, 500)
+size = Vector3(600, 1, 600)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hus68"]
-points = PackedVector3Array(-250, -0.5, -250, -250, 0.5, -250, 250, -0.5, -250, -250, -0.5, 250, -250, 0.5, 250, 250, 0.5, -250, 250, -0.5, 250, 250, 0.5, 250)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aabqy"]
+points = PackedVector3Array(-300, -0.5, -300, -300, 0.5, -300, 300, -0.5, -300, -300, -0.5, 300, -300, 0.5, 300, 300, 0.5, -300, 300, -0.5, 300, 300, 0.5, 300)
 
 [node name="prototipoCarro" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
@@ -46,7 +50,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -
 shadow_enabled = true
 
 [node name="player_car" parent="." instance=ExtResource("2_1djwe")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 61.8275, 1.61889, -29.2879)
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -50.5801, 56.2189, -223.486)
 mass = 200.0
 gravity_scale = 4.0
 
@@ -61,22 +65,340 @@ mesh = SubResource("BoxMesh_kdqvu")
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_hus68")
+shape = SubResource("ConvexPolygonShape3D_aabqy")
 
 [node name="laberintoTuneles" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.03192, 51.4409, -5.91964)
 
 [node name="intersection_tunnel" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -128)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
 
 [node name="road_tunnel" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, -128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
+
+[node name="road_tunnel6" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
 
 [node name="road_tunnel2" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 31.1421, 0, -97.1508)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 96.1421, 0, -91.1508)
 
 [node name="intersection_tunnel2" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 62.2254, 0, -66.0438)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
 
-[node name="road_tunnel" parent="." instance=ExtResource("6_dnc7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, -36.3151, 51.4, -134.155)
+[node name="road_tunnel3" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 96.1607, 0, -152.87)
+
+[node name="intersection_tunnel3" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.255, 0, -183.994)
+
+[node name="intersection_tunnel4" parent="laberintoTuneles" instance=ExtResource("8_gonn6")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
+
+[node name="right_road_tunnel" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
+
+[node name="road_tunnel4" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
+
+[node name="road_tunnel5" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
+
+[node name="right_road_tunnel2" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
+
+[node name="right_road_tunnel3" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 162.281, 0, -183.855)
+
+[node name="intersection_tunnel6" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 234.5, 0, -207.953)
+
+[node name="right_road_tunnel4" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 260.062, 0, -182.755)
+
+[node name="intersection_tunnel7" parent="laberintoTuneles" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3564, 0, -265.664)
+
+[node name="intersection_tunnel8" parent="laberintoTuneles" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
+
+[node name="intersection_tunnel9" parent="laberintoTuneles" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
+
+[node name="right_road_tunnel5" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+
+[node name="right_road_tunnel6" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+
+[node name="right_road_tunnel7" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
+
+[node name="right_road_tunnel8" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 12.0342, 0, -194.787)
+
+[node name="right_road_tunnel9" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
+
+[node name="road_tunnel7" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
+
+[node name="road_tunnel8" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 0, 0.965926, 0.258819, -4.37114e-08, -22.7418, 4.44326, -273.809)
+
+[node name="intersection_tunnel10" parent="laberintoTuneles" instance=ExtResource("11_pqiv7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.567, 0, -207.945)
+
+[node name="laberintoTuneles2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.0055, 51.4409, 24.2145)
+
+[node name="intersection_tunnel" parent="laberintoTuneles2" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
+
+[node name="road_tunnel" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
+
+[node name="road_tunnel6" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
+
+[node name="road_tunnel2" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 96.1421, 0, -91.1508)
+
+[node name="intersection_tunnel2" parent="laberintoTuneles2" instance=ExtResource("8_stof4")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
+
+[node name="road_tunnel3" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 96.1607, 0, -152.87)
+
+[node name="intersection_tunnel3" parent="laberintoTuneles2" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.255, 0, -183.994)
+
+[node name="intersection_tunnel4" parent="laberintoTuneles2" instance=ExtResource("8_gonn6")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
+
+[node name="right_road_tunnel" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
+
+[node name="road_tunnel4" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
+
+[node name="road_tunnel5" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
+
+[node name="right_road_tunnel2" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
+
+[node name="right_road_tunnel3" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 162.281, 0, -183.855)
+
+[node name="intersection_tunnel6" parent="laberintoTuneles2" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 234.5, 0, -207.953)
+
+[node name="right_road_tunnel4" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 260.062, 0, -182.755)
+
+[node name="intersection_tunnel7" parent="laberintoTuneles2" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3564, 0, -265.664)
+
+[node name="intersection_tunnel8" parent="laberintoTuneles2" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
+
+[node name="intersection_tunnel9" parent="laberintoTuneles2" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
+
+[node name="right_road_tunnel5" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+
+[node name="right_road_tunnel6" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+
+[node name="right_road_tunnel7" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
+
+[node name="right_road_tunnel8" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 12.0342, 0, -194.787)
+
+[node name="right_road_tunnel9" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
+
+[node name="road_tunnel7" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
+
+[node name="road_tunnel8" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 0, 0.965926, 0.258819, -4.37114e-08, -22.7418, 4.44326, -273.809)
+
+[node name="intersection_tunnel10" parent="laberintoTuneles2" instance=ExtResource("11_pqiv7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.567, 0, -207.945)
+
+[node name="laberintoTuneles3" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.4319, 51.4409, 17.2804)
+
+[node name="intersection_tunnel" parent="laberintoTuneles3" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
+
+[node name="road_tunnel" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
+
+[node name="road_tunnel6" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
+
+[node name="road_tunnel2" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 96.1421, 0, -91.1508)
+
+[node name="intersection_tunnel2" parent="laberintoTuneles3" instance=ExtResource("8_stof4")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
+
+[node name="road_tunnel3" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 96.1607, 0, -152.87)
+
+[node name="intersection_tunnel3" parent="laberintoTuneles3" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.255, 0, -183.994)
+
+[node name="intersection_tunnel4" parent="laberintoTuneles3" instance=ExtResource("8_gonn6")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
+
+[node name="right_road_tunnel" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
+
+[node name="road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
+
+[node name="road_tunnel5" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
+
+[node name="right_road_tunnel2" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
+
+[node name="right_road_tunnel3" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 162.281, 0, -183.855)
+
+[node name="intersection_tunnel6" parent="laberintoTuneles3" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 234.5, 0, -207.953)
+
+[node name="right_road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 260.062, 0, -182.755)
+
+[node name="intersection_tunnel7" parent="laberintoTuneles3" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3564, 0, -265.664)
+
+[node name="intersection_tunnel8" parent="laberintoTuneles3" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
+
+[node name="intersection_tunnel9" parent="laberintoTuneles3" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
+
+[node name="right_road_tunnel5" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+
+[node name="right_road_tunnel6" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+
+[node name="right_road_tunnel7" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
+
+[node name="right_road_tunnel8" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 12.0342, 0, -194.787)
+
+[node name="right_road_tunnel9" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
+
+[node name="road_tunnel7" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
+
+[node name="road_tunnel8" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 0, 0.965926, 0.258819, -4.37114e-08, -22.7418, 4.44326, -273.809)
+
+[node name="intersection_tunnel10" parent="laberintoTuneles3" instance=ExtResource("11_pqiv7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.567, 0, -207.945)
+
+[node name="laberintoTuneles4" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 16.1319, 51.4409, 47.4804)
+
+[node name="intersection_tunnel" parent="laberintoTuneles4" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
+
+[node name="road_tunnel" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
+
+[node name="road_tunnel6" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
+
+[node name="road_tunnel2" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 96.1421, 0, -91.1508)
+
+[node name="intersection_tunnel2" parent="laberintoTuneles4" instance=ExtResource("8_stof4")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
+
+[node name="road_tunnel3" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 96.1607, 0, -152.87)
+
+[node name="intersection_tunnel3" parent="laberintoTuneles4" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.255, 0, -183.994)
+
+[node name="intersection_tunnel4" parent="laberintoTuneles4" instance=ExtResource("8_gonn6")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
+
+[node name="right_road_tunnel" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
+
+[node name="road_tunnel4" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
+
+[node name="road_tunnel5" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
+
+[node name="right_road_tunnel2" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
+
+[node name="right_road_tunnel3" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 162.281, 0, -183.855)
+
+[node name="intersection_tunnel6" parent="laberintoTuneles4" instance=ExtResource("8_stof4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 234.5, 0, -207.953)
+
+[node name="right_road_tunnel4" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 260.062, 0, -182.755)
+
+[node name="intersection_tunnel7" parent="laberintoTuneles4" instance=ExtResource("8_stof4")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3564, 0, -265.664)
+
+[node name="intersection_tunnel8" parent="laberintoTuneles4" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
+
+[node name="intersection_tunnel9" parent="laberintoTuneles4" instance=ExtResource("10_aivm2")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
+
+[node name="right_road_tunnel5" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+
+[node name="right_road_tunnel6" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+
+[node name="right_road_tunnel7" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
+
+[node name="right_road_tunnel8" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 12.0342, 0, -194.787)
+
+[node name="right_road_tunnel9" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
+
+[node name="road_tunnel7" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
+
+[node name="road_tunnel8" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 0, 0.965926, 0.258819, -4.37114e-08, -22.7418, 4.44326, -273.809)
+
+[node name="intersection_tunnel10" parent="laberintoTuneles4" instance=ExtResource("11_pqiv7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.567, 0, -207.945)

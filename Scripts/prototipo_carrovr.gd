@@ -64,7 +64,7 @@ func _print_float(action,value):
 		
 func _print_float2(action,value):
 	if action == "trigger":
-		player_car.engine_force = clamp(value,0,100) * 3700
+		player_car.engine_force = clamp(value,0,100) * 4000 #3700
 		print("Acelerador: " + str(player_car.engine_force))
 
 
