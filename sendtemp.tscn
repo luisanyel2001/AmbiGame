@@ -1,4 +1,9 @@
 [gd_scene format=3 uid="uid://dus7nkhrn7pik"]
 
+<<<<<<< Updated upstream
 [node name="vialidad_exterior" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10, 298)
+=======
+[node name="Area3D" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -75)
+>>>>>>> Stashed changes

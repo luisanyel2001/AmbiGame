@@ -8,7 +8,11 @@ var salida_destino = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	hide_textbox()
+	queue_text("Haz llegado ...")
+	queue_text("Continua yendo hacia ... ")
+	queue_text("Textooooo treees")
+	
 	destino = randi() % targets.size()
 	if(destino == 0):
 		salida_destino = "salida1"
@@ -17,9 +21,6 @@ func _ready():
 	elif (destino == 2):
 		salida_destino = "salida3"
 	print("destino: " + salida_destino)
-
-	hide_textbox()
-	
 
 	# Create an HTTP request node and connect its completion signal.
 	var http_request = HTTPRequest.new()
@@ -35,45 +36,22 @@ func _ready():
 	var area = road.get_node("Area3D") as Area3D
 	area.body_entered.connect(_entro)
 	"""
-
-	$NavigationRegion3D/laberintoTuneles/road_tunnel/Area3D.body_entered.connect(_entro)		
+	"""
 	$salida1/Area3D.body_entered.connect(func(body): _entro(body, $salida1/Area3D))
 	$salida2/Area3D.body_entered.connect(func(body): _entro(body, $salida2/Area3D))
 	$salida3/Area3D.body_entered.connect(func(body): _entro(body, $salida3/Area3D))
+	"""
 			
 func _entro(body, area):
 	if(body == $car):		
 		if(salida_destino == area.get_parent().name):
-			print("Entro " + body.to_string())
+			print("Entro123 " + body.to_string())
 			print("El objeto entró en el área: " + area.name)
 			print("El nodo padre del área es: " + area.get_parent().name)
-
-
-	
-	
-	
-	
-	
 	$NavigationRegion3D/laberintoTuneles/road_tunnel/Area3D.body_entered.connect(_entro)
 	
 	var a = $NavigationRegion3D/laberintoTuneles/road_tunnel2/Area3D as Area3D 
-	
-func _entro2(body):
-	
-	print("Entro " + body.to_string())
 
-	
-	# Inicializa el cuadro de texto y su funcionalidad aquí
-	change_state(State.READY)
-	print("Iniciando: State.READY")
-	hide_textbox()
-	queue_text("Este texto es creado desde el script")
-	queue_text("Texto2 colaaa")
-	queue_text("Textooooo treees")
-	show_textbox() 
-	
-	
-	
 
 func _http_request_completed(result, response_code, headers, body):
 	var json = JSON.new()
@@ -84,6 +62,9 @@ func _http_request_completed(result, response_code, headers, body):
 	print(response.glossary['title'])
 	#$NavigationRegion3D/laberintoTuneles/road_tunnel/Label3D.text = response.glossary['title']
 	$Label3D.text = response.glossary['title']
+
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -149,7 +130,7 @@ func show_textbox():
 	textbox_container.show()
 
 func display_text():
-	if current_state == State.READY:
+	#if current_state == State.READY:
 		var next_text = text_queue.pop_front()
 		current_text = next_text
 		change_state(State.READING)
@@ -169,6 +150,34 @@ func change_state(next_state):
 			print("Cambiando estado a: State.READING")
 		State.FINISHED:
 			print("Cambiando estado a: State.FINISHED")
+		State.INACTIVE:
+			print("Cambiando estado a: State.INACTIVE")
+
+
+func _on_area_3d_body_entered(body):
+	print("ooooo") 
+	change_state(State.READY)
+	
+func _on_area_3d_body_exited(body):
+	change_state(State.FINISHED)
+	hide_textbox()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 ############ PAUSA PRUEBA
@@ -200,7 +209,12 @@ func toggle_pause_menu() -> void:
 
 		# Reanudar el juego
 		get_tree().paused = false
+		
 
+
+
+
+	
 
 
 

@@ -26,8 +26,8 @@ var is_text_displayed = false
 func _ready():
 	print("Iniciando: State.READY")
 	hide_textbox()
-	queue_text("Haz llegado a tu Destino! Ahora dirigete hacia ...")
-	queue_text("Continua yendo hacia ... ")
+	queue_text("ssssssssss texto es creado desde el script")
+	queue_text("Texto2 colaaa")
 	queue_text("Textooooo treees")
 	
 func queue_text(next_text):
