@@ -1,13 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjucb0fmd6cs7"]
+[gd_scene load_steps=20 format=3 uid="uid://cjucb0fmd6cs7"]
 
-[ext_resource type="PackedScene" uid="uid://cqgu4as38muhx" path="res://Propts/Player/player_xr.tscn" id="1_7my0o"]
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_watuh"]
+[ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="2_f6ofk"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_7mmsi"]
 [ext_resource type="PackedScene" uid="uid://cesyr83a72be0" path="res://Propts/tuneles_tscn/road_tunnel.tscn" id="4_mv0c4"]
 [ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="5_gp4nj"]
 [ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="5_w6plo"]
 [ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="6_45c8j"]
-[ext_resource type="PackedScene" uid="uid://dmyka55ktp4lu" path="res://Propts/Car/xr_car.tscn" id="10_35ghy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,13 +59,7 @@ environment = SubResource("Environment_sg6oo")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 211.418, 205.735, -156.397)
 shadow_enabled = true
 
-[node name="player_car" parent="." instance=ExtResource("10_35ghy")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 61.8275, 1.61889, -29.2879)
-mass = 200.0
-gravity_scale = 4.0
-
-[node name="playerXR" parent="player_car" instance=ExtResource("1_7my0o")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.297718, -0.529719, 0)
+[node name="player_car" parent="." instance=ExtResource("2_f6ofk")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.03192, 50.9409, -5.91964)

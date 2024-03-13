@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://br7qi37duui18"]
+[gd_scene load_steps=8 format=3 uid="uid://br7qi37duui18"]
 
 [ext_resource type="PackedScene" uid="uid://d15js5rikmvuw" path="res://Propts/Tunnel/road_tunnel.glb" id="1_a5l6p"]
+[ext_resource type="Texture2D" uid="uid://cba4jrhdi75ua" path="res://imgs/white_arrow.png" id="2_6r2hc"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6cwff"]
 data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgugw"]
+albedo_texture = ExtResource("2_6r2hc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lrmrv"]
+material = SubResource("StandardMaterial3D_sgugw")
+size = Vector2(1, 1)
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dmt20"]
 data = PackedVector3Array(0, -0.85, 1.33, -0.9405, 0.85, 0.9404, 0, 0.85, 1.33, 0, -0.85, 1.33, -0.9405, -0.85, 0.9404, -0.9405, 0.85, 0.9404, -0.9405, -0.85, 0.9404, -1.33, 0.85, 0, -0.9405, 0.85, 0.9404, -0.9405, -0.85, 0.9404, -1.33, -0.85, 0, -1.33, 0.85, 0, -1.33, -0.85, 0, -0.9405, 0.85, -0.9405, -1.33, 0.85, 0, -1.33, -0.85, 0, -0.9405, -0.85, -0.9405, -0.9405, 0.85, -0.9405, -0.9405, -0.85, -0.9405, 0, 0.85, -1.33, -0.9405, 0.85, -0.9405, -0.9405, -0.85, -0.9405, 0, -0.85, -1.33, 0, 0.85, -1.33)
+backface_collision = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgn07"]
 size = Vector3(39, 1, 5)
@@ -17,6 +26,10 @@ size = Vector3(39, 1, 5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Road/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_6cwff")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road/StaticBody3D/CollisionShape3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74229e-08, 0, -8.74228e-08, -1, 0, -1.2808, 3.73236e-09)
+mesh = SubResource("PlaneMesh_lrmrv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Tunnel_top" index="0"]
 
