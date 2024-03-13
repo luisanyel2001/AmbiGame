@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://32ltoogyxcen"]
+[gd_scene load_steps=26 format=3 uid="uid://32ltoogyxcen"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_c5a66"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_wouxg"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="9_gstlk"]
 [ext_resource type="PackedScene" uid="uid://dgme3n35q8xb8" path="res://Propts/tuneles_tscn/carretera_exterior.tscn" id="10_41grn"]
 [ext_resource type="PackedScene" uid="uid://cndooa5so653o" path="res://Propts/tuneles_tscn/intersection_tunnel_no_signs.tscn" id="10_aivm2"]
-[ext_resource type="PackedScene" uid="uid://bqlg6jujvhuq7" path="res://Propts/Player/player_car_normal.tscn" id="11_nksqo"]
+[ext_resource type="PackedScene" uid="uid://ckmkfp3bcovp3" path="res://Propts/tuneles_tscn/carretera_interior.tscn" id="11_q4jyd"]
+[ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="12_0exax"]
 [ext_resource type="PackedScene" uid="uid://br7qi37duui18" path="res://Propts/tuneles_tscn/road_tunnel_up.tscn" id="12_clnqd"]
+[ext_resource type="PackedScene" uid="uid://cwqsoy51a2yq" path="res://Propts/city/low_poly_city.tscn" id="12_ja1go"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,6 +39,23 @@ size = Vector3(800, 1, 800)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ampq"]
 points = PackedVector3Array(-400, -0.5, -400, -400, 0.5, -400, 400, -0.5, -400, -400, -0.5, 400, -400, 0.5, 400, 400, 0.5, -400, 400, -0.5, 400, 400, 0.5, 400)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v28yr"]
+albedo_color = Color(0.0823529, 0.321569, 0.109804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t78iw"]
+material = SubResource("ORMMaterial3D_v28yr")
+size = Vector3(296, 1, 641)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mytkg"]
+points = PackedVector3Array(147.971, 0.5, 320.5, 147.971, -0.5, 320.5, 147.971, 0.5, -320.5, -148, 0.5, 320.5, -148, -0.5, 320.5, 147.971, -0.5, -320.5, -148, 0.5, -320.5, -148, -0.5, -320.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sjytd"]
+material = SubResource("ORMMaterial3D_v28yr")
+size = Vector3(276, 1, 641)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qcb66"]
+points = PackedVector3Array(138, 0.5, 320.5, 138, -0.5, 320.5, 138, 0.5, -320.5, -138, 0.5, 320.5, -138, -0.5, 320.5, 138, -0.5, -320.5, -138, 0.5, -320.5, -138, -0.5, -320.5)
 
 [node name="prototipoCarro" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
@@ -88,12 +107,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="right_road_tunnel" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
-
-[node name="road_tunnel4" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
-
-[node name="road_tunnel5" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
 
 [node name="right_road_tunnel2" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
@@ -161,6 +174,27 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="road_tunnel11" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
 
+[node name="right_road_tunnel13" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
+
+[node name="road_tunnel12" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
+
+[node name="right_road_tunnel14" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
+
+[node name="road_tunnel13" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
+
+[node name="road_tunnel14" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+
+[node name="right_road_tunnel15" parent="laberintoTuneles" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
+
+[node name="road_tunnel15" parent="laberintoTuneles" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
+
 [node name="laberintoTuneles2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.3681, 0.7, 24.1804)
 
@@ -196,12 +230,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="right_road_tunnel" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
-
-[node name="road_tunnel4" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
-
-[node name="road_tunnel5" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
 
 [node name="right_road_tunnel2" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
@@ -257,6 +285,27 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="road_tunnel11" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
 
+[node name="right_road_tunnel14" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
+
+[node name="road_tunnel13" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
+
+[node name="right_road_tunnel15" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
+
+[node name="road_tunnel14" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
+
+[node name="road_tunnel15" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+
+[node name="right_road_tunnel16" parent="laberintoTuneles2" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
+
+[node name="road_tunnel16" parent="laberintoTuneles2" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
+
 [node name="laberintoTuneles3" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.0319, 0.7, 44.4804)
 
@@ -287,11 +336,11 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="right_road_tunnel" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
 
-[node name="road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
+[node name="right_road_tunnel13" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
 
-[node name="road_tunnel5" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
+[node name="road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
 
 [node name="right_road_tunnel2" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
@@ -359,6 +408,21 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="road_tunnel11" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
 
+[node name="right_road_tunnel14" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
+
+[node name="road_tunnel13" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
+
+[node name="road_tunnel14" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+
+[node name="right_road_tunnel15" parent="laberintoTuneles3" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
+
+[node name="road_tunnel15" parent="laberintoTuneles3" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
+
 [node name="laberintoTuneles4" type="Node3D" parent="."]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 35.4319, 0.7, 14.3804)
 
@@ -394,12 +458,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="right_road_tunnel" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
-
-[node name="road_tunnel4" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, 93.1, 5.02282, -306.054)
-
-[node name="road_tunnel5" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
-transform = Transform3D(0.683012, -0.183013, 0.707107, 0.258819, 0.965926, 0, -0.683013, 0.183013, 0.707107, 264.113, 5.22108, -237.342)
 
 [node name="right_road_tunnel2" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
@@ -455,19 +513,102 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="road_tunnel11" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
 
+[node name="right_road_tunnel14" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
+
+[node name="road_tunnel13" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
+
+[node name="right_road_tunnel15" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
+
+[node name="road_tunnel14" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
+
+[node name="road_tunnel15" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+
+[node name="right_road_tunnel16" parent="laberintoTuneles4" instance=ExtResource("9_gstlk")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
+
+[node name="road_tunnel16" parent="laberintoTuneles4" instance=ExtResource("6_dnc7j")]
+transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
+
 [node name="vialidad_exterior" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" parent="vialidad_exterior" instance=ExtResource("10_41grn")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9, 344.7)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.9, 344.7)
 
 [node name="MeshInstance3D2" parent="vialidad_exterior" instance=ExtResource("10_41grn")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -319.809, 6.9, 21)
+transform = Transform3D(-1, 0, 1.54016e-07, 0, 1, 0, -1.50996e-07, 0, -1.02, -319.809, 6.9, 19.5)
 
 [node name="MeshInstance3D3" parent="vialidad_exterior" instance=ExtResource("10_41grn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9, -306.2)
 
 [node name="MeshInstance3D4" parent="vialidad_exterior" instance=ExtResource("10_41grn")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 319.809, 6.9, 21)
+transform = Transform3D(1, 0, 1.78342e-07, 0, 1, 0, -1.74846e-07, 0, 1.02, 319.809, 6.9, 19.5)
 
-[node name="car" parent="." instance=ExtResource("11_nksqo")]
-transform = Transform3D(-0.998624, 1.95979e-05, -0.0524349, 1.96744e-05, 1, -9.43107e-07, 0.0524349, -1.97286e-06, -0.998624, 35, 8.3, 344.2)
+[node name="vialidad_interior" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="vialidad_interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.1, 6.9, 19.2)
+mesh = SubResource("BoxMesh_t78iw")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_mytkg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="vialidad_interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.9, 6.9, 19.2)
+mesh = SubResource("BoxMesh_sjytd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_qcb66")
+
+[node name="Node3D" parent="vialidad_interior" instance=ExtResource("11_q4jyd")]
+transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6.9, 19)
+
+[node name="Ciudades" type="Node3D" parent="."]
+
+[node name="LowPolyCITY" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.1979, 1.00003, 448.118)
+
+[node name="LowPolyCITY12" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.902, 1.00003, 435.318)
+
+[node name="LowPolyCITY4" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -247.598, 1.00003, 448.118)
+
+[node name="LowPolyCITY5" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -409.098, 1.00003, 239.518)
+
+[node name="LowPolyCITY7" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -419.398, 1.00003, -13.7818)
+
+[node name="LowPolyCITY8" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -419.398, 1.00003, -235.482)
+
+[node name="LowPolyCITY2" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 52.5976, 1, -408.865)
+
+[node name="LowPolyCITY9" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -209.402, 1, -395.865)
+
+[node name="LowPolyCITY3" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 267.698, 1, -408.865)
+
+[node name="LowPolyCITY6" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 429.698, 1, -199.765)
+
+[node name="LowPolyCITY10" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 439.598, 1, 52.2353)
+
+[node name="LowPolyCITY11" parent="Ciudades" instance=ExtResource("12_ja1go")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 444.298, 1, 273.835)
+
+[node name="player_car" parent="." instance=ExtResource("12_0exax")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 8.5, 346.4)
