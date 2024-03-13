@@ -8,6 +8,7 @@ var main_panel_instance
  
 func _enter_tree():
 	# Initialization of the plugin goes here.
+	multiplayer.multiplayer_peer = null
 	
 	# Init main panel
 	main_panel_instance = MainPanel.instantiate()

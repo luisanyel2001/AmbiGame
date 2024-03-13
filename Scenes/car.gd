@@ -10,7 +10,6 @@ func _ready():
 	rotacion_inicial = volante.rotate_z
 	
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -23,7 +22,10 @@ func _physics_process(delta):
 	else:
 		steering = 0"""
 	steering = lerp(steering, Input.get_axis("right", "left") * .4, 5 * delta)
-	engine_force = Input.get_axis("back", "forward") * 100
+	var porcentaje = (Input.get_axis("back", "forward") - (-1)) / (1 - (-1))
+	engine_force = lerp(-3700, 3700, porcentaje)
+	#engine_force = Input.get_axis("back", "forward") * 100
+
 	
 func _on_volante_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:

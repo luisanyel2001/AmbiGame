@@ -40,7 +40,7 @@ func _ready():
 	scene_update.connect(_on_scene_update_modify)
 	_global_scene = EditorInterface.get_edited_scene_root()
 	#_global_scene.get_tree().node_added.connect(_on_scene_update_add)
-	_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
+	#_global_scene.get_tree().node_removed.connect(_on_scene_update_remove)
 	EditorInterface.get_selection().selection_changed.connect(_on_is_selected_change)
 	#Init. Links to calls
 	
@@ -49,7 +49,7 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	multiplayer.multiplayer_peer = null
+	
 	
 	print("carga: " + _global_scene.scene_file_path.get_file())
 	
@@ -211,13 +211,14 @@ func _on_btn_test_2_pressed():
 	
 #----------------------Signal_functions-----------------------------
 func _on_is_selected_change():
-	var selected = EditorInterface.get_selection().get_selected_nodes()
-	if selected != []:
-		selected = selected.front().name
-		print("Elemento seleccionado:" + selected)
-		if selected in _RECEIVE_CACHE:
-			_RECEIVE_CACHE.erase(selected)
-			EditorInterface.save_scene()#Try use EditorInterface.call_deferred("save_scene")
+	if multiplayer.multiplayer_peer != null:
+		var selected = EditorInterface.get_selection().get_selected_nodes()
+		if selected != []:
+			selected = selected.front().name
+			print("Elemento seleccionado:" + selected)
+			if selected in _RECEIVE_CACHE:
+				_RECEIVE_CACHE.erase(selected)
+				EditorInterface.save_scene()#Try use EditorInterface.call_deferred("save_scene")
 			
 	
 	
