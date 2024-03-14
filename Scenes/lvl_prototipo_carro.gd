@@ -6,10 +6,16 @@ extends Node3D
 var destino = 0
 var salida_destino = ""
 
+
+var pause_menu: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
+	set_process_input(true)
+	pause_menu = preload("res://UI/menu_pausa_2.tscn")
+	
 	hide_textbox()
-	queue_text("Haz llegado ...")
+	var gano = queue_text("Haz ganado ...")
 	queue_text("Continua yendo hacia ... ")
 	queue_text("Textooooo treees")
 	
@@ -64,7 +70,7 @@ func _http_request_completed(result, response_code, headers, body):
 	$Label3D.text = response.glossary['title']
 
 
-
+#########################################################
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -93,7 +99,7 @@ func _process(delta):
 	
 
 
-const CHAR_READ_RATE = 0.05
+const CHAR_READ_RATE = 0.02
 
 @onready var textbox_container = $Textbox/TextboxContainer
 @onready var start_symbol = $Textbox/TextboxContainer/MarginContainer/HBoxContainer/Start
@@ -153,68 +159,24 @@ func change_state(next_state):
 		State.INACTIVE:
 			print("Cambiando estado a: State.INACTIVE")
 
-
 func _on_area_3d_body_entered(body):
-	print("ooooo") 
+	print("ooooo" + gano) 
 	change_state(State.READY)
-	
+
 func _on_area_3d_body_exited(body):
 	change_state(State.FINISHED)
 	hide_textbox()
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-############ PAUSA PRUEBA
-var pause_menu_instance = null
+############# PAUSA ##################################
 
-func _input(event: InputEvent) -> void:
+func _input(event):
 	if event is InputEventKey:
 		var key_event = event as InputEventKey
 		if key_event.keycode == KEY_P and key_event.pressed:
-			toggle_pause_menu()
-
-func toggle_pause_menu() -> void:
-	if not pause_menu_instance:
-		# Cargar la escena PauseMenu.tscn
-		var pause_menu_scene = preload("res://UI/PauseMenu.tscn")
-
-		# Instanciar la escena cargada
-		pause_menu_instance = pause_menu_scene.instance()
-
-		# Agregar la instancia como hijo del nodo raíz
-		get_tree().get_root().add_child(pause_menu_instance)
-
-		# Pausar el juego
-		get_tree().paused = true
-	else:
-		# Quitar la escena de pausa si ya está presente
-		pause_menu_instance.queue_free()
-		pause_menu_instance = null
-
-		# Reanudar el juego
-		get_tree().paused = false
-		
-
-
-
-
-	
-
-
-
+			$MenuPausa3.show()
+			#toggle_pause()
+	if event is InputEventKey:
+		var key_event = event as InputEventKey
+		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
+			$MenuPausa3.hide()

@@ -783,4 +783,3 @@ visible = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
-[connection signal="gui_input" from="MenuPausa3" to="." method="_on_menu_pausa_3_gui_input"]
