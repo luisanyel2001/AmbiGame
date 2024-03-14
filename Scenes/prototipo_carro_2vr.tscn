@@ -566,6 +566,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9
 transform = Transform3D(1, 0, 1.78342e-07, 0, 1, 0, -1.74846e-07, 0, 1.02, 319.809, 6.9, 19.5)
 
 [node name="vialidad_interior" type="Node3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="vialidad_interior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.1, 6.9, 19.2)
@@ -668,4 +669,4 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 439.59
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 444.298, 1, 273.835)
 
 [node name="car" parent="." instance=ExtResource("13_mfmvl")]
-transform = Transform3D(-0.0524349, 1.97286e-06, 0.998624, 1.96744e-05, 1, -9.43107e-07, -0.998624, 1.95979e-05, -0.0524349, -71.7643, 7.4, 344.145)
+transform = Transform3D(-0.0524349, 1.97286e-06, 0.998624, 1.96744e-05, 1, -9.43107e-07, -0.998624, 1.95979e-05, -0.0524349, -87.7643, 1.4, 376.145)
