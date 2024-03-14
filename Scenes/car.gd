@@ -1,14 +1,31 @@
 extends VehicleBody3D
 
+var distancia_total = 0.0
+var tiempo_total = 0.0
+var velocidad_promedio 
+
+func set_velocidad_promedio(value):
+	velocidad_promedio = value
+
+func get_velocidad_promedio():
+	return velocidad_promedio
+
+
 var draggin = false
 var volante 
 var rotacion_inicial 
+var posicion_inicial
 var max_rotacion = 145  # El máximo ángulo de rotación permitido
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	volante = get_node("volante")
 	rotacion_inicial = volante.rotate_z
+<<<<<<< Updated upstream
 	
+=======
+	posicion_inicial = self.global_transform.origin
+>>>>>>> Stashed changes
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -27,6 +44,21 @@ func _physics_process(delta):
 	engine_force = lerp(1000, 1000, porcentaje)
 	#engine_force = Input.get_axis("back", "forward") * 100
 
+	
+	#calculo velocidad promedio
+	var posicion_actual = self.global_transform.origin
+	var distancia = posicion_inicial.distance_to(posicion_actual)
+
+	distancia_total += distancia
+	tiempo_total += delta
+
+	if tiempo_total != 0:
+		velocidad_promedio = distancia_total / tiempo_total  # Velocidad = Distancia / Tiempo
+
+	#print("La velocidad promedio es: ", velocidad_promedio, " unidades por segundo")
+
+	# Actualizar para el próximo cálculo
+	posicion_inicial = posicion_actual
 	
 func _on_volante_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:

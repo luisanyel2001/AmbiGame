@@ -293,7 +293,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="car" type="VehicleBody3D" parent="."]
-transform = Transform3D(-0.701523, 1.31304e-05, -0.712647, 1.96744e-05, 1, -9.43107e-07, 0.712647, -1.46821e-05, -0.701523, -5.14564, 1.25647, -11.5896)
+transform = Transform3D(-0.0698553, 2.31459e-06, 0.997557, 1.96744e-05, 1, -9.43107e-07, -0.997557, 1.95605e-05, -0.0698553, -66.2585, 1.25647, -75.056)
 mass = 60.17
 script = ExtResource("2_xo76s")
 
@@ -541,7 +541,7 @@ mesh = SubResource("BoxMesh_jdxjb")
 shape = SubResource("BoxShape3D_dxh7d")
 
 [node name="carTraffic" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, -7.22667)
+transform = Transform3D(-0.0520223, 0, 0.998646, 0, 1, 0, -0.998646, 0, -0.0520223, -50.7495, 1.46009, 0.223118)
 script = ExtResource("7_nyp2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="carTraffic"]
@@ -658,7 +658,5 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="salida3/Area3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ws0yg")
-
-[node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area3D" to="car" method="_on_area_3d_body_entered"]
