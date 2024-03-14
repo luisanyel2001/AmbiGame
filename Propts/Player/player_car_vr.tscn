@@ -200,4 +200,3 @@ transform = Transform3D(1, 0, 1.00974e-28, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1
 
 [node name="playerXR" parent="." instance=ExtResource("5_1j3ph")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.297718, -0.529719, 0)
-visible = false

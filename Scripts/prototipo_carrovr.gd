@@ -50,7 +50,7 @@ func _ready():
 
 func _process(delta):
 		if reiniciar:
-			get_node("player_car").position = Vector3(10,8,0)
+			get_node("car").position = Vector3(10,8,0)
 			reiniciar = false
 		
 		tiempoTotal += delta
