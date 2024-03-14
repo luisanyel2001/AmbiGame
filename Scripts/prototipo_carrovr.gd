@@ -64,8 +64,6 @@ func _process(delta):
 					change_state(State.READY)
 					hide_textbox()	
 	
-
-
 func _carga_nivel(result, response_code, headers, body):
 	#var peticion = _peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
 	#var peticion = _peticion_http("https://luisanyel.000webhostapp.com/crearUsuario.json")
@@ -260,10 +258,10 @@ func _calculoToleranciaAmbiguedad():
 	print("velocidad promedio = ", velocidadPromedio)
 	print("puntos correctos = ", destinosCorrectos)
 	print("puntos incorrectos = ", destinosIncorrectos)
-	"""var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
+	var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
 	toleranciaAmbiguedad -= promedio_tiempo_decision/tiempoTotal
 	toleranciaAmbiguedad += velocidadPromedio/tiempoTotal
-	print("LA TOLERANCIA A LA AMBIGUEDAD ES DE: " , toleranciaAmbiguedad)"""
+	print("LA TOLERANCIA A LA AMBIGUEDAD ES DE: " , toleranciaAmbiguedad)
 	_guardarCalculoAmbiguedad()
 func _guardarCalculoAmbiguedad():	
 	print("DEBUG GUARDAR CALCULOS AMBIGUEDAD")
