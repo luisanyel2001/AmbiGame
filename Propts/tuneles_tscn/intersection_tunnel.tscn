@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00639898, 0, 4.47736)
 [node name="right_signs" type="Node3D" parent="doble_sign" index="17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4064, 0, -4.47736)
 
-[node name="Label3D" type="Label3D" parent="doble_sign/right_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_sign/right_signs" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.9, 4.4)
 font_size = 24
 
@@ -58,7 +58,7 @@ font_size = 24
 [node name="left_signs" type="Node3D" parent="doble_sign" index="18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00639898, 0, -4.47736)
 
-[node name="Label3D" type="Label3D" parent="doble_sign/left_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_sign/left_signs" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7, 2.9, 4.4)
 font_size = 24
 
