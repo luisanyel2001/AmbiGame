@@ -1,10 +1,29 @@
 extends Node3D
 # Called when the node enters the scene tree for the first time.
+#variables IA ;D
+var tiempoTotalDeciciones = 0.0
+var numDecisiones = 0
+var tiempoInicioDecicion = 0.0
+var tiempoTotal = 0.0
+var destino = 0
+var salida_destino = ""
+var destinosCorrectos = 0
+var destinosIncorrectos = 0
+var velocidadPromedio = 0
+var tiempoPartida = 0
+var tiempoDeciciones = 0
+var vehicle 
+var promedio_tiempo_decision = 0
+
 func _ready():	
+<<<<<<< Updated upstream
 	set_process_input(true)
 	pause_menu = preload("res://UI/menu_pausa_2.tscn")
 	
 	hide_textbox()
+=======
+	_leerCalculosAmbiguedad()
+>>>>>>> Stashed changes
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(self._carga_nivel)
@@ -14,10 +33,12 @@ func _ready():
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 	
+	vehicle = get_node("car")
 	#_carga_nivel()
 var pause_menu: PackedScene
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+<<<<<<< Updated upstream
 		match current_state:
 			State.INACTIVE:
 				pass
@@ -42,6 +63,10 @@ func _process(delta):
 					#hide_textbox()
 					change_state(State.READY)
 					hide_textbox()
+=======
+	tiempoTotal += delta
+	pass
+>>>>>>> Stashed changes
 
 
 func _carga_nivel(result, response_code, headers, body):
@@ -50,6 +75,7 @@ func _carga_nivel(result, response_code, headers, body):
 	#print(peticion)
 	print(response_code)
 	var json = JSON.new()
+<<<<<<< Updated upstream
 	var response
 	
 	#Obtiene el json del mapa, mediante http y en caso de error por archivo local
@@ -65,6 +91,12 @@ func _carga_nivel(result, response_code, headers, body):
 		response = json.get_data()
 	
 
+=======
+	json.parse(body.get_string_from_utf8())
+	var response = json.get_data()
+	#print(response)
+	print("Entro")
+>>>>>>> Stashed changes
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
 		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
@@ -89,6 +121,7 @@ func _carga_nivel(result, response_code, headers, body):
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["izquierda"][str(label)]
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]
 	
+<<<<<<< Updated upstream
 	print("Termino")
 
 	
@@ -99,6 +132,10 @@ func _interseccion_salida(body):
 	print("_interseccion_salida")
 		
 		
+=======
+	print("Termino")	
+				
+>>>>>>> Stashed changes
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
 	var gano: bool
@@ -117,6 +154,7 @@ func _carga_IA(gano):
 		print("Ganaste")
 	else:
 		print("Perdiste")
+<<<<<<< Updated upstream
 		
 var perdio: bool
 func _carga_UI(gano):
@@ -138,11 +176,15 @@ func _carga_UI(gano):
 		#hide_textbox()
 
 """
+=======
+				
+>>>>>>> Stashed changes
 func _http_request_completed(result, response_code, headers, body):
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	var response = json.get_data()
 	return response
+<<<<<<< Updated upstream
 """
 const CHAR_READ_RATE = 0.2
 
@@ -226,3 +268,82 @@ func _input(event):
 		var key_event = event as InputEventKey
 		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
 			$MenuPausa3.hide()
+=======
+	
+func _carga_IA(gano):
+	if gano:
+		print("Ganaste")
+		destinosCorrectos += 1
+	else:
+		print("Perdiste")
+		destinosIncorrectos += 1
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var key_event = event as InputEventKey		
+		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
+			_calculoToleranciaAmbiguedad()
+func _calculoToleranciaAmbiguedad():
+	#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
+	velocidadPromedio = vehicle.velocidad_promedio	
+	if numDecisiones > 0:
+		promedio_tiempo_decision = tiempoTotalDeciciones / numDecisiones
+		promedio_tiempo_decision = promedio_tiempo_decision/1000
+	print("Promedio de tiempo de decisión: " + str(promedio_tiempo_decision) + " ms")
+	print("El tiempo total de la partida es: ", tiempoTotal, " segundos")	
+	print("velocidad promedio = ", velocidadPromedio)
+	print("puntos correctos = ", destinosCorrectos)
+	print("puntos incorrectos = ", destinosIncorrectos)
+	"""var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
+	toleranciaAmbiguedad -= promedio_tiempo_decision/tiempoTotal
+	toleranciaAmbiguedad += velocidadPromedio/tiempoTotal
+	print("LA TOLERANCIA A LA AMBIGUEDAD ES DE: " , toleranciaAmbiguedad)"""
+	_guardarCalculoAmbiguedad()
+func _guardarCalculoAmbiguedad():	
+	print("DEBUG GUARDAR CALCULOS AMBIGUEDAD")
+	var datos = ConfigFile.new()
+	var resultado = datos.load("historialCalculosAmbiguedad.cfg")
+	print("RESULTADO GUARDAR CALCULOS AMBIGUEDAD ", resultado)
+	# Si el archivo no existe, resultado será ERR_FILE_NOT_FOUND
+	if resultado == ERR_FILE_NOT_FOUND:
+		print("DEBUG GUARDAR IF")      
+		datos = ConfigFile.new()  # Crea un nuevo archivo de configuración            
+	# Crea una sección única para cada partida
+	var tiempo_actual = Time.get_date_string_from_system() + "_" + Time.get_time_string_from_system()
+	var seccion = "partida_" + tiempo_actual
+
+	datos.set_value(seccion, "velocidadPromedio", velocidadPromedio)
+	datos.set_value(seccion, "tiempoDecicion", promedio_tiempo_decision)
+	datos.set_value(seccion, "tiempoTotal", tiempoTotal)
+	datos.set_value(seccion, "destinosCorrectos", destinosCorrectos)
+	datos.set_value(seccion, "destinosIncorrectos", destinosIncorrectos)
+	# Guarda los datos en el archivo
+	datos.save("historialCalculosAmbiguedad.cfg")
+
+func _leerCalculosAmbiguedad():
+	print("DEBUG LEER CALCULOS")
+	var datos = ConfigFile.new()
+	var resultado = datos.load("historialCalculosAmbiguedad.cfg")
+	print("RESULTADO DEBUG LEER CALCULOS: ", resultado)
+	if resultado == OK:  # Si el archivo se cargó correctamente
+		print("OK DEBUG LEER CALCULOS")
+		# Obtiene una lista de todas las secciones en el archivo
+		var secciones = datos.get_sections()
+		# Recorre cada sección
+		for seccion in secciones:
+			var velocidadPromedio = datos.get_value(seccion, "velocidadPromedio")
+			print("CONFIG VELOCIDAD: ", velocidadPromedio)
+			var tiempoTotal = datos.get_value(seccion, "tiempoTotal")
+			print("CONFIG TIEMPOTOTAL: ", tiempoTotal)
+			var destinosCorrectos = datos.get_value(seccion, "destinosCorrectos")
+			print("CONFIG DESTINOSC: ",destinosCorrectos)
+			var destinosIncorrectos = datos.get_value(seccion, "destinosIncorrectos")
+			print("CONFIG DESTINOSI: ", destinosIncorrectos)	
+func _interseccion_entrada(body):
+	print("INICIAR CONTADOR DECICION")		
+	tiempoInicioDecicion = Time.get_ticks_msec()	
+func _interseccion_salida(body):
+	print("DETENER CONTADOR DECICION")
+	var tiempoDecision = Time.get_ticks_msec() - tiempoInicioDecicion
+	tiempoTotalDeciciones += tiempoInicioDecicion
+	numDecisiones += 1
+>>>>>>> Stashed changes
