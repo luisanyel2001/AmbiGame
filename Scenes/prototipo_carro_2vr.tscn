@@ -836,7 +836,7 @@ pixel_size = 0.5
 text = "CUCEI"
 
 [node name="car" parent="." instance=ExtResource("13_mfmvl")]
-transform = Transform3D(0.0524349, -1.97286e-06, -0.998624, 1.96744e-05, 1, -9.43107e-07, 0.998624, -1.95979e-05, 0.0524349, 306.236, 10.4, 336.53)
+transform = Transform3D(0.0524349, -1.97286e-06, -0.998624, 1.96744e-05, 1, -9.43107e-07, 0.998624, -1.95979e-05, 0.0524349, 306.236, 10.4, 344.365)
 
 [node name="Textbox" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_nis38")

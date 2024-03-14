@@ -125,6 +125,7 @@ func _deteccion_area_ciudad(id, body):
 		perdio = true
 		
 	_carga_UI(gano)
+	_carga_IA(gano)
 		
 var perdio: bool
 func _carga_UI(gano):
@@ -245,10 +246,10 @@ func _input(event):
 	
 func _carga_IA(gano):
 	if gano:
-		print("Ganaste")
+		print("DEBUG GANASTE")
 		destinosCorrectos += 1
 	else:
-		print("Perdiste")
+		print("DEBUG PERDISTE")
 		destinosIncorrectos += 1		
 func _calculoToleranciaAmbiguedad():
 	#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
