@@ -59,8 +59,8 @@ func _carga_nivel(result, response_code, headers, body):
 			
 			#Recorre los letreros
 			for label in range(1,9):
-				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(interseccion)]["seniales"]["izquierda"][str(label)]
-				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(interseccion)]["seniales"]["derecha"][str(label)]
+				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["izquierda"][str(label)]
+				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]
 	
 	print("Termino")
 
