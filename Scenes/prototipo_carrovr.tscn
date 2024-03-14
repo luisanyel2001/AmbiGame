@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjucb0fmd6cs7"]
+[gd_scene load_steps=22 format=3 uid="uid://cjucb0fmd6cs7"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_watuh"]
 [ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="2_f6ofk"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="5_gp4nj"]
 [ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="5_w6plo"]
 [ext_resource type="PackedScene" uid="uid://ck4q1wa1quqwh" path="res://Propts/tuneles_tscn/right_road_tunnel.tscn" id="6_45c8j"]
+[ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="8_icv2h"]
+[ext_resource type="PackedScene" uid="uid://dnximw1ob6xqp" path="res://UI/textbox_instructions.tscn" id="9_w7v0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -349,3 +351,7 @@ physics_material_override = SubResource("PhysicsMaterial_hlmbh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/MeshInstance3D4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41415, 5.54903, -3.22897)
 shape = SubResource("BoxShape3D_0wfkj")
+
+[node name="MenuPausa2" parent="." instance=ExtResource("8_icv2h")]
+
+[node name="Textbox" parent="." instance=ExtResource("9_w7v0u")]

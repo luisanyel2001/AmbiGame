@@ -15,7 +15,7 @@ func _ready():
 	pause_menu = preload("res://UI/menu_pausa_2.tscn")
 	
 	hide_textbox()
-	var gano = queue_text("Haz ganado ...")
+	queue_text("Haz ganado ...")
 	queue_text("Continua yendo hacia ... ")
 	queue_text("Textooooo treees")
 	
@@ -160,7 +160,7 @@ func change_state(next_state):
 			print("Cambiando estado a: State.INACTIVE")
 
 func _on_area_3d_body_entered(body):
-	print("ooooo" + gano) 
+	print("ooooo") 
 	change_state(State.READY)
 
 func _on_area_3d_body_exited(body):

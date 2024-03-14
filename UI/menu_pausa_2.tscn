@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8obg1n1ud002"]
+[gd_scene load_steps=10 format=3 uid="uid://c8obg1n1ud002"]
 
 [ext_resource type="Script" path="res://MenuPausa2.gd" id="1_0jciy"]
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="2_k1ep7"]
@@ -39,6 +39,9 @@ Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
 Button/styles/hover = SubResource("StyleBoxFlat_d8gud")
 Button/styles/normal = SubResource("StyleBoxFlat_2f3jp")
 Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
+
+[sub_resource type="SystemFont" id="SystemFont_ev5oe"]
+font_names = PackedStringArray("Century Gothic")
 
 [node name="MenuPausa2" type="Control"]
 layout_mode = 3
@@ -93,13 +96,24 @@ text = " SALIR"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-offset_left = 429.0
-offset_top = 55.0
-offset_right = 729.0
-offset_bottom = 95.0
+offset_left = 431.0
+offset_top = 25.0
+offset_right = 731.0
+offset_bottom = 65.0
 theme_override_fonts/font = ExtResource("2_k1ep7")
 theme_override_font_sizes/font_size = 40
 text = "MENU DE PAUSA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Label"]
+offset_left = -83.0
+offset_top = 87.0
+offset_right = 217.0
+offset_bottom = 131.0
+theme_override_fonts/font = SubResource("SystemFont_ev5oe")
+theme_override_font_sizes/font_size = 35
+text = "Tu objetivo es: "
 horizontal_alignment = 1
 vertical_alignment = 1
 

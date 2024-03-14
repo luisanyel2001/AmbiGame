@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://32ltoogyxcen"]
+[gd_scene load_steps=35 format=3 uid="uid://32ltoogyxcen"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_c5a66"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_wouxg"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://br7qi37duui18" path="res://Propts/tuneles_tscn/road_tunnel_up.tscn" id="12_clnqd"]
 [ext_resource type="PackedScene" uid="uid://cwqsoy51a2yq" path="res://Propts/city/low_poly_city.tscn" id="12_ja1go"]
 [ext_resource type="PackedScene" uid="uid://bqlg6jujvhuq7" path="res://Propts/Player/player_car_normal.tscn" id="13_mfmvl"]
+[ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="14_xkn5i"]
+[ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="15_2eudo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -73,6 +75,106 @@ size = Vector3(9, 2, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_widgo"]
 points = PackedVector3Array(4.5, 1, 0.5, 4.5, 1, -0.5, -4.5, 1, 0.5, 4.5, -1, 0.5, 4.5, -1, -0.5, -4.5, 1, -0.5, -4.5, -1, 0.5, -4.5, -1, -0.5)
+
+[sub_resource type="GDScript" id="GDScript_nis38"]
+script/source = "
+extends CanvasLayer
+
+const CHAR_READ_RATE = 0.05
+
+@onready var textbox_container = $TextboxContainer
+@onready var start_symbol = $TextboxContainer/MarginContainer/HBoxContainer/Start
+@onready var end_symbol = $TextboxContainer/MarginContainer/HBoxContainer/End
+@onready var label = $TextboxContainer/MarginContainer/HBoxContainer/Label
+
+enum State{
+	 READY,
+	 READING,
+	 FINISHED
+}
+
+var current_state = State.READY
+var text_queue = []
+
+#animacion letras
+var current_text = \"\"
+var current_char = 0
+var char_timer = 0.0
+var is_text_displayed = false 
+
+func _ready():
+	hide_textbox()
+	print(\"Iniciando: State.READY\")
+
+	
+func queue_text(next_text):
+	queue_text(\"Haz llegado a tu Destino! Ahora dirigete hacia ...\")
+	queue_text(\"Continua yendo hacia ... \")
+	queue_text(\"Textooooo treees\")
+	text_queue.push_back(next_text)
+
+func hide_textbox():
+	start_symbol.text = \"\"
+	end_symbol.text = \"\"
+	label.text = \"\"
+	textbox_container.hide()
+
+func show_textbox():
+	start_symbol.text = \"*\"
+	textbox_container.show()
+
+func display_text():
+	var next_text = text_queue.pop_front()
+	current_text = next_text
+	change_state(State.READING)
+	label.text = \"\"
+	show_textbox()
+	current_char = 0
+	char_timer = 0.0
+	is_text_displayed = false  # Reiniciar is_text_displayed cuando se agrega nuevo texto
+
+func _process(delta):
+	match current_state:
+		State.READY:
+			if !text_queue.is_empty():
+				display_text()
+		State.READING:
+			if not is_text_displayed and current_char < current_text.length():
+				char_timer += delta
+				if char_timer > CHAR_READ_RATE:
+					label.text += current_text[current_char]
+					current_char += 1
+					char_timer = 0.0
+			else:
+				# Detener el proceso cuando se haya mostrado todo el texto
+				is_text_displayed = true  # Se ha mostrado todo el texto
+				change_state(State.FINISHED)
+
+		State.FINISHED:
+			if Input.is_action_just_pressed(\"ui_accept\"): #Al finalizar presionar enter para quitar textbox
+				change_state(State.READY)
+				hide_textbox()
+				
+
+
+func change_state(next_state):
+	current_state = next_state
+	match current_state:
+		State.READY:
+			print(\"Cambiando estado a: State.READY\")
+		State.READING:
+			print(\"Cambiando estado a: State.READING\")
+		State.FINISHED:
+			print(\"Cambiando estado a: State.FINISHED\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7as8l"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 
 [node name="prototipoCarro" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
@@ -669,4 +771,67 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 439.59
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 444.298, 1, 273.835)
 
 [node name="car" parent="." instance=ExtResource("13_mfmvl")]
-transform = Transform3D(-0.0524349, 1.97286e-06, 0.998624, 1.96744e-05, 1, -9.43107e-07, -0.998624, 1.95979e-05, -0.0524349, 8.37313, 9.13647, 347.459)
+transform = Transform3D(-0.0524349, 1.97286e-06, 0.998624, 1.96744e-05, 1, -9.43107e-07, -0.998624, 1.95979e-05, -0.0524349, -87.7643, 1.4, 376.145)
+
+[node name="Textbox" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_nis38")
+
+[node name="TextboxContainer" type="MarginContainer" parent="Textbox"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -212.0
+offset_right = -50.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Textbox/TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7as8l")
+
+[node name="MarginContainer" type="MarginContainer" parent="Textbox/TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="Textbox/TextboxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Textbox/TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("14_xkn5i")
+theme_override_font_sizes/font_size = 35
+text = "* "
+
+[node name="Label" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("14_xkn5i")
+theme_override_font_sizes/font_size = 35
+text = "Hola "
+autowrap_mode = 2
+clip_text = true
+
+[node name="End" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("14_xkn5i")
+theme_override_font_sizes/font_size = 35
+text = "v"
+
+[node name="MenuPausa3" parent="." instance=ExtResource("15_2eudo")]
+visible = false

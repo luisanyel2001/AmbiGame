@@ -1,6 +1,10 @@
 extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():	
+	set_process_input(true)
+	pause_menu = preload("res://UI/menu_pausa_2.tscn")
+	
+	hide_textbox()
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(self._carga_nivel)
@@ -11,10 +15,33 @@ func _ready():
 		push_error("An error occurred in the HTTP request.")
 	
 	#_carga_nivel()
-	
+var pause_menu: PackedScene
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+		match current_state:
+			State.INACTIVE:
+				pass
+			State.READY:
+				if !text_queue.is_empty():
+					display_text()
+			State.READING:
+				if not is_text_displayed and current_char < current_text.length():
+					char_timer += delta
+					if char_timer > CHAR_READ_RATE:
+						label.text += current_text[current_char]
+						current_char += 1
+						char_timer = 0.0
+				else:
+					# Detener el proceso cuando se haya mostrado todo el texto
+					is_text_displayed = true  # Se ha mostrado todo el texto
+					hide_textbox()
+					change_state(State.FINISHED)
+
+			State.FINISHED:
+				if Input.is_action_just_pressed("ui_accept"): #Al finalizar presionar enter para quitar textbox
+					#hide_textbox()
+					change_state(State.READY)
+					hide_textbox()
 
 
 func _carga_nivel(result, response_code, headers, body):
@@ -79,28 +106,37 @@ func _deteccion_area_ciudad(id, body):
 	if id == "Sol":
 		gano = true
 	else:
-		gano = false
+		perdio = true
 		
 	_carga_UI(gano)
-	_carga_IA(gano)
 
 
-func _carga_UI(gano):
+func _carga_IA(gano):
 	var siguiente_texto = "Guana"
 	if gano:
 		print("Ganaste")
 	else:
 		print("Perdiste")
 		
-		
-func _carga_IA(gano):
+var perdio: bool
+func _carga_UI(gano):
 	if gano:
+		queue_text("")
+		queue_text("Muy bien, ahora dirigete hacia...     ")
+		queue_text("Haz llegado...   ")
 		print("Ganaste")
-	else:
+		display_text()
+		change_state(State.READY)
+		
+	if perdio:
+		queue_text("Este no es tu objetivo...     ")
+		queue_text("Lo siento has perdido.   ")
+		queue_text("Por aqui no es     ")
 		print("Perdiste")
+		display_text()
+		change_state(State.READY)
+		#hide_textbox()
 
-
-	
 """
 func _http_request_completed(result, response_code, headers, body):
 	var json = JSON.new()
@@ -108,4 +144,85 @@ func _http_request_completed(result, response_code, headers, body):
 	var response = json.get_data()
 	return response
 """
+const CHAR_READ_RATE = 0.2
 
+@onready var textbox_container = $Textbox/TextboxContainer
+@onready var start_symbol = $Textbox/TextboxContainer/MarginContainer/HBoxContainer/Start
+@onready var end_symbol = $Textbox/TextboxContainer/MarginContainer/HBoxContainer/End
+@onready var label = $Textbox/TextboxContainer/MarginContainer/HBoxContainer/Label
+
+enum State{
+	 READY,
+	 READING,
+	 FINISHED,
+	 INACTIVE
+}
+
+var current_state = State.INACTIVE
+var text_queue = []
+
+#animacion letras
+var current_text = ""
+var current_char = 0
+var char_timer = 0.0
+var is_text_displayed = false 
+
+func queue_text(next_text):
+	text_queue.push_back(next_text)
+
+func hide_textbox():
+	start_symbol.text = ""
+	end_symbol.text = ""
+	label.text = ""
+	textbox_container.hide()
+
+func show_textbox():
+	start_symbol.text = "*"
+	textbox_container.show()
+
+func display_text():
+	#if current_state == State.READY:
+		var next_text = text_queue.pop_front()
+		current_text = next_text
+		change_state(State.READING)
+		label.text = ""
+		show_textbox()
+		current_char = 0
+		char_timer = 0.0
+		is_text_displayed = false  # Reiniciar is_text_displayed cuando se agrega nuevo texto
+
+
+func change_state(next_state):
+	current_state = next_state
+	match current_state:
+		State.READY:
+			print("Cambiando estado a: State.READY")
+		State.READING:
+			print("Cambiando estado a: State.READING")
+		State.FINISHED:
+			print("Cambiando estado a: State.FINISHED")
+		State.INACTIVE:
+			print("Cambiando estado a: State.INACTIVE")
+
+"""
+func _on_area_3d_body_entered(body):
+	print("ooooo") 
+	change_state(State.READY)
+
+func _on_area_3d_body_exited(Area3D):
+	change_state(State.FINISHED)
+	hide_textbox()
+	"""
+	
+############# PAUSA ##################################
+
+func _input(event):
+	if event is InputEventKey:
+		var key_event = event as InputEventKey
+		if key_event.keycode == KEY_P and key_event.pressed:
+			$MenuPausa3.show()
+			#toggle_pause()
+	if event is InputEventKey:
+		var key_event = event as InputEventKey
+		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
+			$MenuPausa3.hide()
