@@ -566,6 +566,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9
 transform = Transform3D(1, 0, 1.78342e-07, 0, 1, 0, -1.74846e-07, 0, 1.02, 319.809, 6.9, 19.5)
 
 [node name="vialidad_interior" type="Node3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="vialidad_interior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.1, 6.9, 19.2)

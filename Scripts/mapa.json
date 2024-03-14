@@ -1,0 +1,35 @@
+{
+  "ciudades": {
+    "1": "Luna",
+    "2": "Sol",
+    "3": "York",
+    "4": "Lima",
+    "5": "Gante",
+    "6": "Oslo",
+    "7": "Lucca",
+    "8": "Kobe",
+    "9": "Riga",
+    "10": "Nice",
+    "11": "Troya",
+    "12": "León"
+  },
+  "niveles": {
+    "1": {
+      "objetivo": "Sol",
+      "seniales": {
+        "interseccion_1": {
+          "label_izq_1": "Luna"
+        }
+      }
+    },
+    "2": {
+      "objetivo": "Luna",
+      "seniales": {
+        "interseccion_1": {
+          "label_izq_1": "Luna"
+        }
+      }
+    },
+    "": {}
+  }
+}
