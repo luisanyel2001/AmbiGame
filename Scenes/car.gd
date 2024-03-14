@@ -23,7 +23,8 @@ func _physics_process(delta):
 		steering = 0"""
 	steering = lerp(steering, Input.get_axis("right", "left") * .4, 5 * delta)
 	var porcentaje = (Input.get_axis("back", "forward") - (-1)) / (1 - (-1))
-	engine_force = lerp(-3700, 3700, porcentaje)
+	#engine_force = lerp(-3700, 3700, porcentaje)
+	engine_force = lerp(1000, 1000, porcentaje)
 	#engine_force = Input.get_axis("back", "forward") * 100
 
 	
@@ -43,10 +44,3 @@ func _input(event):
 		volante.rotation_degrees.z = clamp(rotacion, -max_rotacion, max_rotacion)
 		volante.rotate_z(deg_to_rad(event.relative.x))	
 		# El jugador está arrastrando el mouse, gira el volante
-
-
-
-
-
-
-
