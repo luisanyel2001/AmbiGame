@@ -21,10 +21,9 @@ func _physics_process(delta):
 		steering = -volante.rotation_degrees.z / 200.0
 	else:
 		steering = 0"""
-	steering = lerp(steering, Input.get_axis("right", "left") * .4, 5 * delta)
+	steering = lerp(steering, Input.get_axis("right", "left") * .2, 5 * delta)
 	var porcentaje = (Input.get_axis("back", "forward") - (-1)) / (1 - (-1))
-	engine_force = lerp(-1000, 1000, porcentaje)
-	#engine_force = lerp(1000, 1000, porcentaje)
+	engine_force = lerp(-1000, 1000, porcentaje)	
 	#engine_force = Input.get_axis("back", "forward") * 100
 
 	
