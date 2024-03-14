@@ -16,14 +16,14 @@ var vehicle
 var promedio_tiempo_decision = 0
 
 func _ready():	
-<<<<<<< Updated upstream
+
 	set_process_input(true)
 	pause_menu = preload("res://UI/menu_pausa_2.tscn")
 	
 	hide_textbox()
-=======
+
 	_leerCalculosAmbiguedad()
->>>>>>> Stashed changes
+
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(self._carga_nivel)
@@ -38,7 +38,7 @@ func _ready():
 var pause_menu: PackedScene
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-<<<<<<< Updated upstream
+		tiempoTotal += delta
 		match current_state:
 			State.INACTIVE:
 				pass
@@ -62,11 +62,8 @@ func _process(delta):
 				if Input.is_action_just_pressed("ui_accept"): #Al finalizar presionar enter para quitar textbox
 					#hide_textbox()
 					change_state(State.READY)
-					hide_textbox()
-=======
-	tiempoTotal += delta
-	pass
->>>>>>> Stashed changes
+					hide_textbox()	
+	
 
 
 func _carga_nivel(result, response_code, headers, body):
@@ -75,7 +72,6 @@ func _carga_nivel(result, response_code, headers, body):
 	#print(peticion)
 	print(response_code)
 	var json = JSON.new()
-<<<<<<< Updated upstream
 	var response
 	
 	#Obtiene el json del mapa, mediante http y en caso de error por archivo local
@@ -89,14 +85,10 @@ func _carga_nivel(result, response_code, headers, body):
 		print("Leido por http")
 		json.parse(body.get_string_from_utf8())
 		response = json.get_data()
-	
-
-=======
 	json.parse(body.get_string_from_utf8())
-	var response = json.get_data()
+	response = json.get_data()
 	#print(response)
 	print("Entro")
->>>>>>> Stashed changes
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
 		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
@@ -120,22 +112,8 @@ func _carga_nivel(result, response_code, headers, body):
 			for label in range(1,9):
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["izquierda"][str(label)]
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]
-	
-<<<<<<< Updated upstream
-	print("Termino")
 
-	
-func _interseccion_entrada(body):
-	print("_interseccion_entrada")
-	
-func _interseccion_salida(body):
-	print("_interseccion_salida")
-		
-		
-=======
-	print("Termino")	
 				
->>>>>>> Stashed changes
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
 	var gano: bool
@@ -146,15 +124,6 @@ func _deteccion_area_ciudad(id, body):
 		perdio = true
 		
 	_carga_UI(gano)
-
-
-func _carga_IA(gano):
-	var siguiente_texto = "Guana"
-	if gano:
-		print("Ganaste")
-	else:
-		print("Perdiste")
-<<<<<<< Updated upstream
 		
 var perdio: bool
 func _carga_UI(gano):
@@ -268,7 +237,10 @@ func _input(event):
 		var key_event = event as InputEventKey
 		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
 			$MenuPausa3.hide()
-=======
+		if key_event.keycode == KEY_PAGEUP and key_event.pressed:
+			_calculoToleranciaAmbiguedad()
+	
+
 	
 func _carga_IA(gano):
 	if gano:
@@ -276,12 +248,7 @@ func _carga_IA(gano):
 		destinosCorrectos += 1
 	else:
 		print("Perdiste")
-		destinosIncorrectos += 1
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		var key_event = event as InputEventKey		
-		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
-			_calculoToleranciaAmbiguedad()
+		destinosIncorrectos += 1		
 func _calculoToleranciaAmbiguedad():
 	#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
 	velocidadPromedio = vehicle.velocidad_promedio	
@@ -346,4 +313,3 @@ func _interseccion_salida(body):
 	var tiempoDecision = Time.get_ticks_msec() - tiempoInicioDecicion
 	tiempoTotalDeciciones += tiempoInicioDecicion
 	numDecisiones += 1
->>>>>>> Stashed changes
