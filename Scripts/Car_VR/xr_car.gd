@@ -59,7 +59,6 @@ func _print_button(button):
 func _print_move(angle):
 	steering = angle / 200.0
 	
-	
 func _print_float(action,value):
 	if action == "trigger":
 		var porcentaje = (value - 0) / (1 - 0)
@@ -71,7 +70,7 @@ func _print_float(action,value):
 func _print_float2(action,value):
 	if action == "trigger":
 		var porcentaje = (value - 0) / (1 - 0)
-		engine_force = lerp(3400, 4500, porcentaje) #3000-5000
+		engine_force = lerp(3400, 4500, porcentaje) #3400-4500
 		print("Acelerador: " + str(engine_force))
 		print("Velocidad: " + str(round(linear_velocity.length())))
 		

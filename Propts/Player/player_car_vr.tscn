@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://mv5so6xntila"]
+[gd_scene load_steps=21 format=3 uid="uid://mv5so6xntila"]
 
 [ext_resource type="Texture2D" uid="uid://cfh6jryk1gxjv" path="res://Propts/lowPolyCars/playerCar_color_playerCar_colors.jpg" id="1_opu14"]
 [ext_resource type="Script" path="res://Scripts/Car_VR/xr_car.gd" id="1_wl733"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfur4i7ajempw" path="res://Propts/Car/STEERING_WHEELS_01_001_COLOR_BASIC.png" id="3_r7luv"]
 [ext_resource type="PackedScene" uid="uid://bddj5m7ull6g0" path="res://addons/godot-xr-tools/interactables/interactable_handle.tscn" id="4_epfsg"]
 [ext_resource type="PackedScene" uid="uid://cqgu4as38muhx" path="res://Propts/Player/player_xr.tscn" id="5_1j3ph"]
+[ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="6_rquh2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3a6n"]
 resource_name = "Material.011"
@@ -191,7 +192,11 @@ shape = SubResource("BoxShape3D_bib5n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="steering_wheel/interactable/Handle3/InteractableHandle"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.4869e-14, 0, 2.4869e-14, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_5hpdi")
+
+[node name="HighlightRing" parent="steering_wheel/interactable/Handle3/InteractableHandle" instance=ExtResource("6_rquh2")]
+transform = Transform3D(1, 0, 1.00974e-28, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, 0, -1.35435e-09, 0.0309839)
 
 [node name="playerXR" parent="." instance=ExtResource("5_1j3ph")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.297718, -0.529719, 0)
