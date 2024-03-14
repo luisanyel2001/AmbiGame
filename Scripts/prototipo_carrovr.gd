@@ -15,6 +15,10 @@ var tiempoDeciciones = 0
 var vehicle 
 var promedio_tiempo_decision = 0
 
+#Variables nivel
+var objetivo_nivel
+var num_nivel = 1
+
 func _ready():	
 
 	set_process_input(true)
@@ -65,12 +69,11 @@ func _process(delta):
 					hide_textbox()	
 	
 func _carga_nivel(result, response_code, headers, body):
-	#var peticion = _peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
-	#var peticion = _peticion_http("https://luisanyel.000webhostapp.com/crearUsuario.json")
-	#print(peticion)
+	
 	print(response_code)
 	var json = JSON.new()
 	var response
+	
 	
 	#Obtiene el json del mapa, mediante http y en caso de error por archivo local
 	if response_code != 200:
@@ -83,10 +86,9 @@ func _carga_nivel(result, response_code, headers, body):
 		print("Leido por http")
 		json.parse(body.get_string_from_utf8())
 		response = json.get_data()
-	json.parse(body.get_string_from_utf8())
-	response = json.get_data()
-	#print(response)
-	print("Entro")
+		
+	objetivo_nivel = response.niveles[str(num_nivel)]['objetivo']
+	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
 		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
@@ -111,12 +113,13 @@ func _carga_nivel(result, response_code, headers, body):
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["izquierda"][str(label)]
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]
 
+	print("Termino")
 				
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
 	var gano: bool
 	
-	if id == "Sol":
+	if id == objetivo_nivel:
 		gano = true
 	else:
 		perdio = true
