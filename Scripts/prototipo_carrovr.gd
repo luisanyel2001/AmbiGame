@@ -32,6 +32,7 @@ func _carga_nivel(result, response_code, headers, body):
 		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_terrestre/Label3D").text = response.ciudades[str(i)]
 		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Area3D").body_entered.connect(func(body):_deteccion_area_ciudad(response.ciudades[str(i)], body))
 
+	
 		
 		
 func _deteccion_area_ciudad(id, body):
@@ -44,9 +45,17 @@ func _deteccion_area_ciudad(id, body):
 		gano = false
 		
 	_carga_UI(gano)
-	
+	_carga_IA(gano)
+
 
 func _carga_UI(gano):
+	if gano:
+		print("Ganaste")
+	else:
+		print("Perdiste")
+		
+		
+func _carga_IA(gano):
 	if gano:
 		print("Ganaste")
 	else:

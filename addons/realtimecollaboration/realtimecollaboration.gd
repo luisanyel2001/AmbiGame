@@ -8,10 +8,11 @@ var main_panel_instance
  
 func _enter_tree():
 	# Initialization of the plugin goes here.
-	multiplayer.multiplayer_peer = null
+	#multiplayer.multiplayer_peer = null
 	
 	# Init main panel
 	main_panel_instance = MainPanel.instantiate()
+	
 	# Add the main panel to the editor's main viewport.
 	EditorInterface.get_editor_main_screen().add_child(main_panel_instance)
 	# Hide the main panel. Very much required.

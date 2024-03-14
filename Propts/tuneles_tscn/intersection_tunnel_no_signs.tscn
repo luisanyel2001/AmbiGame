@@ -26,7 +26,7 @@ material = SubResource("StandardMaterial3D_hdlo6")
 flip_faces = true
 size = Vector2(5, 5)
 
-[node name="intersection_tunnel" instance=ExtResource("1_cq660")]
+[node name="intersection_tunnel_no_signs" instance=ExtResource("1_cq660")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Top" index="0"]
 
