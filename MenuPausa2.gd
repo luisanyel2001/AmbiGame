@@ -25,5 +25,6 @@ func _on_salir_button_pressed():
 
 
 func _on_reiniciar_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/prototipo_carro_2vr.tscn")
+	pass
+	#get_tree().change_scene_to_file("res://Scenes/prototipo_carro_2vr.tscn")
 	#get_tree().change_scene_to_file("res://Scenes/MapaPrincipal.tscn")

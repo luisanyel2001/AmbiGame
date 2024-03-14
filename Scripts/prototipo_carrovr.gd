@@ -18,6 +18,10 @@ var promedio_tiempo_decision = 0
 #Variables nivel
 var objetivo_nivel
 var num_nivel = 1
+var mapa_json
+var reiniciar = false
+
+var pause_menu: PackedScene
 
 func _ready():	
 
@@ -27,6 +31,8 @@ func _ready():
 	hide_textbox()
 
 	_leerCalculosAmbiguedad()
+	
+	$MenuPausa3/CenterContainer/VBoxContainer/Reiniciar_Button.pressed.connect(func():reiniciar=true)
 
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -39,9 +45,14 @@ func _ready():
 	
 	vehicle = get_node("car")
 	#_carga_nivel()
-var pause_menu: PackedScene
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
+		if reiniciar:
+			get_node("player_car").position = Vector3(10,8,0)
+			reiniciar = false
+		
 		tiempoTotal += delta
 		match current_state:
 			State.INACTIVE:
@@ -86,7 +97,8 @@ func _carga_nivel(result, response_code, headers, body):
 		print("Leido por http")
 		json.parse(body.get_string_from_utf8())
 		response = json.get_data()
-		
+	
+	mapa_json = response
 	objetivo_nivel = response.niveles[str(num_nivel)]['objetivo']
 	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
@@ -115,35 +127,66 @@ func _carga_nivel(result, response_code, headers, body):
 
 	print("Termino")
 				
+				
+func _reiniciar_jugador():
+	print("entro")
+	var p_car = get_node("car") as Node3D	
+	print(str(p_car.global_position))
+	p_car.position = Vector3(15,15,0)
+	print(str(p_car.global_position))
+		
+		
+func _cargar_siguiente_nivel():
+	num_nivel += 1
+	objetivo_nivel = mapa_json.niveles[str(num_nivel)]['objetivo']
+	#Nombra las ciudades, intersecciones y activa señales
+	for laberinto in range(1,5):
+		for interseccion in range(1,7):
+			#Recorre los letreros
+			for label in range(1,9):
+				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/left_signs/Label3D" + str(label)).text = mapa_json.niveles[str(num_nivel)]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["izquierda"][str(label)]
+				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = mapa_json.niveles[str(num_nivel)]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]			
+				
+			
+
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
-	var gano: bool
-	
+
 	if id == objetivo_nivel:
 		gano = true
+		_cargar_siguiente_nivel()
+		$MenuPausa3/Label/Label.text = $MenuPausa3/Label/Label.text + objetivo_nivel
 	else:
 		perdio = true
 		
+	reiniciar = true
 	_carga_UI(gano)
 	_carga_IA(gano)
-		
-var perdio: bool
+	
+
+var gano = false	
+var perdio = false
+
 func _carga_UI(gano):
 	if gano:
 		queue_text("")
-		queue_text("Muy bien, ahora dirigete hacia...     ")
-		queue_text("Haz llegado...   ")
+		queue_text("Muy bien, ahora dirigete hacia " + objetivo_nivel + "        ")
+		#queue_text("Haz llegado...   ")
 		print("Ganaste")
 		display_text()
 		change_state(State.READY)
+		gano = false	
+		
 		
 	if perdio:
-		queue_text("Este no es tu objetivo...     ")
+		#queue_text("Este no es tu objetivo...     ")
+		queue_text("")
 		queue_text("Lo siento has perdido.   ")
-		queue_text("Por aqui no es     ")
+		#queue_text("Por aqui no es     ")
 		print("Perdiste")
 		display_text()
 		change_state(State.READY)
+		perdio = false
 		#hide_textbox()
 
 """
@@ -198,7 +241,7 @@ func display_text():
 		var next_text = text_queue.pop_front()
 		current_text = next_text
 		change_state(State.READING)
-		label.text = ""
+		#label.text = ""
 		show_textbox()
 		current_char = 0
 		char_timer = 0.0
@@ -251,6 +294,8 @@ func _carga_IA(gano):
 	else:
 		print("DEBUG PERDISTE")
 		destinosIncorrectos += 1		
+		
+		
 func _calculoToleranciaAmbiguedad():
 	#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
 	velocidadPromedio = vehicle.velocidad_promedio	

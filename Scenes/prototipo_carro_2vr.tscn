@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://ckmkfp3bcovp3" path="res://Propts/tuneles_tscn/carretera_interior.tscn" id="11_q4jyd"]
 [ext_resource type="PackedScene" uid="uid://br7qi37duui18" path="res://Propts/tuneles_tscn/road_tunnel_up.tscn" id="12_clnqd"]
 [ext_resource type="PackedScene" uid="uid://cwqsoy51a2yq" path="res://Propts/city/low_poly_city.tscn" id="12_ja1go"]
-[ext_resource type="PackedScene" uid="uid://bqlg6jujvhuq7" path="res://Propts/Player/player_car_normal.tscn" id="13_mfmvl"]
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="14_xkn5i"]
 [ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="15_2eudo"]
+[ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="15_accdu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -835,9 +835,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68,
 pixel_size = 0.5
 text = "CUCEI"
 
-[node name="car" parent="." instance=ExtResource("13_mfmvl")]
-transform = Transform3D(0.0524349, -1.97286e-06, -0.998624, 1.96744e-05, 1, -9.43107e-07, 0.998624, -1.95979e-05, 0.0524349, 306.236, 10.4, 344.365)
-
 [node name="Textbox" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_nis38")
 
@@ -900,3 +897,8 @@ text = "v"
 
 [node name="MenuPausa3" parent="." instance=ExtResource("15_2eudo")]
 visible = false
+
+[node name="player_car" parent="." instance=ExtResource("15_accdu")]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 68.1846, 3, 375.056)
+
+[editable path="MenuPausa3"]
