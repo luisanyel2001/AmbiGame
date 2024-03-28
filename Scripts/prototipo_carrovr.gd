@@ -28,7 +28,7 @@ func _ready():
 	set_process_input(true)
 	pause_menu = preload("res://UI/menu_pausa_2.tscn")
 	
-	hide_textbox()
+	#hide_textbox()
 
 	_leerCalculosAmbiguedad()
 	
@@ -155,7 +155,7 @@ func _deteccion_area_ciudad(id, body):
 	if id == objetivo_nivel:
 		gano = true
 		_cargar_siguiente_nivel()
-		$MenuPausa3/Label/Label.text = $MenuPausa3/Label/Label.text + objetivo_nivel
+		$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
 	else:
 		perdio = true
 		
@@ -167,27 +167,35 @@ func _deteccion_area_ciudad(id, body):
 var gano = false	
 var perdio = false
 
+
 func _carga_UI(gano):
 	if gano:
-		queue_text("")
-		queue_text("Muy bien, ahora dirigete hacia " + objetivo_nivel + "        ")
-		#queue_text("Haz llegado...   ")
-		print("Ganaste")
+		queue_text("Muy bien, ahora dirígete hacia " + objetivo_nivel + "        ")
+		# Obtener el primer mensaje en la cola
+		var next_text = text_queue.pop_front()
+		
+		# Agregar el mensaje de nuevo al final de la cola para iniciar el ciclo
+		text_queue.push_back(next_text)
+		
+		# Mostrar el primer mensaje en la cola
+		queue_text(next_text)
 		display_text()
 		change_state(State.READY)
-		gano = false	
-		
-		
+		gano = false
+	
 	if perdio:
-		#queue_text("Este no es tu objetivo...     ")
-		queue_text("")
-		queue_text("Lo siento has perdido.   ")
-		#queue_text("Por aqui no es     ")
-		print("Perdiste")
+		queue_text("Lo siento, has perdido. Tu destino era: " + objetivo_nivel + "        ")
+		var next_text = text_queue.pop_front()
+		
+		# Agregar el mensaje de nuevo al final de la cola para iniciar el ciclo
+		text_queue.push_back(next_text)
+		
+		# Mostrar el primer mensaje en la cola
+		queue_text(next_text)
 		display_text()
 		change_state(State.READY)
 		perdio = false
-		#hide_textbox()
+
 
 """
 =======
@@ -260,16 +268,6 @@ func change_state(next_state):
 		State.INACTIVE:
 			print("Cambiando estado a: State.INACTIVE")
 
-"""
-func _on_area_3d_body_entered(body):
-	print("ooooo") 
-	change_state(State.READY)
-
-func _on_area_3d_body_exited(Area3D):
-	change_state(State.FINISHED)
-	hide_textbox()
-	"""
-	
 ############# PAUSA ##################################
 
 func _input(event):
