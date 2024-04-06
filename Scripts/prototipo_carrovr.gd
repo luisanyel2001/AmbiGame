@@ -23,8 +23,8 @@ var reiniciar = false
 
 var pause_menu: PackedScene
 
-func _ready():	
 
+func _ready():	
 	set_process_input(true)
 	pause_menu = preload("res://UI/menu_pausa_2.tscn")
 	
@@ -45,9 +45,13 @@ func _ready():
 	
 	vehicle = get_node("car")
 	#_carga_nivel()
+	
+	
+# Función para mostrar el texto de inicio
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
 func _process(delta):
 		if reiniciar:
 			get_node("car").position = Vector3(10,8,0)
@@ -100,6 +104,7 @@ func _carga_nivel(result, response_code, headers, body):
 	
 	mapa_json = response
 	objetivo_nivel = response.niveles[str(num_nivel)]['objetivo']
+	mostrar_texto_inicio()
 	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
@@ -126,6 +131,23 @@ func _carga_nivel(result, response_code, headers, body):
 				get_node("laberintoTuneles"+str(laberinto)+"/intersection_tunnel_señal"+str(interseccion)+"/doble_sign/right_signs/Label3D" + str(label)).text = response.niveles["1"]["intersecciones"][str(laberinto)+"_"+str(interseccion)]["seniales"]["derecha"][str(label)]
 
 	print("Termino")
+	
+
+
+
+	
+func mostrar_texto_inicio():
+	queue_text("Bienvenido. Tu primer objetivo es: " + objetivo_nivel +"     ")
+	# Obtener el primer mensaje en la cola
+	var next_text = text_queue.pop_front()
+	# Agregar el mensaje de nuevo al final de la cola para iniciar el ciclo
+	text_queue.push_back(next_text)
+	
+	# Mostrar el primer mensaje en la cola
+	queue_text(next_text)
+	display_text()
+	change_state(State.READY)
+	
 				
 				
 func _reiniciar_jugador():
@@ -170,7 +192,7 @@ var perdio = false
 
 func _carga_UI(gano):
 	if gano:
-		queue_text("Muy bien, ahora dirígete hacia " + objetivo_nivel + "        ")
+		queue_text("Muy bien, ahora dirígete hacia : " + objetivo_nivel + "        ")
 		# Obtener el primer mensaje en la cola
 		var next_text = text_queue.pop_front()
 		
