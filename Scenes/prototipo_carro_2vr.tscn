@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://32ltoogyxcen"]
+[gd_scene load_steps=37 format=3 uid="uid://32ltoogyxcen"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_c5a66"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="4_wouxg"]
@@ -15,6 +15,8 @@
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="14_xkn5i"]
 [ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="15_2eudo"]
 [ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="15_accdu"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="16_5k12j"]
+[ext_resource type="PackedScene" uid="uid://dnximw1ob6xqp" path="res://UI/textbox_instructions.tscn" id="17_k3q7s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -900,5 +902,11 @@ visible = false
 
 [node name="car" parent="." instance=ExtResource("15_accdu")]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 17.188, 10, 284.056)
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("16_5k12j")]
+transform = Transform3D(6.04106e-05, 3.49122e-05, 0.000997563, 6.36487e-06, 0.000999354, -3.53603e-05, -0.000998153, 8.4855e-06, 6.01494e-05, 13.3202, 14.6957, 284)
+screen_size = Vector2(1152, 648)
+scene = ExtResource("17_k3q7s")
+viewport_size = Vector2(1152, 648)
 
 [editable path="MenuPausa3"]
