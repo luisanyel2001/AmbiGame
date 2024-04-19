@@ -94,6 +94,12 @@ extends CanvasLayer
 var gano = false	
 var perdio = false
 
+func _ready():
+	change_state(State.READY)
+	print("Iniciando: State.READY")
+	mostrar_texto_inicio()
+	_carga_UI(gano)
+
 func _carga_UI(gano):
 	if gano:
 		queue_text("Muy bien, ahora dirígete hacia : " + objetivo_nivel + "        ")
@@ -121,6 +127,7 @@ func _carga_UI(gano):
 		display_text()
 		change_state(State.READY)
 		perdio = false
+		
 const CHAR_READ_RATE = 0.2
 
 @onready var textbox_container = $Textbox/TextboxContainer
@@ -135,7 +142,7 @@ enum State{
 	 INACTIVE
 }
 
-var current_state = State.INACTIVE
+var current_state = State.READY
 var text_queue = []
 
 #animacion letras
