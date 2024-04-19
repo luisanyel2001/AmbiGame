@@ -21,7 +21,9 @@ func _on_reanudar_button_pressed():
 	
 
 func _on_salir_button_pressed():
-	get_tree().quit()
+	var end_scene = preload("res://UI/GameOver.tscn")
+	get_tree().change_scene_to_packed(end_scene)
+	#get_tree().quit()
 
 
 func _on_reiniciar_button_pressed():
