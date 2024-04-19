@@ -32,7 +32,7 @@ func _ready():
 
 	_leerCalculosAmbiguedad()
 	
-	$MenuPausa3/CenterContainer/VBoxContainer/Reiniciar_Button.pressed.connect(func():reiniciar=true)
+	$MenuPausa3/CenterContainer/VBoxContainer/Reiniciar_Button.pressed.connect(func():reiniciar=true)	
 
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -301,9 +301,8 @@ func _input(event):
 	if event is InputEventKey:
 		var key_event = event as InputEventKey
 		if key_event.keycode == KEY_ESCAPE and key_event.pressed:
-			$MenuPausa3.hide()
-		if key_event.keycode == KEY_PAGEUP and key_event.pressed:
-			_calculoToleranciaAmbiguedad()
+			$MenuPausa3.hide()		
+			
 	
 
 	
@@ -317,21 +316,26 @@ func _carga_IA(gano):
 		
 		
 func _calculoToleranciaAmbiguedad():
-	#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
-	velocidadPromedio = vehicle.velocidad_promedio	
-	if numDecisiones > 0:
-		promedio_tiempo_decision = tiempoTotalDeciciones / numDecisiones
-		promedio_tiempo_decision = promedio_tiempo_decision/1000
-	print("Promedio de tiempo de decisión: " + str(promedio_tiempo_decision) + " ms")
-	print("El tiempo total de la partida es: ", tiempoTotal, " segundos")	
-	print("velocidad promedio = ", velocidadPromedio)
-	print("puntos correctos = ", destinosCorrectos)
-	print("puntos incorrectos = ", destinosIncorrectos)
-	var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
-	toleranciaAmbiguedad -= promedio_tiempo_decision/tiempoTotal
-	toleranciaAmbiguedad += velocidadPromedio/tiempoTotal
-	print("LA TOLERANCIA A LA AMBIGUEDAD ES DE: " , toleranciaAmbiguedad)
-	_guardarCalculoAmbiguedad()
+	if destinosCorrectos > 0 || destinosIncorrectos > 0:
+		#print("La velocidad promedio del vehículo es desde el scrpt del NIVEL: ", vehicle.velocidad_promedio, " unidades por segundo")
+		velocidadPromedio = vehicle.velocidad_promedio	
+		if numDecisiones > 0:
+			promedio_tiempo_decision = tiempoTotalDeciciones / numDecisiones
+			promedio_tiempo_decision = promedio_tiempo_decision/1000
+		print("Promedio de tiempo de decisión: " + str(promedio_tiempo_decision) + " ms")
+		print("El tiempo total de la partida es: ", tiempoTotal, " segundos")	
+		print("velocidad promedio = ", velocidadPromedio)
+		print("puntos correctos = ", destinosCorrectos)
+		print("puntos incorrectos = ", destinosIncorrectos)
+		var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
+		toleranciaAmbiguedad -= promedio_tiempo_decision/tiempoTotal
+		toleranciaAmbiguedad += velocidadPromedio/tiempoTotal
+		print("LA TOLERANCIA A LA AMBIGUEDAD ES DE: " , toleranciaAmbiguedad)
+		_guardarCalculoAmbiguedad()
+		return toleranciaAmbiguedad
+	else:
+		print("SIN DATOS")	
+		return null
 func _guardarCalculoAmbiguedad():	
 	print("DEBUG GUARDAR CALCULOS AMBIGUEDAD")
 	var datos = ConfigFile.new()

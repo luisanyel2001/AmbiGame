@@ -1,8 +1,15 @@
 
 extends CanvasLayer
-
+var calculoAmbiguedad
 func _ready():
-	pass
+	# Obtener el dato enviado desde la escena anterior
+	var dato_recibido = calculoAmbiguedad
+	print("Dato recibido:", dato_recibido)	
+	var label = $TextureRect2/tolerancia_ambiguedad
+	if(dato_recibido == null):
+		label.text = "SIN DATOS"
+	else:
+		label.text = str(dato_recibido)
 	#$tiempo_trans.text = Global.tiempo_transcurrido
 	#print(Global.tiempo_transcurrido)
 

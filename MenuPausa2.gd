@@ -21,8 +21,18 @@ func _on_reanudar_button_pressed():
 	
 
 func _on_salir_button_pressed():
-	var end_scene = preload("res://UI/GameOver.tscn")
-	get_tree().change_scene_to_packed(end_scene)
+	# Obtener una referencia al nodo padre
+	var nodo_nivel = get_parent()
+	# Acceder a la variable puntaje a través del nodo padre
+	var calculoAmbiguedad = nodo_nivel._calculoToleranciaAmbiguedad()
+	# Hacer algo con el puntaje obtenido
+	print("AMBIGUEDAD PAUSE:", calculoAmbiguedad)
+
+	var end_scene = preload("res://UI/GameOver.tscn").instantiate()  # Instanciar la escena
+	end_scene.calculoAmbiguedad = calculoAmbiguedad  # Establecer la variable
+	#get_tree().change_scene_to_packed(end_scene)  # Cambiar a la nueva escena
+	get_tree().root.add_child(end_scene)
+
 	#get_tree().quit()
 
 

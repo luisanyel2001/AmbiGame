@@ -118,8 +118,6 @@ show_behind_parent = true
 offset_top = 76.0
 offset_right = 1154.0
 offset_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("4_yrhdg")
 
 [node name="Label" type="Label" parent="TextureRect"]
@@ -141,6 +139,34 @@ offset_bottom = 114.0
 theme_override_fonts/font = ExtResource("1_b5nom")
 theme_override_font_sizes/font_size = 50
 text = "00:00.000"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.486275)
+show_behind_parent = true
+offset_top = 76.0
+offset_right = 1154.0
+offset_bottom = 488.0
+texture = ExtResource("4_yrhdg")
+
+[node name="Label" type="Label" parent="TextureRect2"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 123.0
+offset_right = 297.0
+offset_bottom = 156.0
+theme_override_fonts/font = ExtResource("1_b5nom")
+theme_override_font_sizes/font_size = 50
+text = "TOLERANCIA A LA AMBIGUEDAD: "
+
+[node name="tolerancia_ambiguedad" type="Label" parent="TextureRect2"]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 122.0
+offset_right = 622.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("1_b5nom")
+theme_override_font_sizes/font_size = 50
+text = "SIN DATOS"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Reiniciar_Button" to="." method="_on_reiniciar_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Salir_Button" to="." method="_on_salir_button_pressed"]
