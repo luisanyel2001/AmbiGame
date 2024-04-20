@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cesyr83a72be0"]
+[gd_scene load_steps=9 format=3 uid="uid://ccuu2ytj4fpwm"]
 
-[ext_resource type="PackedScene" uid="uid://d15js5rikmvuw" path="res://Propts/Tunnel/road_tunnel.glb" id="1_ih4ks"]
-[ext_resource type="Texture2D" uid="uid://cba4jrhdi75ua" path="res://imgs/white_arrow.png" id="2_5bu2l"]
+[ext_resource type="PackedScene" uid="uid://d15js5rikmvuw" path="res://Propts/Tunnel/road_tunnel.glb" id="1_fri6o"]
+[ext_resource type="Texture2D" uid="uid://cba4jrhdi75ua" path="res://imgs/white_arrow.png" id="2_olifq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgugw"]
-albedo_texture = ExtResource("2_5bu2l")
+albedo_texture = ExtResource("2_olifq")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1c8bd"]
 material = SubResource("StandardMaterial3D_sgugw")
@@ -21,15 +21,16 @@ backface_collision = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgn07"]
 size = Vector3(39, 1, 5)
 
-[node name="road_tunnel" instance=ExtResource("1_ih4ks")]
+[node name="road_tunnel" instance=ExtResource("1_fri6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Road" index="0"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74229e-08, 0, -8.74228e-08, -1, 0, -1.2808, 3.73236e-09)
+visible = false
 mesh = SubResource("PlaneMesh_1c8bd")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Road" index="1"]
 transform = Transform3D(1, 0, 0, 0, -0.999996, 5.24533e-09, 0, 8.74225e-08, 0.06, 0.000653195, -1.73465, -0.0143829)
-visible = false
 material_override = SubResource("ORMMaterial3D_wrvjk")
 mesh = SubResource("PlaneMesh_3ymeo")
 

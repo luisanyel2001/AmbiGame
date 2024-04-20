@@ -58,6 +58,7 @@ func _process(delta):
 			reiniciar = false
 		
 		tiempoTotal += delta
+		print("Normal:" + str(current_state))
 		match current_state:
 			State.INACTIVE:
 				pass
@@ -104,6 +105,8 @@ func _carga_nivel(result, response_code, headers, body):
 	
 	mapa_json = response
 	objetivo_nivel = response.niveles[str(num_nivel)]['objetivo']
+	$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
+	Global.objetivo_nivel = objetivo_nivel
 	mostrar_texto_inicio()
 	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
@@ -176,10 +179,12 @@ func _deteccion_area_ciudad(id, body):
 
 	if id == objetivo_nivel:
 		gano = true
+		Global.gano = true
 		_cargar_siguiente_nivel()
 		$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
 	else:
 		perdio = true
+		Global.perdio = true
 		
 	reiniciar = true
 	_carga_UI(gano)
@@ -204,6 +209,7 @@ func _carga_UI(gano):
 		display_text()
 		change_state(State.READY)
 		gano = false
+		Global.gano = false
 	
 	if perdio:
 		queue_text("Lo siento, has perdido. Tu destino era: " + objetivo_nivel + "        ")
@@ -217,6 +223,7 @@ func _carga_UI(gano):
 		display_text()
 		change_state(State.READY)
 		perdio = false
+		Global.perdio = false
 
 
 """
@@ -280,6 +287,7 @@ func display_text():
 
 func change_state(next_state):
 	current_state = next_state
+	Global.current_state = next_state
 	match current_state:
 		State.READY:
 			print("Cambiando estado a: State.READY")
@@ -297,6 +305,7 @@ func _input(event):
 		var key_event = event as InputEventKey
 		if key_event.keycode == KEY_P and key_event.pressed:
 			$MenuPausa3.show()
+			
 			#toggle_pause()
 	if event is InputEventKey:
 		var key_event = event as InputEventKey

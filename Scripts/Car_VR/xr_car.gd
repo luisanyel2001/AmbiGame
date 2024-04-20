@@ -63,16 +63,16 @@ func _print_float(action,value):
 	if action == "trigger":
 		var porcentaje = (value - 0) / (1 - 0)
 		engine_force = lerp(-3400, -4000, porcentaje)
-		print("Acelerador: " + str(engine_force))
-		print("Velocidad: " + str(round(linear_velocity.length())))
+		#print("Acelerador: " + str(engine_force))
+		#print("Velocidad: " + str(round(linear_velocity.length())))
 		
 		
 func _print_float2(action,value):
 	if action == "trigger":
 		var porcentaje = (value - 0) / (1 - 0)
 		engine_force = lerp(3400, 4500, porcentaje) #3400-4500
-		print("Acelerador: " + str(engine_force))
-		print("Velocidad: " + str(round(linear_velocity.length())))
+		#print("Acelerador: " + str(engine_force))
+		#print("Velocidad: " + str(round(linear_velocity.length())))
 		
 
 
