@@ -1,6 +1,5 @@
-[gd_scene load_steps=35 format=3 uid="uid://duqbv7jyl6a62"]
+[gd_scene load_steps=27 format=3 uid="uid://duqbv7jyl6a62"]
 
-[ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_62gvl"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="2_f3hdi"]
 [ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="3_bmasu"]
 [ext_resource type="PackedScene" uid="uid://cbgss41ecfbe6" path="res://Propts/tuneles_tscn/intersection_tunnel.tscn" id="4_0uiia"]
@@ -30,7 +29,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lflqs"]
-albedo_texture = ExtResource("2_f3hdi")
+albedo_color = Color(0, 0.305882, 0.631373, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsbyb"]
 albedo_texture = ExtResource("3_bmasu")
@@ -42,39 +41,14 @@ size = Vector3(800, 1, 800)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ampq"]
 points = PackedVector3Array(-400, -0.5, -400, -400, 0.5, -400, 400, -0.5, -400, -400, -0.5, 400, -400, 0.5, 400, 400, 0.5, -400, 400, -0.5, 400, 400, 0.5, 400)
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v28yr"]
-albedo_color = Color(0.0823529, 0.321569, 0.109804, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgtmp"]
+albedo_texture = ExtResource("2_f3hdi")
 
-[sub_resource type="BoxMesh" id="BoxMesh_t78iw"]
-material = SubResource("ORMMaterial3D_v28yr")
-size = Vector3(296, 1, 641)
+[sub_resource type="PlaneMesh" id="PlaneMesh_ae7bd"]
+material = SubResource("StandardMaterial3D_dgtmp")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mytkg"]
-points = PackedVector3Array(147.971, 0.5, 320.5, 147.971, -0.5, 320.5, 147.971, 0.5, -320.5, -148, 0.5, 320.5, -148, -0.5, 320.5, 147.971, -0.5, -320.5, -148, 0.5, -320.5, -148, -0.5, -320.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sjytd"]
-material = SubResource("ORMMaterial3D_v28yr")
-size = Vector3(276, 1, 641)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qcb66"]
-points = PackedVector3Array(138, 0.5, 320.5, 138, -0.5, 320.5, 138, 0.5, -320.5, -138, 0.5, 320.5, -138, -0.5, 320.5, 138, -0.5, -320.5, -138, 0.5, -320.5, -138, -0.5, -320.5)
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_7t3qv"]
-albedo_color = Color(0.466667, 0.466667, 0.466667, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_maudt"]
-material = SubResource("ORMMaterial3D_7t3qv")
-size = Vector3(1, 2, 642)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c8smg"]
-size = Vector3(1, 6, 642)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8jmh2"]
-material = SubResource("ORMMaterial3D_7t3qv")
-size = Vector3(9, 2, 1)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_widgo"]
-points = PackedVector3Array(4.5, 1, 0.5, 4.5, 1, -0.5, -4.5, 1, 0.5, 4.5, -1, 0.5, 4.5, -1, -0.5, -4.5, 1, -0.5, -4.5, -1, 0.5, -4.5, -1, -0.5)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_17w30"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="GDScript" id="GDScript_nis38"]
 script/source = "
@@ -178,7 +152,6 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="prototipoCarro" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
-script = ExtResource("1_62gvl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sg6oo")
@@ -188,6 +161,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -
 shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.63337, 0, 0, 0, 1, 0, 0, 0, 2.27209, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_lflqs")
 mesh = SubResource("BoxMesh_kdqvu")
 
@@ -198,7 +172,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_6ampq")
 
 [node name="laberintoTuneles1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.032, 0.7, -5.92)
+transform = Transform3D(-0.00459025, 0, -0.99999, 0, 1, 0, 0.99999, 0, -0.00459025, 85.2812, 0.7, -376.934)
 
 [node name="intersection_tunnel_señal1" parent="laberintoTuneles1" instance=ExtResource("4_0uiia")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
@@ -217,9 +191,6 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="intersection_tunnel_señal6" parent="laberintoTuneles1" instance=ExtResource("5_4oggl")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
-
-[node name="road_tunnel" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
 
 [node name="road_tunnel6" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
@@ -245,17 +216,14 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 [node name="right_road_tunnel12" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 259.162, 0, -162.255)
 
-[node name="intersection_tunnel_sin_señal1" parent="laberintoTuneles1" instance=ExtResource("8_l3ei4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
-
 [node name="intersection_tunnel_sin_señal2" parent="laberintoTuneles1" instance=ExtResource("8_l3ei4")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
 
 [node name="right_road_tunnel5" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+transform = Transform3D(0.0502095, 0, -0.998738, 0, 1, 0, 0.998738, 0, 0.0502095, -59.4298, 0, -85.1342)
 
 [node name="right_road_tunnel6" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+transform = Transform3D(0.00839493, 0, 0.999964, 0, 1, 0, -0.999964, 0, 0.00839493, -62.412, 0, -157.834)
 
 [node name="right_road_tunnel7" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
@@ -266,32 +234,17 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="right_road_tunnel9" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
 
-[node name="right_road_tunnel10" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
-
 [node name="road_tunnel7" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
 
-[node name="road_tunnel9" parent="laberintoTuneles1" instance=ExtResource("9_bbgey")]
-transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.173648, 0.984808, -3.8097e-09, 0.984808, 0.173648, -4.35451e-08, -22.7504, 3.1194, -275.628)
-
 [node name="intersection_tunnel_sin_señal3" parent="laberintoTuneles1" instance=ExtResource("8_l3ei4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.6, 0, -207.966)
-
-[node name="road_tunnel8" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 171.1, 0, -59.8583)
 
 [node name="intersection_tunnel_sin_señal4" parent="laberintoTuneles1" instance=ExtResource("8_l3ei4")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 282.434, 0, -139.395)
 
 [node name="right_road_tunnel11" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 202.2, 0, -59.5)
-
-[node name="road_tunnel10" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 224.813, 0, -82.0638)
-
-[node name="road_tunnel11" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
+transform = Transform3D(0.999947, 0, 0.0102797, 0, 1, 0, -0.0102797, 0, 0.999947, 162.99, 0, -59.7331)
 
 [node name="right_road_tunnel13" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
@@ -314,8 +267,56 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="road_tunnel15" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
 
+[node name="road_tunnel4" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.0178712, 0, 0.99984, 0, 1, 0, -0.99984, 0, -0.0178712, 127.785, 0, -16.3432)
+
+[node name="road_tunnel5" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.0174524, 0, 0.999848, 0, 1, 0, -0.999848, 0, -0.0174524, 128.52, 0, 23.0096)
+
+[node name="road_tunnel16" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-6.47269e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.47035e-08, 259.763, 4.76837e-07, -367.737)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.00635292, 0, 0.999979, 0, 1, 0, -0.999979, 0, -0.00635292, 259.664, 0, -407.192)
+
+[node name="road_tunnel17" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.0630268, 0, 1.01315, 0, 1, 0, -1.37, 0, -0.0466098, -61.1363, 3.8147e-06, -119.681)
+
+[node name="right_road_tunnel16" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.694997, 0, -0.719012, 0, 1, 0, 0.719012, 0, -0.694997, -75.105, 0, -68.883)
+
+[node name="road_tunnel18" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.587551, 0, -0.0139872, 0, 1, 0, 0.00815307, 0, 1.00799, -93.7791, 0, -69.1795)
+
+[node name="camino_exterior" parent="laberintoTuneles1" instance=ExtResource("11_c4bea")]
+transform = Transform3D(0.677898, 0, 4.07454e-10, 0, 1, 0, -2.56114e-09, 0, 0.104391, -22.804, 0, -289.754)
+
+[node name="camino_exterior2" parent="laberintoTuneles1" instance=ExtResource("11_c4bea")]
+transform = Transform3D(0.481716, 0, 0.0734489, 0, 1, 0, -0.476964, 0, 0.0741806, 60.8065, 0, -333.254)
+
+[node name="right_road_tunnel17" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.714632, 0, -0.699502, 0, 1, 0, 0.699502, 0, 0.714632, 177.567, 0, -45.0455)
+
+[node name="camino_exterior3" parent="laberintoTuneles1" instance=ExtResource("11_c4bea")]
+transform = Transform3D(0.784917, 0, 8.73115e-11, 0, 1, 0, -6.28643e-09, 0, 0.0234626, 177.265, 0, -28.0491)
+
+[node name="right_road_tunnel18" parent="laberintoTuneles1" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.02267, 0, 0.999743, 0, 1, 0, -0.999743, 0, -0.02267, 257.425, 7.62939e-06, -114.914)
+
+[node name="camino_exterior4" parent="laberintoTuneles1" instance=ExtResource("11_c4bea")]
+transform = Transform3D(0.799284, 0, 8.14907e-10, 0, 1, 0, -7.91624e-09, 0, 0.13244, 256.197, 0, -63.2705)
+
+[node name="road_tunnel8" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.73976, 0, -0.67287, 0, 1, 0, 0.67287, 0, -0.73976, -44.105, 0, -174.469)
+
+[node name="road_tunnel19" parent="laberintoTuneles1" instance=ExtResource("9_bbgey")]
+transform = Transform3D(0.993154, 0.11262, -0.0310238, -0.112644, 0.993635, 0.000983035, 0.030937, 0.00251834, 0.999519, -16.2535, 6.00872, -124.066)
+
+[node name="road_tunnel20" parent="laberintoTuneles1" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.994987, 0.0926277, -0.0376816, -0.0925305, 0.9957, 0.00431669, 0.0379194, -0.000808355, 0.999279, 22.8634, 1.94766, -122.695)
+
 [node name="laberintoTuneles2" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.3681, 0.7, 24.1804)
+transform = Transform3D(0.00148363, 0, -0.999999, 0, 1, 0, 0.999999, 0, 0.00148363, -297.507, 0.7, -507.559)
 
 [node name="intersection_tunnel_señal1" parent="laberintoTuneles2" instance=ExtResource("4_0uiia")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
@@ -425,128 +426,179 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="road_tunnel16" parent="laberintoTuneles2" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
 
+[node name="road_tunnel4" parent="laberintoTuneles2" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.719073, 0, 0.694934, 0, 1, 0, -0.694934, 0, 0.719073, 366.745, 0, -187.581)
+
+[node name="right_road_tunnel17" parent="laberintoTuneles2" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.707884, 0, 0.706329, 0, 1, 0, -0.706329, 0, 0.707884, 386.967, 0, -207.262)
+
+[node name="right_road_tunnel18" parent="laberintoTuneles2" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.742808, 0, -0.669507, 0, 1, 0, 0.669507, 0, -0.742808, 401.839, 0, -206.341)
+
+[node name="road_tunnel5" parent="laberintoTuneles2" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 149.572, 0, -2.82895)
+
+[node name="road_tunnel6" parent="laberintoTuneles2" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.70513, 0, 0.709081, 0, 1, 0, -0.709081, 0, 0.70513, -47.6646, 0, -97.6363)
+
+[node name="road_tunnel17" parent="laberintoTuneles2" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 42.6505, 4.76837e-07, -351.606)
+
 [node name="laberintoTuneles3" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.0319, 0.7, 44.4804)
+transform = Transform3D(0.00872658, 0, 0.999962, 0, 1, 0, -0.999962, 0, 0.00872658, 118.329, 0.7, 267.169)
 
 [node name="intersection_tunnel_señal1" parent="laberintoTuneles3" instance=ExtResource("4_0uiia")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
+transform = Transform3D(-4.37722e-08, 0, 1, 0, 1, 0, -1, 0, -4.37722e-08, 65.711, 0, -122.8)
 
 [node name="intersection_tunnel_señal2" parent="laberintoTuneles3" instance=ExtResource("4_0uiia")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 127.936, 0, -60.844)
 
 [node name="intersection_tunnel_señal3" parent="laberintoTuneles3" instance=ExtResource("4_0uiia")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.255, 0, -183.994)
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 127.966, 0, -184.794)
 
 [node name="intersection_tunnel_señal4" parent="laberintoTuneles3" instance=ExtResource("4_0uiia")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 234.5, 0, -207.953)
+transform = Transform3D(-4.37722e-08, 0, 1, 0, 1, 0, -1, 0, -4.37722e-08, 235.211, 0, -208.753)
 
 [node name="intersection_tunnel_señal5" parent="laberintoTuneles3" instance=ExtResource("4_0uiia")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3564, 0, -265.664)
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, 94.0673, 0, -266.464)
 
 [node name="intersection_tunnel_señal6" parent="laberintoTuneles3" instance=ExtResource("5_4oggl")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 127.944, 0, -232.6)
 
 [node name="road_tunnel" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.711, 0, -122.8)
 
 [node name="road_tunnel6" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 26.9722, 0, -210.792)
+transform = Transform3D(-0.393635, 0, -0.75471, 0, 1, 0, 0.452826, 0, -0.656059, 27.6833, 0, -211.592)
 
 [node name="road_tunnel2" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 96.1421, 0, -91.1508)
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, 96.853, 0, -91.951)
 
 [node name="road_tunnel3" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 96.1607, 0, -152.87)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 96.8717, 0, -153.67)
 
 [node name="right_road_tunnel" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58.3808, 0, -266.241)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 59.0919, 0, -267.041)
 
 [node name="right_road_tunnel13" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 93.4808, 0, -300.741)
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, 94.1918, 0, -301.542)
 
 [node name="road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
+transform = Transform3D(-0.707106, 3.394e-08, 0.707106, -7.61095e-09, 1, -5.56094e-08, -0.707106, -4.47035e-08, -0.707106, 71.6484, 4.76837e-07, -324.12)
 
 [node name="right_road_tunnel2" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.081, 0, -231.597)
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 163.792, 0, -232.397)
 
 [node name="right_road_tunnel3" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 162.281, 0, -183.855)
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, 162.992, 0, -184.655)
 
 [node name="right_road_tunnel4" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 260.062, 0, -182.755)
+transform = Transform3D(0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, 0.707106, 260.773, 0, -183.555)
 
 [node name="right_road_tunnel12" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 259.162, 0, -162.255)
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 259.873, 0, -163.055)
 
 [node name="intersection_tunnel_sin_señal1" parent="laberintoTuneles3" instance=ExtResource("8_l3ei4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.9, 0, -122)
+transform = Transform3D(-4.37722e-08, 0, -1, 0, 1, 0, 1, 0, -4.37722e-08, -22.189, 0, -122.8)
 
 [node name="intersection_tunnel_sin_señal2" parent="laberintoTuneles3" instance=ExtResource("8_l3ei4")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -22.9645, 0, -194.901)
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, -22.2534, 0, -195.701)
 
 [node name="right_road_tunnel5" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -48.4074, 0, -147.203)
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, -47.6964, 0, -148.003)
 
 [node name="right_road_tunnel6" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -48.0658, 0, -170.303)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -47.3548, 0, -171.103)
 
 [node name="right_road_tunnel7" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 41.9342, 0, -250.287)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 42.6453, 0, -251.087)
 
 [node name="right_road_tunnel8" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 12.0342, 0, -194.787)
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, 12.7453, 0, -195.587)
 
 [node name="right_road_tunnel9" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 41.9342, 0, -226.387)
-
-[node name="right_road_tunnel10" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 42.6453, 0, -227.187)
 
 [node name="road_tunnel7" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7418, 0, -238.7)
-
-[node name="road_tunnel9" parent="laberintoTuneles3" instance=ExtResource("9_bbgey")]
-transform = Transform3D(-4.38727e-08, -3.86742e-09, -1, -0.173648, 0.984808, 3.8097e-09, 0.984808, 0.173648, -4.38777e-08, -22.7504, 3.1194, -275.628)
+transform = Transform3D(-4.37722e-08, 0, -1, 0, 1, 0, 1, 0, -4.37722e-08, -22.0306, 0, -239.5)
 
 [node name="intersection_tunnel_sin_señal3" parent="laberintoTuneles3" instance=ExtResource("8_l3ei4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.6, 0, -207.966)
+transform = Transform3D(-4.37722e-08, 0, -1, 0, 1, 0, 1, 0, -4.37722e-08, 187.311, 0, -208.766)
 
 [node name="road_tunnel8" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 171.1, 0, -59.8583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 171.811, 0, -60.6585)
 
 [node name="intersection_tunnel_sin_señal4" parent="laberintoTuneles3" instance=ExtResource("8_l3ei4")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 282.434, 0, -139.395)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 283.145, 0, -140.195)
 
 [node name="right_road_tunnel11" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 202.2, 0, -59.5)
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, 202.911, 0, -60.3002)
 
 [node name="road_tunnel10" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 224.813, 0, -82.0638)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 225.524, 0, -82.864)
 
 [node name="road_tunnel11" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 253.097, 0, -110.348)
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 253.808, 0, -111.148)
 
 [node name="right_road_tunnel14" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 260.407, 0, -233.077)
 
 [node name="road_tunnel13" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
+transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 260.433, 4.76837e-07, -264.984)
 
 [node name="road_tunnel14" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+transform = Transform3D(-7.17118e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37722e-08, 260.433, 4.76837e-07, -312.884)
 
 [node name="right_road_tunnel15" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
+transform = Transform3D(-0.707106, 0, -0.707106, 0, 1, 0, 0.707106, 0, -0.707106, 318.231, 0, -139.859)
 
 [node name="road_tunnel15" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
+transform = Transform3D(0.707106, 4.47035e-08, 0.707106, -7.61095e-09, 1, -5.56094e-08, -0.707106, 3.394e-08, 0.707106, 340.81, 4.76837e-07, -162.402)
+
+[node name="road_tunnel5" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.0235074, 0, 0.999723, 0, 1, 0, -0.999723, 0, 0.0235074, 126.809, 0, 10.5179)
+
+[node name="road_tunnel12" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.0235074, 0, 0.999723, 0, 1, 0, -0.999723, 0, 0.0235074, 127.537, 0, -19.0841)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.0219545, 0, -0.999759, 0, 1, 0, 0.999759, 0, 0.0219545, 357.834, 0, -179.172)
+
+[node name="right_road_tunnel16" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.0119551, 0, 0.999928, 0, 1, 0, -0.999928, 0, 0.0119551, 357.655, 0, -199.65)
+
+[node name="road_tunnel9" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-4.37722e-08, 0, -1, 0, 1, 0, 1, 0, -4.37722e-08, -22.0389, 0, -274.823)
+
+[node name="road_tunnel16" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-0.707105, 3.394e-08, 0.707106, -7.61095e-09, 1, -5.56094e-08, -0.707106, -4.47035e-08, -0.707105, 56.3689, 4.76837e-07, -339.43)
+
+[node name="road_tunnel17" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(-7.35745e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37722e-08, 260.27, 4.76837e-07, -331.537)
+
+[node name="right_road_tunnel17" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.0205583, 0, 0.999788, 0, 1, 0, -0.999788, 0, -0.0205583, -47.2624, 0, -98.2708)
+
+[node name="road_tunnel18" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.0258105, 0, -0.999666, 0, 1, 0, 0.999666, 0, 0.0258105, -46.5598, 0, -66.7687)
+
+[node name="intersection_tunnel_sin_señal5" parent="laberintoTuneles3" instance=ExtResource("8_l3ei4")]
+transform = Transform3D(-0.700909, 0, 0.71325, 0, 1, 0, -0.71325, 0, -0.700909, -46.4526, 0, -24.7812)
+
+[node name="right_road_tunnel18" parent="laberintoTuneles3" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.719049, 0, -0.694959, 0, 1, 0, 0.694959, 0, -0.719049, -72.0936, 0, 0.149933)
+
+[node name="camino_exterior" parent="laberintoTuneles3" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.00738527, 0, 0.024748, 0, 1, 0, -0.831308, 0, 0.000219859, -16.2004, 0, -24.608)
+
+[node name="road_tunnel19" parent="laberintoTuneles3" instance=ExtResource("9_bbgey")]
+transform = Transform3D(0.993154, 0.11262, -0.0310238, -0.112644, 0.993635, 0.000983035, 0.030937, 0.00251834, 0.999518, -142.086, 6.00872, -2.69941)
+
+[node name="road_tunnel20" parent="laberintoTuneles3" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.994986, 0.0926277, -0.0376816, -0.0925305, 0.9957, 0.00431669, 0.0379194, -0.000808354, 0.999279, -102.969, 1.94766, -1.32825)
 
 [node name="laberintoTuneles4" type="Node3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 35.4319, 0.7, 14.3804)
-
-[node name="intersection_tunnel_señal1" parent="laberintoTuneles4" instance=ExtResource("4_0uiia")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65, 0, -122)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 151.799, 0.7, 15.2482)
 
 [node name="intersection_tunnel_señal2" parent="laberintoTuneles4" instance=ExtResource("4_0uiia")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.225, 0, -60.0438)
@@ -562,9 +614,6 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="intersection_tunnel_señal6" parent="laberintoTuneles4" instance=ExtResource("5_4oggl")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 127.233, 0, -231.8)
-
-[node name="road_tunnel" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -122)
 
 [node name="road_tunnel7" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 35.7786, 0, -243.67)
@@ -611,9 +660,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="right_road_tunnel8" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -26.0828, 0, -178.728)
 
-[node name="right_road_tunnel10" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 127.085, 0, -24.987)
-
 [node name="intersection_tunnel_sin_señal2" parent="laberintoTuneles4" instance=ExtResource("8_l3ei4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 186.6, 0, -207.966)
 
@@ -639,13 +685,7 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 transform = Transform3D(-0.707107, 3.394e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, -4.47035e-08, -0.707107, 70.9373, 4.76837e-07, -323.32)
 
 [node name="right_road_tunnel15" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
-transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 259.696, 0, -232.277)
-
-[node name="road_tunnel14" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(0, 5.56093e-08, 1, -7.61095e-09, 1, -5.56094e-08, -1, -7.61094e-09, -2.98023e-08, 259.722, 4.76837e-07, -264.184)
-
-[node name="road_tunnel15" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
-transform = Transform3D(-6.11959e-08, 5.56093e-08, 1, -1.06553e-08, 1, -5.56093e-08, -1.4, -7.61095e-09, -4.37114e-08, 259.722, 4.76837e-07, -312.084)
+transform = Transform3D(0.724882, 0, 0.688873, 0, 1, 0, -0.688873, 0, 0.724882, 259.696, 0, -232.277)
 
 [node name="right_road_tunnel16" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 317.52, 0, -139.059)
@@ -653,7 +693,45 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="road_tunnel16" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
 transform = Transform3D(0.707107, 4.47035e-08, 0.707107, -7.61095e-09, 1, -5.56094e-08, -0.707107, 3.394e-08, 0.707107, 340.099, 4.76837e-07, -161.602)
 
+[node name="road_tunnel4" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.0409165, 0, 0.999162, 0, 1, 0, -0.999162, 0, 0.0409165, 126.631, 0, -17.0878)
+
+[node name="camino_exterior" parent="laberintoTuneles4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.411217, -1.51908e-09, -0.0580056, -0.00654186, 0.749911, -0.000869853, 0.423493, 0.0115842, 0.0563107, 369.615, 0, -190.918)
+
+[node name="camino_exterior2" parent="laberintoTuneles4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.0540084, -0.00879645, -0.0805027, -0.00654186, 0.749911, -0.000869853, 0.587817, 0.0075376, -0.00740626, 296.61, 0, -229.542)
+
+[node name="camino_exterior3" parent="laberintoTuneles4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.0541452, 0.00853341, -0.0805013, -0.00529219, 0.749913, 0.000990483, 0.587817, 0.0075376, -0.00740626, 348.305, 0, -224.788)
+
+[node name="road_tunnel5" parent="laberintoTuneles4" instance=ExtResource("6_4yh0u")]
+transform = Transform3D(0.739972, 0, -0.672638, 0, 1, 0, 0.672638, 0, 0.739972, 43.9238, 0, -349.215)
+
+[node name="right_road_tunnel7" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.999245, 0, 0.0388413, 0, 1, 0, -0.0388413, 0, 0.999245, 21.6074, 0, -370.128)
+
+[node name="camino_exterior4" parent="laberintoTuneles4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.0218256, 0, 0.0219849, 0, 0.75, 0, -0.589596, 0, -0.000813835, 2.71357, 0, -369.27)
+
+[node name="right_road_tunnel9" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.999938, 0, -0.0111699, 0, 1, 0, 0.0111699, 0, 0.999938, 10.2405, 0, -121.692)
+
+[node name="right_road_tunnel10" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
+transform = Transform3D(0.721845, 0, -0.692055, 0, 1, 0, 0.692055, 0, 0.721845, 25.8214, 0, -105.728)
+
+[node name="right_road_tunnel17" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.685081, 0, 0.728467, 0, 1, 0, -0.728467, 0, -0.685081, 76.5598, 0, -111.435)
+
+[node name="right_road_tunnel18" parent="laberintoTuneles4" instance=ExtResource("7_38dig")]
+transform = Transform3D(-0.0130548, 0, 0.999915, 0, 1, 0, -0.999915, 0, -0.0130548, 76.9835, 0, -133.793)
+
+[node name="camino_exterior5" parent="laberintoTuneles4" instance=ExtResource("11_c4bea")]
+transform = Transform3D(0.799284, 0, 2.74051e-10, 0, 1, 0, -7.91624e-09, 0, 0.044539, 25.7205, 0, -83.6196)
+
 [node name="vialidad_exterior" type="Node3D" parent="."]
+transform = Transform3D(0.626162, 0, 0, 0, 1, 0, 0, 0, 1.26547, 59.2421, 1.77141, -1.00793)
+visible = false
 
 [node name="MeshInstance3D" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.9, 344.7)
@@ -662,87 +740,86 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.9
 transform = Transform3D(-1, 0, 1.54016e-07, 0, 1, 0, -1.50996e-07, 0, -1.02, -319.809, 6.9, 19.5)
 
 [node name="MeshInstance3D3" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9, -306.2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6.9, -329.801)
 
 [node name="MeshInstance3D4" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
 transform = Transform3D(1, 0, 1.78342e-07, 0, 1, 0, -1.74846e-07, 0, 1.02, 319.809, 6.9, 19.5)
 
+[node name="Node3D" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.999733, 0, 0.00129468, 0, 1, 0, -0.0231061, 0, -0.0560172, -319.336, 6.9, -316.779)
+
+[node name="Node3D2" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.999978, 0, -0.000372596, 0, 1, 0, 0.00664968, 0, 0.0560309, 319.747, 6.9, -316.779)
+
 [node name="vialidad_interior" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.1, 6.9, 19.2)
-mesh = SubResource("BoxMesh_t78iw")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_mytkg")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.9, 6.9, 19.2)
-mesh = SubResource("BoxMesh_sjytd")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_qcb66")
+transform = Transform3D(0.00431703, 0, -0.670665, 0, 1, 0, 1.00141, 0, 0.0028912, 96.452, 6.9, 0)
+visible = false
 
 [node name="Node3D" parent="vialidad_interior" instance=ExtResource("11_c4bea")]
-transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 1, 10, 6.9, 19)
-
-[node name="barrera1" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 7.9, 19)
-mesh = SubResource("BoxMesh_maudt")
-skeleton = NodePath("../MeshInstance3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/barrera1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/barrera1/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 2.15, 0)
-shape = SubResource("BoxShape3D_c8smg")
-
-[node name="barrera2" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.5, 7.9, 19)
-mesh = SubResource("BoxMesh_maudt")
-skeleton = NodePath("../MeshInstance3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/barrera2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/barrera2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 2.15, 0)
-shape = SubResource("BoxShape3D_c8smg")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 7.89696, 339.483)
-mesh = SubResource("BoxMesh_8jmh2")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_widgo")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="vialidad_interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9805, 7.89696, -301.502)
-mesh = SubResource("BoxMesh_8jmh2")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="vialidad_interior/MeshInstance3D4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vialidad_interior/MeshInstance3D4/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_widgo")
+transform = Transform3D(3.50061, 0, 7.45058e-09, 0, 1, 0, -4.65661e-08, 0, 0.917232, -59.1014, 1.7, 54.9017)
 
 [node name="Ciudades" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1621.27, 0, 0)
+visible = false
 
 [node name="LowPolyCITY_1" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.902, 1.00003, 435.318)
+transform = Transform3D(-0.707255, 0, 0.706959, 0, 1, 0, -0.706959, 0, -0.707255, -1220.03, 0.718118, 444.94)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
 pixel_size = 0.5
 text = "Luna"
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_1" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_1" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_1" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_1" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_1"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_1/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_1/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_1"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_1/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_1/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_1"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_1/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_1/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_1"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_1/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_1/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_2" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.1979, 1.00003, 448.118)
+transform = Transform3D(-0.985621, 0, -0.168971, 0, 1, 0, 0.168971, 0, -0.985621, -1103.82, 1.00003, -47.0365)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -750,8 +827,56 @@ pixel_size = 0.5
 text = "Sol
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_2" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_2" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_2" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_2" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_2"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_2/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_2/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_2"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_2/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_2/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_2"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_2/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_2/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_2"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_2/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_2/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_3" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -247.598, 1.00003, 448.118)
+transform = Transform3D(-0.00462517, 0, -0.999989, 0, 1, 0, 0.999989, 0, -0.00462517, -1491.14, 1.00003, 216.335)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -759,8 +884,56 @@ pixel_size = 0.5
 text = "York
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_3" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_3" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_3" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_3" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_3"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_3/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_3/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_3"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_3/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_3/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_3"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_3/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_3/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_3"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_3/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_3/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_4" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -409.098, 1.00003, 239.518)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1458.58, 1.00003, 44.3528)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -768,8 +941,56 @@ pixel_size = 0.5
 text = "Lima
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_4" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_4"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_4/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_4/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_4"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_4/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_4/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_4"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_4/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_4/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_4"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_4/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_4/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_5" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -419.398, 1.00003, -13.7818)
+transform = Transform3D(0.999619, 0, -0.02759, 0, 1, 0, 0.02759, 0, 0.999619, -1575.14, 1.00003, -156.559)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -777,8 +998,56 @@ pixel_size = 0.5
 text = "Gante
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_5" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_5" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_5" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_5" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_5"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_5/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_5/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_5"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_5/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_5/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_5"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_5/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_5/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_5"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_5/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_5/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_6" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -419.398, 1.00003, -235.482)
+transform = Transform3D(0.644697, 0, 0.764438, 0, 1, 0, -0.764438, 0, 0.644697, -1961.66, 1.00003, -288.43)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_6"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -786,8 +1055,56 @@ pixel_size = 0.5
 text = "Oslo
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_6" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_6" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_6" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_6" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_6"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_6/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_6/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_6"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_6/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_6/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_6"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_6/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_6/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_6"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_6/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_6/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_7" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -209.402, 1, -395.865)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1511.98, 1, -539.871)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_7"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
@@ -795,45 +1112,277 @@ pixel_size = 0.5
 text = "Lucca
 "
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_7" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_7" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_7" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_7" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_7"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_7/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_7/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_7"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_7/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_7/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_7"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_7/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_7/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_7"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_7/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_7/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_8" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 52.5976, 1, -408.865)
+transform = Transform3D(-0.882882, 0, -0.469595, 0, 1, 0, 0.469595, 0, -0.882882, -1140.77, 1, -389.234)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
 pixel_size = 0.5
 text = "Kobe"
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_8" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_8" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_8" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_8" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_8"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_8/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_8/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_8"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_8/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_8/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_8"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_8/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_8/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_8"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_8/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_8/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_9" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 267.698, 1, -408.865)
+transform = Transform3D(0.725891, 0, -0.68781, 0, 1, 0, 0.68781, 0, 0.725891, -1890.39, 1, -595.289)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
 pixel_size = 0.5
 text = "Riga"
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_9" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_9" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_9" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_9" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_9"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_9/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_9/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_9"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_9/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_9/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_9"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_9/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_9/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_9"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_9/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_9/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_10" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 429.698, 1, -199.765)
+transform = Transform3D(0.999908, 0, 0.0135433, 0, 1, 0, -0.0135433, 0, 0.999908, -1918.85, 1, -1.95525)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
 pixel_size = 0.5
 text = "Nice"
 
+[node name="camino1" parent="Ciudades/LowPolyCITY_10" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
+
+[node name="camino2" parent="Ciudades/LowPolyCITY_10" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_10" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_10" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_10"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_10/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_10/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_10"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_10/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_10/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_10"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_10/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_10/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_10"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_10/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_10/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
 [node name="LowPolyCITY_11" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 439.598, 1, 52.2353)
+transform = Transform3D(0.719122, 0, 0.694884, 0, 1, 0, -0.694884, 0, 0.719122, -1877.28, 1, 284.488)
 
 [node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_11"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
 pixel_size = 0.5
 text = "Troya"
 
-[node name="LowPolyCITY_12" parent="Ciudades" instance=ExtResource("12_b5b8t")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 444.298, 1, 273.835)
+[node name="camino1" parent="Ciudades/LowPolyCITY_11" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.667792, 0, -0.000723705, 0, 0.75, 0, 0.00301859, 0, -0.160105, 55.484, 0, -0.0182343)
 
-[node name="Label3D" type="Label3D" parent="Ciudades/LowPolyCITY_12"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 68, 0)
-pixel_size = 0.5
-text = "CUCEI"
+[node name="camino2" parent="Ciudades/LowPolyCITY_11" instance=ExtResource("10_dpydx")]
+transform = Transform3D(-0.00391713, 0, 0.159997, 0, 0.75, 0, -0.667988, 0, -0.000938267, 0.421814, 0, 55.8645)
+
+[node name="camino3" parent="Ciudades/LowPolyCITY_11" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.667996, 0, -0.000538945, 0, 0.75, 0, 0.00225005, 0, 0.159999, -54.7747, 0, 0.524078)
+
+[node name="camino4" parent="Ciudades/LowPolyCITY_11" instance=ExtResource("10_dpydx")]
+transform = Transform3D(0.000244826, 0, -0.16, 0, 0.75, 0, 0.668, 0, 5.86435e-05, 0.601929, 0, -54.8047)
+
+[node name="parche4" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_11"]
+transform = Transform3D(3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 55.4459, 0.324627, -55.0515)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_11/parche4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_11/parche4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche1" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_11"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, 55.5531, 0.324627, 55.2475)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_11/parche1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_11/parche1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche2" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_11"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.8274, 0.324627, 55.9159)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_11/parche2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_11/parche2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
+
+[node name="parche3" type="MeshInstance3D" parent="Ciudades/LowPolyCITY_11"]
+transform = Transform3D(3.5, 0, 1.19209e-07, 0, 3.5, 0, -1.19209e-07, 0, 3.5, -54.4781, 0.324627, -54.7536)
+mesh = SubResource("PlaneMesh_ae7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/LowPolyCITY_11/parche3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/LowPolyCITY_11/parche3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17w30")
 
 [node name="Textbox" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_nis38")
@@ -899,6 +1448,6 @@ text = "v"
 visible = false
 
 [node name="car" parent="." instance=ExtResource("15_rjn01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12671, 7.40001, 129.891)
+transform = Transform3D(-0.999961, 0, -0.00888351, 0, 1, 0, 0.00888351, 0, -0.999961, 260.252, 10.0792, -352.78)
 
 [editable path="MenuPausa3"]
