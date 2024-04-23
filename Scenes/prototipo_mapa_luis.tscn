@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmeiv1y4ttp5f"]
+[gd_scene load_steps=25 format=3 uid="uid://bmeiv1y4ttp5f"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_2d8et"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="2_82rpy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://kvx6xa13gpoc" path="res://Propts/tuneles_tscn/intersection_tunnel_doble.tscn" id="6_6wnbb"]
 [ext_resource type="PackedScene" uid="uid://5iev5huue3wd" path="res://Propts/tuneles_tscn/road_tunnel_ramp_doble.tscn" id="7_m50sb"]
 [ext_resource type="PackedScene" uid="uid://dgme3n35q8xb8" path="res://Propts/tuneles_tscn/carretera_exterior.tscn" id="10_ni083"]
+[ext_resource type="PackedScene" uid="uid://cwqsoy51a2yq" path="res://Propts/city/low_poly_city.tscn" id="12_ltvvt"]
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="13_tgckw"]
 [ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="14_ss7e7"]
 [ext_resource type="PackedScene" uid="uid://bqlg6jujvhuq7" path="res://Propts/Player/player_car_normal.tscn" id="15_iwjn4"]
@@ -494,11 +495,17 @@ material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad10" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -485.704, 6.6, 0.0332497)
 material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad10" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Suelo_ciudad11" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -598.754, 6.6, 288.088)
@@ -506,11 +513,17 @@ material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad11" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad3" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.6, 6.6, -258.7)
 material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad3" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Suelo_ciudad12" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -366.9, 6.6, -454.517)
@@ -518,11 +531,17 @@ material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad12" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad8" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.3, 6.6, -258.7)
 material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad8" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Suelo_ciudad9" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.3, 6.6, -551.6)
@@ -530,11 +549,17 @@ material_override = SubResource("ORMMaterial3D_skocs")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad9" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad2" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.1, 6.6, 419.2)
 material_override = SubResource("ORMMaterial3D_q1o44")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad2" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Suelo_ciudad6" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 415.5, 6.6, 544.3)
@@ -542,11 +567,17 @@ material_override = SubResource("ORMMaterial3D_q1o44")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad6" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad5" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 406.9, 6.6, 169.1)
 material_override = SubResource("ORMMaterial3D_q1o44")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad5" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Suelo_ciudad7" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 412.9, 6.6, -79.3)
@@ -554,11 +585,17 @@ material_override = SubResource("ORMMaterial3D_q1o44")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
 
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad7" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
 [node name="Suelo_ciudad4" type="MeshInstance3D" parent="Ciudades"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -132.117, 6.6, 529.77)
 material_override = SubResource("ORMMaterial3D_q1o44")
 mesh = SubResource("BoxMesh_nuf60")
 skeleton = NodePath("../..")
+
+[node name="LowPolyCITY" parent="Ciudades/Suelo_ciudad4" instance=ExtResource("12_ltvvt")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Textbox" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_nis38")

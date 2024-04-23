@@ -731,7 +731,6 @@ transform = Transform3D(0.799284, 0, 2.74051e-10, 0, 1, 0, -7.91624e-09, 0, 0.04
 
 [node name="vialidad_exterior" type="Node3D" parent="."]
 transform = Transform3D(0.626162, 0, 0, 0, 1, 0, 0, 0, 1.26547, 59.2421, 1.77141, -1.00793)
-visible = false
 
 [node name="MeshInstance3D" parent="vialidad_exterior" instance=ExtResource("10_dpydx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.9, 344.7)
@@ -760,7 +759,6 @@ transform = Transform3D(3.50061, 0, 7.45058e-09, 0, 1, 0, -4.65661e-08, 0, 0.917
 
 [node name="Ciudades" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1621.27, 0, 0)
-visible = false
 
 [node name="LowPolyCITY_1" parent="Ciudades" instance=ExtResource("12_b5b8t")]
 transform = Transform3D(-0.707255, 0, 0.706959, 0, 1, 0, -0.706959, 0, -0.707255, -1220.03, 0.718118, 444.94)
