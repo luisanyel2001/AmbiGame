@@ -22,7 +22,7 @@ albedo_color = Color(0.466667, 0.466667, 0.466667, 1)
 material = SubResource("ORMMaterial3D_7t3qv")
 size = Vector3(1, 2, 650)
 
-[node name="Node3D" type="Node3D"]
+[node name="Carretera_interior_salida" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_q6fq4")

@@ -22,7 +22,7 @@ size = Vector3(1, 2, 642)
 [sub_resource type="BoxShape3D" id="BoxShape3D_twmcf"]
 size = Vector3(1, 6, 642)
 
-[node name="Node3D" type="Node3D"]
+[node name="Carretera interior" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_q6fq4")
