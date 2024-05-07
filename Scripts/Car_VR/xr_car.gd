@@ -34,6 +34,9 @@ func _botones_derecho(button):
 	if button == "by_button":
 		Global.is_paused = true
 		$playerXR/right_hand/FunctionPointer.enabled = true
+		#$playerXR/right_hand/FunctionPointer.show_laser = 0
+		#var h = $playerXR/right_hand/FuctionPointer as XRToolsFunctionPointer
+		#h.show_laser
 
 
 func _direccion_volante(angle):
@@ -58,7 +61,9 @@ func _acelerar(action,value):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Global.is_paused == false:
+		$playerXR/right_hand/FunctionPointer.enabled = false
+
 
 
 
