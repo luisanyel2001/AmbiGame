@@ -55,18 +55,8 @@ func _ready():
 func _process(delta):
 		if reiniciar:
 			#get_node("car").position = Vector3(10,8,0)
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
-			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			for i in range (1,13):
+				get_node("$player_car").position = get_node("Ciudades/Ciudad_" + str(i) + "/Iniciador").position
 			
 			reiniciar = false
 		
