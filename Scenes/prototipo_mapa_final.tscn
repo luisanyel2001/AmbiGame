@@ -574,7 +574,7 @@ text = "Luna"
 text = "Luna"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_1/LowPolyCITY/Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700001, 0, 1.15001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.720936, 0, 1.15001)
 
 [node name="salida" parent="Ciudades/Ciudad_1" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(1.01402, 0, 6.48962e-05, 0, 1, 0, -0.00276079, 0, 0.0238359, -43.4363, 0.0214081, 1.1091)
@@ -665,7 +665,7 @@ transform = Transform3D(-0.00654659, 0, 0.0487979, 0, 1, 0, -0.997586, 0, -0.000
 transform = Transform3D(-0.00654856, 0, 0.0466924, 0, 1, 0, -0.997885, 0, -0.000306422, -23.4875, 0.0211377, -41.4458)
 
 [node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6, 2.6, -0.900002)
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, -0.900002)
 visible = false
 mesh = SubResource("BoxMesh_q2c6e")
 
@@ -734,6 +734,7 @@ skeleton = NodePath("../../Suelo_ciudad10")
 [node name="StaticBody3D" type="StaticBody3D" parent="Ciudades/Ciudad_2/esquina_frente_drch/MeshInstance3D3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ciudades/Ciudad_2/esquina_frente_drch/MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0, -5.6221)
 shape = SubResource("ConvexPolygonShape3D_slco8")
 
 [node name="Node3D3" parent="Ciudades/Ciudad_2" instance=ExtResource("9_anurq")]
@@ -777,7 +778,12 @@ text = "Sol"
 text = "Sol"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_2/LowPolyCITY/Area3D" index="0"]
-transform = Transform3D(0.70404, 0, -0.710161, 0, 1, 0, 0.710161, 0, 0.70404, -1.62119, 0, -2.3421)
+transform = Transform3D(0.70404, 0, -0.710161, 0, 1, 0, 0.710161, 0, 0.70404, -1.77432, 0, 0.683877)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_2"]
+transform = Transform3D(1.48899, 0, -2.93026, 0, 1.45473, 0, 1.50855, 0, 2.89226, 27.8358, 1.58458, 29.8832)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_3" type="Node3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -598.754, 5.091, 288.088)
@@ -803,6 +809,9 @@ text = "York"
 
 [node name="Label3D" parent="Ciudades/Ciudad_3/LowPolyCITY/Letrero_terrestre" index="0"]
 text = "York"
+
+[node name="CollisionShape3D" parent="Ciudades/Ciudad_3/LowPolyCITY/Area3D" index="0"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, -0.370728, 4.79139, -1.57471)
 
 [node name="salida" parent="Ciudades/Ciudad_3" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(0.00784012, 0, -0.0238353, 0, 1, 0, 1.01399, 0, 0.000184293, 1.3, 1.3, -44.729)
@@ -873,6 +882,11 @@ transform = Transform3D(-0.00785927, 0, 0.121127, 0, 1, 0, -0.994022, 0, -0.0009
 
 [node name="Node3D6" parent="Ciudades/Ciudad_3" instance=ExtResource("9_anurq")]
 transform = Transform3D(-0.993935, 0, -0.00166546, 0, 1, 0, 0.0136013, 0, -0.121704, 44.2598, 1.29966, -1.01657)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_3"]
+transform = Transform3D(0.00928555, 0, 4.11719, 0, 1.45473, 0, -2.11961, 0, 0.0180366, 0.665405, 2.71431, -44.963)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_4" type="Node3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270.396, 6.586, -258.7)
@@ -973,6 +987,11 @@ transform = Transform3D(-0.997552, 0, 0.000561562, 0, 1, 0, -0.0109343, 0, -0.05
 [node name="Node3D7" parent="Ciudades/Ciudad_4" instance=ExtResource("9_anurq")]
 transform = Transform3D(-0.997552, 0, 0.000561562, 0, 1, 0, -0.0109343, 0, -0.0512328, 42.7242, -0.148, -26.1095)
 
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_4"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 2.22392, -1.38983)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
+
 [node name="Ciudad_5" type="Node3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -369.312, 6.586, -454.517)
 
@@ -992,6 +1011,9 @@ text = "Gante"
 
 [node name="Label3D" parent="Ciudades/Ciudad_5/LowPolyCITY/Letrero_terrestre" index="0"]
 text = "Gante"
+
+[node name="CollisionShape3D" parent="Ciudades/Ciudad_5/LowPolyCITY/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685974, 0, -4.27386)
 
 [node name="esquina_frente_izq" parent="Ciudades/Ciudad_5" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(0.00550395, 0, -0.0238357, 0, 1, 0, 1.014, 0, 0.000129376, -39.0424, -0.148, 42.1299)
@@ -1071,6 +1093,11 @@ transform = Transform3D(0.00517585, 0, 0.0182153, 0, 0.998707, 0, -0.995129, 0, 
 
 [node name="towers " parent="Ciudades/Ciudad_5" instance=ExtResource("12_ap4i6")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 13.9, 0)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_5"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, 18.2085)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_6" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -134.394, 6.586, 530.347)
@@ -1171,6 +1198,14 @@ text = "Oslo"
 
 [node name="Label3D" parent="Ciudades/Ciudad_6/LowPolyCITY/Letrero_terrestre" index="0"]
 text = "Oslo"
+
+[node name="CollisionShape3D" parent="Ciudades/Ciudad_6/LowPolyCITY/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.850067, 0, -3.50861)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_6"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, 1.17215)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_7" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, 116.451, 6.586, 417.302)
@@ -1273,7 +1308,12 @@ text = "Lucca"
 text = "Lucca"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_7/LowPolyCITY/Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.850006, 0, -2.65578)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41888, 0, -5.20447)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_7/LowPolyCITY/Area3D/CollisionShape3D" index="0"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, 8.50345)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_8" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-1, 0, -1.62921e-07, 0, 1, 0, 1.62921e-07, 0, -1, 200.851, 6.586, -258.312)
@@ -1367,7 +1407,12 @@ text = "Kobe"
 text = "Kobe"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_8/LowPolyCITY/Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0, -2.14998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448959, 0, -2.30447)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_8"]
+transform = Transform3D(0.0332568, 0, -4.11672, 0, 1.45473, 0, 2.11937, 0, 0.0645989, 8.86327, 1.58458, 42.7931)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_9" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 187.488, 6.586, -550.917)
@@ -1468,6 +1513,14 @@ text = "Riga"
 
 [node name="Label3D" parent="Ciudades/Ciudad_9/LowPolyCITY/Letrero_terrestre" index="0"]
 text = "Riga"
+
+[node name="CollisionShape3D" parent="Ciudades/Ciudad_9/LowPolyCITY/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849976, 0, -0.975922)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_9"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, -3.71176)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_10" type="Node3D" parent="Ciudades"]
 transform = Transform3D(2.06632e-07, 0, -1, 0, 1, 0, 1, 0, 2.06632e-07, 407.651, 6.586, 168.202)
@@ -1571,7 +1624,12 @@ text = "Nice"
 text = "Nice"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_10/LowPolyCITY/Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42204, 0, -2.64832)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05313, 0, -4.00189)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_10"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, 12.1988)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="Ciudad_11" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-1, 0, -1.62921e-07, 0, 1, 0, 1.62921e-07, 0, -1, 416.451, 6.586, -79.498)
@@ -1675,6 +1733,14 @@ text = "Troya"
 [node name="Label3D" parent="Ciudades/Ciudad_11/LowPolyCITY/Letrero_terrestre" index="0"]
 text = "Troya"
 
+[node name="CollisionShape3D" parent="Ciudades/Ciudad_11/LowPolyCITY/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67377, 0, -4.0067)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_11"]
+transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 43.6, 1.58458, -18.4336)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
+
 [node name="Ciudad_12" type="Node3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 496.175, 5.221, 462.577)
 
@@ -1770,6 +1836,11 @@ transform = Transform3D(-0.993569, 0, -0.00377949, 0, 1, 0, 0.0310159, 0, -0.121
 
 [node name="Node3D6" parent="Ciudades/Ciudad_12" instance=ExtResource("9_anurq")]
 transform = Transform3D(0.0367544, 0, -0.121632, 0, 1, 0, 0.993348, 0, 0.00450048, -5.60638, 1.2135, -41.489)
+
+[node name="Iniciador" type="MeshInstance3D" parent="Ciudades/Ciudad_12"]
+transform = Transform3D(-2.11271, 0, -0.332418, 0, 1.45473, 0, 0.171135, 0, -4.10379, -48.7361, 2.91889, 0.925171)
+visible = false
+mesh = SubResource("BoxMesh_q2c6e")
 
 [node name="player_car" parent="." instance=ExtResource("16_glm2r")]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 2.5, 0)

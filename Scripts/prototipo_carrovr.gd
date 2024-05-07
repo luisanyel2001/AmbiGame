@@ -54,7 +54,20 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 		if reiniciar:
-			get_node("car").position = Vector3(10,8,0)
+			#get_node("car").position = Vector3(10,8,0)
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			get_node("$player_car").position = get_node("$Ciudades/Ciudad_1/Iniciador").position 
+			
 			reiniciar = false
 		
 		tiempoTotal += delta
