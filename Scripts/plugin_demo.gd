@@ -4,6 +4,11 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var busqueda = find_children('PluginDemo')
+	if busqueda != null:
+		print("Se encontro")
+	else:
+		print("No se encontro")		
 	"""
 	var busqueda = find_children ('MeshInstance3D')
 	if busqueda != null:

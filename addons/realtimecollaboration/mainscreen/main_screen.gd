@@ -260,11 +260,17 @@ func _peer_on_scene_update_modify(data):
 				search_replace.name = "temp"
 				print(search_replace)
 				search_replace.queue_free() 
-				await search_replace.tree_exited
+				#await search_replace.tree_exited
 				#EditorInterface.get_edited_scene_root().remove_child(search_replace)
 				print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 				print("Padre:" + str(data['parent']))
-				var search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+				var search_parent_replace
+				if data['parent'] != EditorInterface.get_edited_scene_root().to_string():
+					print("Entro1")
+					search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
+				else:
+					print("Entro2")
+					search_parent_replace = EditorInterface.get_edited_scene_root()
 				if search_parent_replace != null:
 					print("Se buscara el padre modificar replace: " + data['parent'])
 					print("Se modificara la instancia:" + instance.name)
