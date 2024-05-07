@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dus7nkhrn7pik"]
+[gd_scene load_steps=2 format=3 uid="uid://dus7nkhrn7pik"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_i80qg"]
-size = Vector3(20, 1, 20)
+[sub_resource type="BoxMesh" id="BoxMesh_dmaxr"]
+size = Vector3(1, 50, 1)
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v4spq"]
-albedo_color = Color(0.556863, 0.529412, 0.603922, 1)
-
-[node name="Piso" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19278, 0, 0)
-mesh = SubResource("BoxMesh_i80qg")
-surface_material_override/0 = SubResource("ORMMaterial3D_v4spq")
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.663)
+mesh = SubResource("BoxMesh_dmaxr")

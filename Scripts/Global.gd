@@ -5,11 +5,13 @@ extends Node
 
 var objetivo_nivel : String
 var inicio_nivel : String
+var ultima_ciudad : String
 var numero_nivel_actual = 1
 var current_state = State.INACTIVE
 var habia_entrado = false
 var reiniciar = false
 var is_paused: bool = false
+var termino: bool = false
 var tolerancia = -1.0
 
 enum State{

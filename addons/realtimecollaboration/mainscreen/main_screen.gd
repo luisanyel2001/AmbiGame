@@ -265,7 +265,7 @@ func _peer_on_scene_update_modify(data):
 				print(EditorInterface.get_edited_scene_root().get_tree_string_pretty())
 				print("Padre:" + str(data['parent']))
 				var search_parent_replace
-				if data['parent'] != EditorInterface.get_edited_scene_root().to_string():
+				if data['parent'] != EditorInterface.get_edited_scene_root().name:
 					print("Entro1")
 					search_parent_replace = EditorInterface.get_edited_scene_root().find_child(data['parent'])
 				else:

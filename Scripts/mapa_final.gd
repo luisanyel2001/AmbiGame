@@ -17,11 +17,12 @@ var tiempoPartida = 0
 var tiempoDeciciones = 0
 var vehicle 
 var promedio_tiempo_decision = 0
-
+var ciudades_to_num = {}
 
 
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
+	Global.ultima_ciudad = id
 	
 	if id == Global.objetivo_nivel:
 		Global.gano = true
@@ -55,9 +56,10 @@ func _carga_nivel(result, response_code, headers, body):
 	Global.objetivo_nivel = response.niveles[str(Global.numero_nivel_actual)]['objetivo']
 	#$MenuPausa3/Label/Label.text = "Tu objetivo es: " + Global.objetivo_nivel
 	##mostrar_texto_inicio()
-	
+	ciudades_to_num = {}
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
+		ciudades_to_num[response.ciudades[str(i)]] = str(i)
 		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
 		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Area3D").body_entered.connect(func(body):_deteccion_area_ciudad(response.ciudades[str(i)], body))
 		#Recorre los letreros
@@ -69,9 +71,7 @@ func _carga_nivel(result, response_code, headers, body):
 		get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/Area3D_center").body_entered.connect(_interseccion_area)
 		for letrero in range(1,4):
 			#Letrero izquierda
-			
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_izq/left_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_izq"]["izquierda"][str(letrero)]
-
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_izq/right_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_izq"]["derecha"][str(letrero)]
 			#Letrero derecha
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_der/left_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_der"]["izquierda"][str(letrero)]
@@ -100,7 +100,6 @@ func _interseccion_area(body):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#_vista_desarrollador(1,false) #Descomentar para ver vista previa
-	
 	add_child(http_request)
 	http_request.request_completed.connect(self._carga_nivel)
 	_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
@@ -142,23 +141,28 @@ func _vista_desarrollador(nivel,visible_):
 #n_ciudad_actual
 func _reinicar():
 	if Global.reiniciar == true:
-		# Guardar la posición actual del jugador como último punto de reinicio
-		var ultimo_punto_de_reinicio = $player_car.global_position
-
-		# Reiniciar la posición del jugador a los puntos de inicio de las ciudades
-		for i in range(1, 13):
-			get_node("$player_car").position = get_node("Ciudades/Ciudad_" + str(i) + "/Iniciador").position
-
 		# Reposicionar el vehículo al iniciador después del reinicio
-		$player_car.set_global_position($Iniciador.get_global_position())
-		$player_car.set_global_rotation(Vector3(0, 0, 0))
-		
+		$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.ultima_ciudad]) + "/Iniciador").get_global_position())
 		# Reiniciar la velocidad lineal del vehículo a cero
 		var carro = $player_car as VehicleBody3D
 		carro.linear_velocity = Vector3(0, 0, 0)
+		$player_car.set_global_rotation(Vector3(0, 0, 0))
 
 		
 func _process(delta):
 	_reinicar()
 	
-
+	
+func _cargar_siguiente_nivel():
+	Global.numero_nivel_actual += 1
+	_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
+	
+		
+"""
+# Reposicionar el vehículo al iniciador después del reinicio
+	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.ultima_ciudad]) + "/Iniciador").get_global_position())
+	# Reiniciar la velocidad lineal del vehículo a cero
+	var carro = $player_car as VehicleBody3D
+	carro.linear_velocity = Vector3(0, 0, 0)
+	$player_car.set_global_rotation(Vector3(0, 0, 0))
+"""
