@@ -26,32 +26,32 @@
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Kobe",
+							"2": "Riga",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Lucca",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Lima",
+							"2": "Gante",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Kobe",
+							"2": "Riga",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Troya",
+							"2": "Nice",
 							"3": ""
 						}
 					}
@@ -60,36 +60,36 @@
 					"seniales_izq": {
 						"izquierda": {
 							"1": "Riga",
-							"2": "",
+							"2": "Kobe",
 							"3": ""
 						},
 						"derecha": {
-							"1": "Kobe",
+							"1": "Troya",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Lucca",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Lima",
+							"2": "Kobe",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
+							"1": "Troya",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Lucca",
 							"3": ""
 						}
 					}
@@ -97,37 +97,37 @@
 				"3": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Troya",
+							"2": "Kobe",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "CUCEI",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
+							"1": "Luna",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Kobe",
+							"2": "Riga",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Lucca",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Sol",
 							"3": ""
 						}
 					}
@@ -135,37 +135,37 @@
 				"4": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Troya",
+							"2": "Kobe",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "CUCEI",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Oslo",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Kobe",
+							"2": "Riga",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "CUCEI",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Oslo",
 							"3": ""
 						}
 					}
@@ -173,37 +173,37 @@
 				"5": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Troya",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "CUCEI",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Oslo",
+							"2": "Luna",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Troya",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "CUCEI",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Oslo",
+							"2": "York",
 							"3": ""
 						}
 					}
@@ -211,37 +211,37 @@
 				"6": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Nice",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Oslo",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "York",
+							"2": "Sol",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Luna",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
+							"1": "Oslo",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "York",
+							"2": "Sol",
 							"3": ""
 						}
 					}
@@ -249,37 +249,37 @@
 				"7": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
+							"1": "Luna",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Oslo",
+							"2": "Sol",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "Gante",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Luna",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
+							"1": "Oslo",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "Gante",
 							"3": ""
 						}
 					}
@@ -287,37 +287,37 @@
 				"8": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "York",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Luna",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Oslo",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "Oslo",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
+							"1": "Luna",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Oslo",
 							"3": ""
 						}
 					}
@@ -325,37 +325,37 @@
 				"9": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
+							"1": "Lima",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Troya",
+							"2": "Kobe",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Oslo",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Lima",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Kobe",
+							"2": "Troya",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Sol",
 							"3": ""
 						}
 					}
@@ -363,37 +363,37 @@
 				"10": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Gante",
+							"2": "Sol",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Lima",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Luna",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "York",
+							"2": "Sol",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Kobe",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Oslo",
 							"3": ""
 						}
 					}
@@ -401,36 +401,36 @@
 				"11": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "Gante",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Lucca",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
+							"1": "Oslo",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "York",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Luna",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Oslo",
 							"2": "",
 							"3": ""
 						}
@@ -439,36 +439,36 @@
 				"12": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Lucca",
+							"2": "Oslo",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Nice",
+							"2": "Troya",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
+							"1": "CUCEI",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "Lucca",
 							"2": "",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
+							"1": "Nice",
 							"2": "",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
+							"1": "CUCEI",
 							"2": "",
 							"3": ""
 						}
@@ -477,37 +477,37 @@
 				"13": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "Gante",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Kobe",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Oslo",
+							"2": "Lucca",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Sol",
+							"2": "York",
 							"3": ""
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Luna",
+							"2": "Kobe",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Oslo",
+							"2": "Lucca",
 							"3": ""
 						}
 					}
@@ -1521,455 +1521,455 @@
 				"1": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Gante",
+							"3": "Sol"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
+							"1": "Troya",
+							"2": "Riga",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Oslo",
+							"2": "Lucca",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Lima",
+							"3": "Sol"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Gante",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "CUCEI",
+							"2": "Nice",
+							"3": "Lucca"
 						}
 					}
 				},
 				"2": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Lima",
+							"3": "Gante"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Riga",
+							"3": "Troya"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "CUCEI",
+							"2": "Lucca",
+							"3": "Oslo"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Lima",
+							"3": "Gante"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Troya",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Oslo",
+							"3": "CUCEI"
 						}
 					}
 				},
 				"3": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Sol",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Oslo",
+							"3": "CUCEI"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Gante",
+							"3": "Oslo"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Gante",
+							"3": "Riga"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Oslo",
+							"2": "Lucca",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "York",
+							"3": "Sol"
 						}
 					}
 				},
 				"4": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Gante",
+							"3": "Kobe"
 						},
 						"derecha": {
 							"1": "",
-							"2": "",
-							"3": ""
+							"2": "Lucca",
+							"3": "CUCEI"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Lima",
+							"3": "Oslo"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Kobe",
+							"3": "Gante"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
 							"1": "",
-							"2": "",
-							"3": ""
+							"2": "Lucca",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Oslo",
+							"2": "Sol",
+							"3": "Luna"
 						}
 					}
 				},
 				"5": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Lima",
+							"3": "Troya"
 						},
 						"derecha": {
 							"1": "",
-							"2": "",
+							"2": "CUCEI",
 							"3": ""
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Lima",
+							"3": "Luna"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Kobe",
+							"3": "Troya"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Nice",
+							"2": "CUCEI",
+							"3": "Troya"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Luna",
+							"2": "Sol",
+							"3": "Oslo"
 						}
 					}
 				},
 				"6": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Nice",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Sol",
+							"3": "Oslo"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Gante",
+							"3": "Sol"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Kobe",
+							"3": "Troya"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
 							"1": "",
-							"2": "",
+							"2": "Oslo",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Luna",
+							"3": "Lima"
 						}
 					}
 				},
 				"7": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Kobe",
+							"3": "Nice"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Lima",
+							"3": "Sol"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Sol",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Riga",
+							"3": "Troya"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "CUCEI",
+							"2": "Lucca",
+							"3": "Oslo"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Sol",
+							"3": "Lima"
 						}
 					}
 				},
 				"8": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Sol",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Luna",
+							"2": "Kobe",
+							"3": "Riga"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Nice",
+							"3": "Troya"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Gante",
+							"3": "Lima"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Kobe",
+							"2": "Troya",
+							"3": "Luna"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Nice",
+							"2": "CUCEI",
+							"3": "Lucca"
 						}
 					}
 				},
 				"9": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
+							"1": "Gante",
+							"2": "Sol",
 							"3": ""
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Nice",
+							"3": "CUCEI"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Oslo",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Kobe",
+							"3": "Gante"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Troya",
+							"3": "Riga"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Sol",
+							"3": "Oslo"
 						}
 					}
 				},
 				"10": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "York",
+							"2": "Gante",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Lima",
+							"3": "Kobe"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Nice",
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Gante",
+							"3": "Lima"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Kobe",
+							"3": "Troya"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Oslo",
+							"3": "CUCEI"
 						}
 					}
 				},
 				"11": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Gante",
+							"3": "Lima"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Kobe",
+							"3": "Luna"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "CUCEI",
+							"2": "Nice",
+							"3": "Lucca"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lima",
+							"2": "Sol",
+							"3": "Gante"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Luna",
+							"3": "Kobe"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "Oslo",
+							"3": "CUCEI"
 						}
 					}
 				},
 				"12": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "York",
+							"2": "Oslo",
+							"3": "Sol"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Troya",
+							"2": "Kobe",
+							"3": "Riga"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
 							"1": "",
 							"2": "",
-							"3": ""
+							"3": "CUCEI"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "York",
+							"3": "Luna"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Riga",
+							"2": "Troya",
+							"3": "Kobe"
 						},
 						"derecha": {
 							"1": "",
-							"2": "",
+							"2": "CUCEI",
 							"3": ""
 						}
 					}
@@ -1977,38 +1977,38 @@
 				"13": {
 					"seniales_izq": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Sol",
+							"2": "Riga",
+							"3": "Gante"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Nice",
+							"2": "Kobe",
+							"3": "Troya"
 						}
 					},
 					"seniales_der": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Lucca",
+							"2": "CUCEI",
+							"3": "Nice"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Gante",
+							"2": "Lima",
+							"3": "Riga"
 						}
 					},
 					"seniales_med": {
 						"izquierda": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "Nice",
+							"2": "Troya",
+							"3": "Kobe"
 						},
 						"derecha": {
-							"1": "",
-							"2": "",
-							"3": ""
+							"1": "CUCEI",
+							"2": "Lucca",
+							"3": "Nice"
 						}
 					}
 				}
