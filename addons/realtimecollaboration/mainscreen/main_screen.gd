@@ -244,9 +244,9 @@ func _peer_on_scene_update_modify(data):
 			print("Llamada a si mismo, no hace nada")
 		else:
 			print("Llamada desde otro, si hace")
-			print(data['data'])
+			#print(data['data'])
 			await writeFile(data['data'],_RECEIVE_PATH)
-			print(readFile(_RECEIVE_PATH))
+			#print(readFile(_RECEIVE_PATH))
 			#Create instance
 			var instance = ResourceLoader.load(_RECEIVE_PATH,"",ResourceLoader.CACHE_MODE_IGNORE).instantiate()
 			instance.scene_file_path = ""
