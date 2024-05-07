@@ -50,102 +50,102 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175016, 1, -14.1005)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_center" index="0"]
 shape = SubResource("BoxShape3D_uhbpr")
 
-[node name="doble_signs_6" parent="." index="6" instance=ExtResource("2_pk28u")]
+[node name="doble_signs_der" parent="." index="6" instance=ExtResource("2_pk28u")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -3.43513, 0, -1.51866)
 
-[node name="right_signs" type="Node3D" parent="doble_signs_6" index="7"]
+[node name="right_signs" type="Node3D" parent="doble_signs_der" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4064, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_6/right_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_der/right_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_6/right_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_der/right_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_6/right_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_der/right_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 1.65047, 4.4)
 font_size = 40
 
-[node name="left_signs" type="Node3D" parent="doble_signs_6" index="8"]
+[node name="left_signs" type="Node3D" parent="doble_signs_der" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00639898, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_6/left_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_der/left_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_6/left_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_der/left_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_6/left_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_der/left_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.699999, 1.64376, 4.4)
 font_size = 40
 
-[node name="doble_signs_7" parent="." index="7" instance=ExtResource("2_pk28u")]
+[node name="doble_signs_med" parent="." index="7" instance=ExtResource("2_pk28u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08878, 0, 4.63659)
 
-[node name="right_signs" type="Node3D" parent="doble_signs_7" index="7"]
+[node name="right_signs" type="Node3D" parent="doble_signs_med" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4064, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_7/right_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_med/right_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_7/right_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_med/right_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_7/right_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_med/right_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 1.65047, 4.4)
 font_size = 40
 
-[node name="left_signs" type="Node3D" parent="doble_signs_7" index="8"]
+[node name="left_signs" type="Node3D" parent="doble_signs_med" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00639898, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_7/left_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_med/left_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_7/left_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_med/left_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_7/left_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_med/left_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.699999, 1.64376, 4.4)
 font_size = 40
 
-[node name="doble_signs_8" parent="." index="8" instance=ExtResource("2_pk28u")]
+[node name="doble_signs_izq" parent="." index="8" instance=ExtResource("2_pk28u")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 3.55863, 0, -0.867229)
 
-[node name="right_signs" type="Node3D" parent="doble_signs_8" index="7"]
+[node name="right_signs" type="Node3D" parent="doble_signs_izq" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4064, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_8/right_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_izq/right_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_8/right_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_izq/right_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_8/right_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_izq/right_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 1.65047, 4.4)
 font_size = 40
 
-[node name="left_signs" type="Node3D" parent="doble_signs_8" index="8"]
+[node name="left_signs" type="Node3D" parent="doble_signs_izq" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00639898, 0, -4.47736)
 
-[node name="Label3D1" type="Label3D" parent="doble_signs_8/left_signs" index="0"]
+[node name="Label3D1" type="Label3D" parent="doble_signs_izq/left_signs" index="0"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.8, 4.4)
 font_size = 40
 
-[node name="Label3D2" type="Label3D" parent="doble_signs_8/left_signs" index="1"]
+[node name="Label3D2" type="Label3D" parent="doble_signs_izq/left_signs" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.7, 2.2, 4.4)
 font_size = 40
 
-[node name="Label3D3" type="Label3D" parent="doble_signs_8/left_signs" index="2"]
+[node name="Label3D3" type="Label3D" parent="doble_signs_izq/left_signs" index="2"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0.699999, 1.64376, 4.4)
 font_size = 40
 

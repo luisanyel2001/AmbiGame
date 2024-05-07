@@ -4,7 +4,11 @@ extends Node
 #var cronometro = null 
 
 var objetivo_nivel : String
+var inicio_nivel : String
+var numero_nivel_actual = 1
 var current_state = State.INACTIVE
+var habia_entrado = false
+var reiniciar = false
 
 enum State{
 	 READY,
@@ -18,6 +22,7 @@ var perdio = false
 
 func _ready():
 	pass
+	#numero_nivel_actual = 1
 	#cronometro = cronometro_scene.instantiate()
 	#get_tree().root.add_child(cronometro)
 

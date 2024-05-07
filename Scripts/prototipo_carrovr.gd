@@ -39,7 +39,7 @@ func _ready():
 	http_request.request_completed.connect(self._carga_nivel)
 
 	# Perform the HTTP request. The URL below returns a PNG image as of writing.
-	var error = http_request.request("https://luisanyel.000webhostapp.com/mapa.json")
+	var error = http_request.request("https://luisanyel.000webhostapp.com/mapa_antiguo.json")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 	
@@ -85,11 +85,8 @@ func _process(delta):
 					hide_textbox()	
 	
 func _carga_nivel(result, response_code, headers, body):
-	
-	print(response_code)
 	var json = JSON.new()
 	var response
-	
 	
 	#Obtiene el json del mapa, mediante http y en caso de error por archivo local
 	if response_code != 200:
@@ -108,12 +105,6 @@ func _carga_nivel(result, response_code, headers, body):
 	$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
 	Global.objetivo_nivel = objetivo_nivel
 	mostrar_texto_inicio()
-	
-	#Cargar nombre ciudades y Vincula areas3D de las ci
-	for i in range(1,13):	
-		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
-		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Letrero_terrestre/Label3D").text = response.ciudades[str(i)]
-		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Area3D").body_entered.connect(func(body):_deteccion_area_ciudad(response.ciudades[str(i)], body))
 	
 	#Nombra las ciudades, intersecciones y activa señales
 	for laberinto in range(1,5):
