@@ -139,11 +139,26 @@ func _vista_desarrollador(nivel,visible_):
 		get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/medio").text = "medio"
 		get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/medio").visible = visible_
 		
-
+#n_ciudad_actual
 func _reinicar():
 	if Global.reiniciar == true:
-		$player_car.position = $Ciudades/Ciudad_1/Iniciador.position
+		# Guardar la posición actual del jugador como último punto de reinicio
+		var ultimo_punto_de_reinicio = $player_car.global_position
+
+		# Reiniciar la posición del jugador a los puntos de inicio de las ciudades
+		for i in range(1, 13):
+			get_node("$player_car").position = get_node("Ciudades/Ciudad_" + str(i) + "/Iniciador").position
+
+		# Reposicionar el vehículo al iniciador después del reinicio
+		$player_car.set_global_position($Iniciador.get_global_position())
+		$player_car.set_global_rotation(Vector3(0, 0, 0))
+		
+		# Reiniciar la velocidad lineal del vehículo a cero
+		var carro = $player_car as VehicleBody3D
+		carro.linear_velocity = Vector3(0, 0, 0)
+
 		
 func _process(delta):
 	_reinicar()
 	
+

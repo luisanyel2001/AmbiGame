@@ -162,6 +162,7 @@ theme_override_font_sizes/font_size = 40
 text = " TERMINAR"
 
 [node name="Label" type="Label" parent="UIPausa"]
+layout_mode = 0
 offset_left = 431.0
 offset_top = 25.0
 offset_right = 731.0
@@ -195,6 +196,7 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="UIFinal"]
 self_modulate = Color(1, 1, 1, 0.486275)
 show_behind_parent = true
+layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
 offset_right = 1146.0
