@@ -1,5 +1,6 @@
-[gd_scene load_steps=63 format=3 uid="uid://cscbtfr7fc6e2"]
+[gd_scene load_steps=64 format=3 uid="uid://cscbtfr7fc6e2"]
 
+[ext_resource type="Script" path="res://Scripts/mapa_final.gd" id="1_8bm2q"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="2_3j1p3"]
 [ext_resource type="Texture2D" uid="uid://1veapuhn85gr" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_spec.png" id="3_lhx7y"]
 [ext_resource type="PackedScene" uid="uid://dqofr87akxmu2" path="res://Propts/tuneles_tscn/right_road_tunnel_doble.tscn" id="4_0ulk0"]
@@ -257,8 +258,9 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[node name="prototipoCarro" type="Node3D"]
+[node name="Mapa_Final" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
+script = ExtResource("1_8bm2q")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sg6oo")
@@ -486,7 +488,7 @@ transform = Transform3D(0.707107, 0, -1.41421, 0, 1, 0, 0.707107, 0, 1.41421, -3
 [node name="road_tunnel9" parent="Tuneles" instance=ExtResource("5_po23s")]
 transform = Transform3D(0.707107, 0, -1.41421, 0, 1, 0, 0.707107, 0, 1.41421, -228.741, 0, 163.402)
 
-[node name="intersection_tunnel" parent="Tuneles" instance=ExtResource("6_npv40")]
+[node name="intersection_tunnel1" parent="Tuneles" instance=ExtResource("6_npv40")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 1, 0, -2, 0, -8.74228e-08, 96.9, 0, -127.4)
 
 [node name="intersection_tunnel9" parent="Tuneles" instance=ExtResource("6_npv40")]
@@ -603,9 +605,6 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="right_road_tunnel23" parent="Tuneles" instance=ExtResource("4_0ulk0")]
 transform = Transform3D(-1.99855, 0, -0.0761825, 0, 1, 0, 0.0761825, 0, -1.99855, 339.453, 0, 468.16)
 
-[node name="intersection_tunnel14" parent="Tuneles" instance=ExtResource("6_npv40")]
-transform = Transform3D(1.41421, 0, 1.41421, 0, 1, 0, -1.41421, 0, 1.41421, -34.5491, 0, -127.683)
-
 [node name="right_road_tunnel24" parent="Tuneles" instance=ExtResource("4_0ulk0")]
 transform = Transform3D(1.99961, 0, 0.0396165, 0, 1, 0, -0.0396165, 0, 1.99961, -69.7109, 0, -163.734)
 
@@ -665,6 +664,12 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.000500202, 0)
 
 [node name="City" parent="Ciudades/Ciudad_1/LowPolyCITY" index="0"]
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 0, 0)
+
+[node name="Label3D" parent="Ciudades/Ciudad_1/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Luna"
+
+[node name="Label3D" parent="Ciudades/Ciudad_1/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Luna"
 
 [node name="salida" parent="Ciudades/Ciudad_1" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(1.01402, 0, 6.48962e-05, 0, 1, 0, -0.00276079, 0, 0.0238359, -43.4363, 0.0214081, 1.1091)
@@ -855,6 +860,12 @@ surface_material_override/0 = SubResource("ORMMaterial3D_id27b")
 [node name="City" parent="Ciudades/Ciudad_2/LowPolyCITY" index="0"]
 mesh = null
 
+[node name="Label3D" parent="Ciudades/Ciudad_2/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Sol"
+
+[node name="Label3D" parent="Ciudades/Ciudad_2/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Sol"
+
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_2/LowPolyCITY/Area3D" index="0"]
 transform = Transform3D(0.70404, 0, -0.710161, 0, 1, 0, 0.710161, 0, 0.70404, -1.62119, 0, -2.3421)
 
@@ -876,6 +887,12 @@ surface_material_override/2 = SubResource("ORMMaterial3D_j1123")
 surface_material_override/3 = SubResource("ORMMaterial3D_j0irs")
 surface_material_override/4 = SubResource("ORMMaterial3D_upraw")
 surface_material_override/5 = SubResource("ORMMaterial3D_s0trc")
+
+[node name="Label3D" parent="Ciudades/Ciudad_3/LowPolyCITY/Letrero_aereo" index="0"]
+text = "York"
+
+[node name="Label3D" parent="Ciudades/Ciudad_3/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "York"
 
 [node name="salida" parent="Ciudades/Ciudad_3" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(0.00784012, 0, -0.0238353, 0, 1, 0, 1.01399, 0, 0.000184293, 1.3, 1.3, -44.729)
@@ -963,6 +980,12 @@ surface_material_override/2 = SubResource("ORMMaterial3D_fwn8m")
 surface_material_override/3 = SubResource("ORMMaterial3D_103k7")
 surface_material_override/4 = SubResource("ORMMaterial3D_ty6xi")
 surface_material_override/5 = SubResource("ORMMaterial3D_n7qew")
+
+[node name="Label3D" parent="Ciudades/Ciudad_4/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Lima"
+
+[node name="Label3D" parent="Ciudades/Ciudad_4/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Lima"
 
 [node name="salida" parent="Ciudades/Ciudad_4" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(0.00479621, 0, 0.0238358, 0, 1, 0, -1.01401, 0, 0.000112743, 1.61252, -0.148, 42.0905)
@@ -1053,6 +1076,12 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="City" parent="Ciudades/Ciudad_5/LowPolyCITY" index="0"]
 mesh = null
+
+[node name="Label3D" parent="Ciudades/Ciudad_5/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Gante"
+
+[node name="Label3D" parent="Ciudades/Ciudad_5/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Gante"
 
 [node name="esquina_frente_izq" parent="Ciudades/Ciudad_5" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(0.00550395, 0, -0.0238357, 0, 1, 0, 1.014, 0, 0.000129376, -39.0424, -0.148, 42.1299)
@@ -1227,6 +1256,12 @@ surface_material_override/3 = SubResource("ORMMaterial3D_8j2xe")
 surface_material_override/4 = SubResource("ORMMaterial3D_gtpmu")
 surface_material_override/5 = SubResource("ORMMaterial3D_l8l1y")
 
+[node name="Label3D" parent="Ciudades/Ciudad_6/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Oslo"
+
+[node name="Label3D" parent="Ciudades/Ciudad_6/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Oslo"
+
 [node name="Ciudad_7" type="Node3D" parent="Ciudades"]
 transform = Transform3D(-1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, 116.451, 6.586, 417.302)
 
@@ -1321,6 +1356,12 @@ surface_material_override/0 = SubResource("ORMMaterial3D_wkfk7")
 [node name="City" parent="Ciudades/Ciudad_7/LowPolyCITY" index="0"]
 mesh = null
 
+[node name="Label3D" parent="Ciudades/Ciudad_7/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Lucca"
+
+[node name="Label3D" parent="Ciudades/Ciudad_7/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Lucca"
+
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_7/LowPolyCITY/Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.850006, 0, -2.65578)
 
@@ -1408,6 +1449,12 @@ surface_material_override/0 = SubResource("ORMMaterial3D_gbamm")
 
 [node name="City" parent="Ciudades/Ciudad_8/LowPolyCITY" index="0"]
 mesh = null
+
+[node name="Label3D" parent="Ciudades/Ciudad_8/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Kobe"
+
+[node name="Label3D" parent="Ciudades/Ciudad_8/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Kobe"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_8/LowPolyCITY/Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0, -2.14998)
@@ -1506,6 +1553,12 @@ surface_material_override/0 = SubResource("ORMMaterial3D_xx8e1")
 [node name="City" parent="Ciudades/Ciudad_9/LowPolyCITY" index="0"]
 mesh = null
 
+[node name="Label3D" parent="Ciudades/Ciudad_9/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Riga"
+
+[node name="Label3D" parent="Ciudades/Ciudad_9/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Riga"
+
 [node name="Ciudad_10" type="Node3D" parent="Ciudades"]
 transform = Transform3D(2.06632e-07, 0, -1, 0, 1, 0, 1, 0, 2.06632e-07, 407.651, 6.586, 168.202)
 
@@ -1600,6 +1653,12 @@ transform = Transform3D(0.00520115, 0, 0.0829989, 0, 0.999, 0, -0.999986, 0, 0.0
 
 [node name="City" parent="Ciudades/Ciudad_10/LowPolyCITY" index="0"]
 mesh = null
+
+[node name="Label3D" parent="Ciudades/Ciudad_10/LowPolyCITY/Letrero_aereo" index="0"]
+text = "Nice"
+
+[node name="Label3D" parent="Ciudades/Ciudad_10/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Nice"
 
 [node name="CollisionShape3D" parent="Ciudades/Ciudad_10/LowPolyCITY/Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42204, 0, -2.64832)
@@ -1701,6 +1760,10 @@ surface_material_override/5 = SubResource("ORMMaterial3D_eiycl")
 [node name="Label3D" parent="Ciudades/Ciudad_11/LowPolyCITY/Letrero_aereo" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.600037, 43.5714, 0)
 double_sided = false
+text = "Troya"
+
+[node name="Label3D" parent="Ciudades/Ciudad_11/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "Troya"
 
 [node name="Ciudad_12" type="Node3D" parent="Ciudades"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 496.175, 5.221, 462.577)
@@ -1721,6 +1784,12 @@ surface_material_override/2 = SubResource("ORMMaterial3D_epf0l")
 surface_material_override/3 = SubResource("ORMMaterial3D_aoo2a")
 surface_material_override/4 = SubResource("ORMMaterial3D_wokmu")
 surface_material_override/5 = SubResource("ORMMaterial3D_hw18g")
+
+[node name="Label3D" parent="Ciudades/Ciudad_12/LowPolyCITY/Letrero_aereo" index="0"]
+text = "CUCEI"
+
+[node name="Label3D" parent="Ciudades/Ciudad_12/LowPolyCITY/Letrero_terrestre" index="0"]
+text = "CUCEI"
 
 [node name="salida" parent="Ciudades/Ciudad_12" instance=ExtResource("8_8nnm2")]
 transform = Transform3D(1.01354, 0, 0.000739557, 0, 1, 0, -0.031462, 0, 0.0238245, -48.3064, 1.21377, 2.47742)
