@@ -111,9 +111,9 @@ func _carga_nivel(result, response_code, headers, body):
 	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
-		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
-		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Letrero_terrestre/Label3D").text = response.ciudades[str(i)]
-		get_node("Ciudades/LowPolyCITY_" + str(i) + "/Area3D").body_entered.connect(func(body):_deteccion_area_ciudad(response.ciudades[str(i)], body))
+		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Letrero_aereo/Label3D").text = response.ciudades[str(i)]
+		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Letrero_terrestre/Label3D").text = response.ciudades[str(i)]
+		get_node("Ciudades/Ciudad_" + str(i) + "/LowPolyCITY/Area3D").body_entered.connect(func(body):_deteccion_area_ciudad(response.ciudades[str(i)], body))
 	
 	#Nombra las ciudades, intersecciones y activa señales
 	for laberinto in range(1,5):
