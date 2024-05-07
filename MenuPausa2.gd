@@ -1,7 +1,5 @@
 extends Control
 
-
-
 var is_paused: bool = false
 
 func _unhandled_input(event):

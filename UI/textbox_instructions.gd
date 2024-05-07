@@ -1,6 +1,7 @@
 
 extends CanvasLayer
 
+#-------------------------------------Mensajes-------------------------------------
 const CHAR_READ_RATE = 0.1
 
 @onready var textbox_container = $TextboxContainer
@@ -65,6 +66,7 @@ func display_text():
 func _process(delta):
 	#print("VR estado:" + str(Global.current_state))
 	deteccion()
+	set_is_paused()
 	
 	match Global.current_state:
 		Global.State.INACTIVE:
@@ -117,3 +119,23 @@ func _agregar_mensaje(mensaje):
 	queue_text(mensaje + "                ")
 	display_text()
 	
+	
+#-------------------------------------Menu Pausa-------------------------------------
+@onready var ui_pause = $UIPausa
+
+func set_is_paused():
+	if Global.is_paused == true:
+		$UIPausa.show()
+
+func _on_reanudar_button_pressed():
+	Global.is_paused = false
+	$UIPausa.hide()
+
+func _on_reiniciar_button_pressed():
+	Global.reiniciar = true
+	$UIPausa.hide()
+
+func _on_terminar_button_pressed():
+	$UIFinal.show()
+	$UIFinal/Tolerancia.text = $UIFinal/Tolerancia.text + Global.tolerancia 
+

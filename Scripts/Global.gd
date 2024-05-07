@@ -9,6 +9,8 @@ var numero_nivel_actual = 1
 var current_state = State.INACTIVE
 var habia_entrado = false
 var reiniciar = false
+var is_paused: bool = false
+var tolerancia = -1.0
 
 enum State{
 	 READY,

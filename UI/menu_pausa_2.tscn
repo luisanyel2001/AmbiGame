@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="2_k1ep7"]
 [ext_resource type="Texture2D" uid="uid://to86mfjqymhc" path="res://imgs/Over.jpg" id="3_wubw0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8gud"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5ikq"]
 bg_color = Color(0.439216, 0.0666667, 0.105882, 1)
 border_width_bottom = 5
 corner_radius_top_left = 10
@@ -12,7 +12,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f3jp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ushlo"]
 bg_color = Color(0.705882, 0.137255, 0.196078, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
@@ -21,7 +21,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s1qo"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ybaj"]
 bg_color = Color(0.376471, 0.0509804, 0.0862745, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
@@ -31,14 +31,14 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_r7h58"]
-Button/styles/hover = SubResource("StyleBoxFlat_d8gud")
-Button/styles/normal = SubResource("StyleBoxFlat_2f3jp")
-Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
+Button/styles/hover = SubResource("StyleBoxFlat_i5ikq")
+Button/styles/normal = SubResource("StyleBoxFlat_ushlo")
+Button/styles/pressed = SubResource("StyleBoxFlat_4ybaj")
 
 [sub_resource type="Theme" id="Theme_wxfur"]
-Button/styles/hover = SubResource("StyleBoxFlat_d8gud")
-Button/styles/normal = SubResource("StyleBoxFlat_2f3jp")
-Button/styles/pressed = SubResource("StyleBoxFlat_7s1qo")
+Button/styles/hover = SubResource("StyleBoxFlat_i5ikq")
+Button/styles/normal = SubResource("StyleBoxFlat_ushlo")
+Button/styles/pressed = SubResource("StyleBoxFlat_4ybaj")
 
 [sub_resource type="SystemFont" id="SystemFont_ev5oe"]
 font_names = PackedStringArray("Century Gothic")
