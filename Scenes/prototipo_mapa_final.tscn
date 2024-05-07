@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="11_6pimh"]
 [ext_resource type="PackedScene" uid="uid://c41d5dqpsqgex" path="res://Propts/city/statue/statue_of_liberty.tscn" id="11_sssgx"]
 [ext_resource type="PackedScene" uid="uid://c8wc1gl3pxsrm" path="res://Propts/city/tower/towers .glb" id="12_ap4i6"]
-[ext_resource type="PackedScene" uid="uid://bqlg6jujvhuq7" path="res://Propts/Player/player_car_normal.tscn" id="12_yads5"]
+[ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="16_glm2r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -1924,8 +1924,7 @@ text = "v"
 [node name="MenuPausa3" parent="." instance=ExtResource("11_6pimh")]
 visible = false
 
-[node name="car" parent="." instance=ExtResource("12_yads5")]
-transform = Transform3D(-0.00603887, 0, -0.999982, 0, 1, 0, 0.999982, 0, -0.00603887, 66.938, 0.27529, -127.136)
+[node name="player_car" parent="." instance=ExtResource("16_glm2r")]
 
 [editable path="Ciudades/Ciudad_1/LowPolyCITY"]
 [editable path="Ciudades/Ciudad_2/Statue_Of_Liberty_V1_L1_123c900cd28e-fc75-4b50-864a-794c87ddefce"]

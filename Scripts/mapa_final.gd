@@ -1,4 +1,4 @@
-@tool #Descomentar para ver vista previa
+#@tool #Descomentar para ver vista previa
 extends Node3D
 #Init peticiones
 var http_request = HTTPRequest.new()
@@ -125,11 +125,11 @@ func _peticion_http(url):
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
-
+"""
 func _process(delta):
 	pass
 #----------------------------UI-----------------------------
-"""
+
 #UI
 enum State{
 	 READY,
