@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnximw1ob6xqp"]
+[gd_scene load_steps=4 format=3 uid="uid://dnximw1ob6xqp"]
 
 [ext_resource type="Script" path="res://UI/textbox_instructions.gd" id="1_n3yrs"]
 [ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="1_uaaqx"]
-[ext_resource type="PackedScene" uid="uid://q73y7b2rbxe7" path="res://Scenes/prototipo_carro_2normal.tscn" id="3_7m65b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3p4e"]
 bg_color = Color(0.172549, 0.172549, 0.172549, 1)
@@ -16,6 +15,7 @@ border_color = Color(1, 1, 1, 1)
 script = ExtResource("1_n3yrs")
 
 [node name="TextboxContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -60,7 +60,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_uaaqx")
 theme_override_font_sizes/font_size = 35
-text = "Hola "
 autowrap_mode = 2
 clip_text = true
 
@@ -71,5 +70,3 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_uaaqx")
 theme_override_font_sizes/font_size = 35
 text = "v"
-
-[node name="prototipoCarro" parent="." instance=ExtResource("3_7m65b")]

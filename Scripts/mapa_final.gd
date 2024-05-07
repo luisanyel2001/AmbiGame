@@ -22,20 +22,18 @@ var promedio_tiempo_decision = 0
 
 func _deteccion_area_ciudad(id, body):
 	print("Se activo el area de " + id + " y entro un " + body.to_string())
-	"""
-	if id == objetivo_nivel:
-		gano = true
+	
+	if id == Global.objetivo_nivel:
 		Global.gano = true
-		_cargar_siguiente_nivel()
-		$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
+		#_cargar_siguiente_nivel()
+		#$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
 	else:
-		perdio = true
 		Global.perdio = true
 		
-	reiniciar = true
-	_carga_UI(gano)
-	_carga_IA(gano)
-	"""
+	#reiniciar = true
+	#_carga_UI(gano)
+
+	
 
 func _carga_nivel(result, response_code, headers, body):
 	var json = JSON.new()
@@ -53,9 +51,9 @@ func _carga_nivel(result, response_code, headers, body):
 		response = json.get_data()
 	
 	#Cambia letreros e inicia indicaciones
-	print(str(Global.numero_nivel_actual))
+	print("Nivel actual " + str(Global.numero_nivel_actual))
 	Global.objetivo_nivel = response.niveles[str(Global.numero_nivel_actual)]['objetivo']
-	$MenuPausa3/Label/Label.text = "Tu objetivo es: " + Global.objetivo_nivel
+	#$MenuPausa3/Label/Label.text = "Tu objetivo es: " + Global.objetivo_nivel
 	##mostrar_texto_inicio()
 	
 	#Cargar nombre ciudades y Vincula areas3D de las ci
@@ -82,7 +80,7 @@ func _carga_nivel(result, response_code, headers, body):
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_med/left_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_med"]["izquierda"][str(letrero)]
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_med/right_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_med"]["derecha"][str(letrero)]
 		
-	print("Me mapa se actualizo correctamente")
+	print("Mapa actualizado correctamente")
 	
 	
 func _interseccion_area(body):
@@ -219,8 +217,6 @@ func change_state(next_state):
 			print("Cambiando estado a: State.INACTIVE")
 
 """
-
-
 
 
 

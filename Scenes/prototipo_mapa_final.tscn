@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cscbtfr7fc6e2"]
+[gd_scene load_steps=62 format=3 uid="uid://cscbtfr7fc6e2"]
 
 [ext_resource type="Script" path="res://Scripts/mapa_final.gd" id="1_8bm2q"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="2_3j1p3"]
@@ -11,11 +11,11 @@
 [ext_resource type="ArrayMesh" uid="uid://b7p4xvhmlvrtr" path="res://Propts/city/white_house/10090_white_house_v1_L1.obj" id="8_kgdy4"]
 [ext_resource type="PackedScene" uid="uid://cwqsoy51a2yq" path="res://Propts/city/low_poly_city.tscn" id="9_8se8u"]
 [ext_resource type="PackedScene" uid="uid://ckmkfp3bcovp3" path="res://Propts/tuneles_tscn/carretera_interior.tscn" id="9_anurq"]
-[ext_resource type="FontFile" uid="uid://bgj17gt6w4fma" path="res://UI/fonts/Connection.otf" id="10_rui6g"]
-[ext_resource type="PackedScene" uid="uid://c8obg1n1ud002" path="res://UI/menu_pausa_2.tscn" id="11_6pimh"]
 [ext_resource type="PackedScene" uid="uid://c41d5dqpsqgex" path="res://Propts/city/statue/statue_of_liberty.tscn" id="11_sssgx"]
 [ext_resource type="PackedScene" uid="uid://c8wc1gl3pxsrm" path="res://Propts/city/tower/towers .glb" id="12_ap4i6"]
 [ext_resource type="PackedScene" uid="uid://mv5so6xntila" path="res://Propts/Player/player_car_vr.tscn" id="16_glm2r"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="17_c1jr5"]
+[ext_resource type="PackedScene" uid="uid://dnximw1ob6xqp" path="res://UI/textbox_instructions.tscn" id="18_xilgu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6dpl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -157,106 +157,6 @@ albedo_color = Color(1, 0.796078, 0.988235, 1)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_hw18g"]
 albedo_color = Color(1, 0.796078, 0.988235, 1)
-
-[sub_resource type="GDScript" id="GDScript_nis38"]
-script/source = "
-extends CanvasLayer
-
-const CHAR_READ_RATE = 0.05
-
-@onready var textbox_container = $TextboxContainer
-@onready var start_symbol = $TextboxContainer/MarginContainer/HBoxContainer/Start
-@onready var end_symbol = $TextboxContainer/MarginContainer/HBoxContainer/End
-@onready var label = $TextboxContainer/MarginContainer/HBoxContainer/Label
-
-enum State{
-	 READY,
-	 READING,
-	 FINISHED
-}
-
-var current_state = State.READY
-var text_queue = []
-
-#animacion letras
-var current_text = \"\"
-var current_char = 0
-var char_timer = 0.0
-var is_text_displayed = false 
-
-func _ready():
-	hide_textbox()
-	print(\"Iniciando: State.READY\")
-
-	
-func queue_text(next_text):
-	queue_text(\"Haz llegado a tu Destino! Ahora dirigete hacia ...\")
-	queue_text(\"Continua yendo hacia ... \")
-	queue_text(\"Textooooo treees\")
-	text_queue.push_back(next_text)
-
-func hide_textbox():
-	start_symbol.text = \"\"
-	end_symbol.text = \"\"
-	label.text = \"\"
-	textbox_container.hide()
-
-func show_textbox():
-	start_symbol.text = \"*\"
-	textbox_container.show()
-
-func display_text():
-	var next_text = text_queue.pop_front()
-	current_text = next_text
-	change_state(State.READING)
-	label.text = \"\"
-	show_textbox()
-	current_char = 0
-	char_timer = 0.0
-	is_text_displayed = false  # Reiniciar is_text_displayed cuando se agrega nuevo texto
-
-func _process(delta):
-	match current_state:
-		State.READY:
-			if !text_queue.is_empty():
-				display_text()
-		State.READING:
-			if not is_text_displayed and current_char < current_text.length():
-				char_timer += delta
-				if char_timer > CHAR_READ_RATE:
-					label.text += current_text[current_char]
-					current_char += 1
-					char_timer = 0.0
-			else:
-				# Detener el proceso cuando se haya mostrado todo el texto
-				is_text_displayed = true  # Se ha mostrado todo el texto
-				change_state(State.FINISHED)
-
-		State.FINISHED:
-			if Input.is_action_just_pressed(\"ui_accept\"): #Al finalizar presionar enter para quitar textbox
-				change_state(State.READY)
-				hide_textbox()
-				
-
-
-func change_state(next_state):
-	current_state = next_state
-	match current_state:
-		State.READY:
-			print(\"Cambiando estado a: State.READY\")
-		State.READING:
-			print(\"Cambiando estado a: State.READING\")
-		State.FINISHED:
-			print(\"Cambiando estado a: State.FINISHED\")
-"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7as8l"]
-bg_color = Color(0.172549, 0.172549, 0.172549, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
 
 [node name="Mapa_Final" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
@@ -1861,70 +1761,14 @@ transform = Transform3D(-0.993569, 0, -0.00377949, 0, 1, 0, 0.0310159, 0, -0.121
 [node name="Node3D6" parent="Ciudades/Ciudad_12" instance=ExtResource("9_anurq")]
 transform = Transform3D(0.0367544, 0, -0.121632, 0, 1, 0, 0.993348, 0, 0.00450048, -5.60638, 1.2135, -41.489)
 
-[node name="Textbox" type="CanvasLayer" parent="."]
-script = SubResource("GDScript_nis38")
-
-[node name="TextboxContainer" type="MarginContainer" parent="Textbox"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -212.0
-offset_right = -50.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="Textbox/TextboxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7as8l")
-
-[node name="MarginContainer" type="MarginContainer" parent="Textbox/TextboxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Panel" type="Panel" parent="Textbox/TextboxContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Textbox/TextboxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Start" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("10_rui6g")
-theme_override_font_sizes/font_size = 35
-text = "* "
-
-[node name="Label" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("10_rui6g")
-theme_override_font_sizes/font_size = 35
-text = "Hola "
-autowrap_mode = 2
-clip_text = true
-
-[node name="End" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("10_rui6g")
-theme_override_font_sizes/font_size = 35
-text = "v"
-
-[node name="MenuPausa3" parent="." instance=ExtResource("11_6pimh")]
-visible = false
-
 [node name="player_car" parent="." instance=ExtResource("16_glm2r")]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 2.5, 0)
+
+[node name="Viewport2Din3D" parent="player_car" instance=ExtResource("17_c1jr5")]
+transform = Transform3D(-4.37114e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.37114e-11, -3.1, 0.4, 0)
+screen_size = Vector2(1152, 648)
+scene = ExtResource("18_xilgu")
+viewport_size = Vector2(1152, 648)
 
 [editable path="Ciudades/Ciudad_1/LowPolyCITY"]
 [editable path="Ciudades/Ciudad_2/Statue_Of_Liberty_V1_L1_123c900cd28e-fc75-4b50-864a-794c87ddefce"]
@@ -1943,4 +1787,3 @@ visible = false
 [editable path="Ciudades/Ciudad_10/LowPolyCITY"]
 [editable path="Ciudades/Ciudad_11/LowPolyCITY"]
 [editable path="Ciudades/Ciudad_12/LowPolyCITY"]
-[editable path="MenuPausa3"]
