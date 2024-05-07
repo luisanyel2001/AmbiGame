@@ -1680,7 +1680,6 @@ surface_material_override/5 = SubResource("ORMMaterial3D_eiycl")
 
 [node name="Label3D" parent="Ciudades/Ciudad_11/LowPolyCITY/Letrero_aereo" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.600037, 43.5714, 0)
-billboard = 1
 double_sided = false
 
 [node name="Ciudad_12" type="Node3D" parent="Ciudades"]

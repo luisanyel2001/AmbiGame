@@ -163,3 +163,9 @@ mesh = SubResource("PlaneMesh_opggb")
 transform = Transform3D(-0.0029448, -7.81597e-14, 1.35056, -5.3136e-08, 1, 5.71085e-08, -0.74151, 1.42109e-14, 0.492455, 0.0434377, 0.149932, -12.7234)
 material_override = SubResource("ORMMaterial3D_gu468")
 mesh = SubResource("PlaneMesh_opggb")
+
+[node name="Label3D" type="Label3D" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.1, 0)
+pixel_size = 0.3
+billboard = 1
+text = "TEXT"

@@ -16,6 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.124, 0)
 [node name="Label3D" type="Label3D" parent="Letrero_aereo" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.6, 0, 0)
 pixel_size = 1.0
+billboard = 1
 text = "Nombre
 "
 
