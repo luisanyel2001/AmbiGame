@@ -22,6 +22,8 @@ func _ready():
 func _process(delta):
 	pass
 	
+	
+	
 func _physics_process(delta):
 	#steering = Input.get_axis("right", "left") * .4
 	"""
@@ -66,3 +68,7 @@ func _input(event):
 		volante.rotation_degrees.z = clamp(rotacion, -max_rotacion, max_rotacion)
 		volante.rotate_z(deg_to_rad(event.relative.x))	
 		# El jugador está arrastrando el mouse, gira el volante
+	if event is InputEventKey:
+		var key_event = event as InputEventKey
+		if key_event.keycode == KEY_B and key_event.pressed:
+			Global.is_paused = true

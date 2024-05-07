@@ -27,7 +27,11 @@ func _deteccion_area_ciudad(id, body):
 	if id == Global.objetivo_nivel:
 		Global.gano = true
 		_cargar_siguiente_nivel()
-
+		destinosCorrectos += 1
+		_calculoToleranciaAmbiguedad()
+	else:
+		destinosIncorrectos += 1		
+		_calculoToleranciaAmbiguedad()
 
 func _carga_nivel(result, response_code, headers, body):
 	var json = JSON.new()
@@ -46,9 +50,9 @@ func _carga_nivel(result, response_code, headers, body):
 	
 	#Cambia letreros e inicia indicaciones
 	print("Nivel actual " + str(Global.numero_nivel_actual))
+	Global.inicio_nivel = response.niveles[str(Global.numero_nivel_actual)]['inicia:'] 
 	Global.objetivo_nivel = response.niveles[str(Global.numero_nivel_actual)]['objetivo']
-	#$MenuPausa3/Label/Label.text = "Tu objetivo es: " + Global.objetivo_nivel
-	##mostrar_texto_inicio()
+	
 	ciudades_to_num = {}
 	#Cargar nombre ciudades y Vincula areas3D de las ci
 	for i in range(1,13):	
@@ -143,15 +147,18 @@ func _reinicar():
 	if Global.reiniciar == true:
 		# Reposicionar el vehículo al iniciador después del reinicio
 		$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.ultima_ciudad]) + "/Iniciador").get_global_position())
+		Global.reiniciar = false
 		# Reiniciar la velocidad lineal del vehículo a cero
-		var carro = $player_car as VehicleBody3D
-		carro.linear_velocity = Vector3(0, 0, 0)
-		$player_car.set_global_rotation(Vector3(0, 0, 0))
+		#var carro = $player_car as VehicleBody3D
+		#carro.linear_velocity = Vector3(0, 0, 0)
+		#$player_car.set_global_rotation(Vector3(0, 0, 0))
 		
 		
 func _termino():
 	if Global.termino == true:
+		print("Calcula tolerancia")
 		Global.tolerancia = _calculoToleranciaAmbiguedad()
+		print("Tolerancia: " + str(Global.tolerancia))
 		
 func _process(delta):
 	_reinicar()
@@ -165,16 +172,7 @@ func _cargar_siguiente_nivel():
 		_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
 	
 		
-<<<<<<< Updated upstream
-=======
-"""
-# Reposicionar el vehículo al iniciador después del reinicio
-	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.ultima_ciudad]) + "/Iniciador").get_global_position())
-	# Reiniciar la velocidad lineal del vehículo a cero
-	var carro = $player_car as VehicleBody3D
-	carro.linear_velocity = Vector3(0, 0, 0)
-	$player_car.set_global_rotation(Vector3(0, 0, 0))
-"""
+
 func _carga_IA(gano):
 	if gano:		
 		destinosCorrectos += 1
@@ -184,7 +182,7 @@ func _carga_IA(gano):
 		_calculoToleranciaAmbiguedad()
 func _calculoToleranciaAmbiguedad():	
 	if destinosCorrectos > 0 || destinosIncorrectos > 0:
-		velocidadPromedio = vehicle.velocidad_promedio / 20 #normalizado sobre la velocidad maxima esperada		
+		velocidadPromedio = 10#vehicle.velocidad_promedio / 20 #normalizado sobre la velocidad maxima esperada		
 		var toleranciaAmbiguedad = (destinosCorrectos/(destinosCorrectos+destinosIncorrectos))
 		toleranciaAmbiguedad += velocidadPromedio/tiempoTotal		
 		_guardarCalculoAmbiguedad()		
@@ -259,4 +257,4 @@ func _on_request_completed(result, response_code, headers, body):
 	print("Código de respuesta HTTP: ", response_code)
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	print("DEBUG RESPUESTA REGRESION: ",json)
->>>>>>> Stashed changes
+

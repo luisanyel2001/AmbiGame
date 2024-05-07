@@ -166,24 +166,28 @@ mesh = SubResource("PlaneMesh_opggb")
 
 [node name="nombre_interseccion" type="Label3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.1, 0)
+visible = false
 pixel_size = 0.3
 billboard = 1
 text = "TEXT"
 
 [node name="izquierda" type="Label3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4, 34.3, -6.2)
+visible = false
 pixel_size = 0.15
 billboard = 1
 text = "TEXT"
 
 [node name="derecha" type="Label3D" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 34.3, -7.05)
+visible = false
 pixel_size = 0.15
 billboard = 1
 text = "TEXT"
 
 [node name="medio" type="Label3D" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150001, 34.3, 5.95)
+visible = false
 pixel_size = 0.15
 billboard = 1
 text = "TEXT"

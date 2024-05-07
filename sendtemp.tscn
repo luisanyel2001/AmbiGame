@@ -1,8 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://dus7nkhrn7pik"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_q2c6e"]
+[sub_resource type="SystemFont" id="SystemFont_g306t"]
+font_names = PackedStringArray("Century Gothic")
 
-[node name="Iniciador" type="MeshInstance3D"]
-transform = Transform3D(2.11963, 0, 0, 0, 1.45473, 0, 0, 0, 4.11723, 47.1231, 1.29891, -1.17235)
-visible = false
-mesh = SubResource("BoxMesh_q2c6e")
+[node name="Label" type="Label"]
+layout_mode = 0
+offset_left = -83.0
+offset_top = 87.0
+offset_right = 217.0
+offset_bottom = 131.0
+theme_override_fonts/font = SubResource("SystemFont_g306t")
+theme_override_font_sizes/font_size = 35
+text = "Tu objetivo es: "
+horizontal_alignment = 1
+vertical_alignment = 1

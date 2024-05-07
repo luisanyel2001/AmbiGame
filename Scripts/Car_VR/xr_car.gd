@@ -56,13 +56,25 @@ func _acelerar(action,value):
 		var porcentaje = (value - 0) / (1 - 0)
 		engine_force = lerp(3400, 4500, porcentaje) #3400-4500
 		#print("Acelerador: " + str(engine_force))
-		#print("Velocidad: " + str(round(linear_velocity.length())))
+		print("Velocidad y: " + str(round(linear_velocity.y)))
+		print("Velocidad x: " + str(round(linear_velocity.x)))
+		print("Velocidad y: " + str(round(linear_velocity.z)))
 		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Global.is_paused == false:
 		$playerXR/right_hand/FunctionPointer.enabled = false
+	if (linear_velocity.x * -1) > 10:
+		if linear_velocity.x < 0:
+			linear_velocity.x = -10
+		else:
+			linear_velocity.x = 10 
+	if (linear_velocity.y * -1) > 10:
+		if linear_velocity.y < 0:
+			linear_velocity.y = -10
+		else:
+			linear_velocity.y = 10 
 
 
 

@@ -29,8 +29,9 @@ func mostrar_texto_inicio():
 	_agregar_mensaje("Bienvendo, en esta experiencia virtual tendras que llegar a una ciudad objetivo")
 	await get_tree().create_timer(10).timeout 
 	_agregar_mensaje("Tu primer objetivo es: " + Global.objetivo_nivel)
+	$UIPausa/Label/Label.text = $UIPausa/Label/Label.text + Global.objetivo_nivel
 	await get_tree().create_timer(6).timeout 
-	_agregar_mensaje("Al presionar el boton meta, podras acceder a pausa")
+	_agregar_mensaje("Al presionar el boton B, podras acceder a pausa")
 	
 	
 func _ready():
@@ -95,15 +96,12 @@ func _process(delta):
 
 
 func deteccion():
-	if Global.gano:
-		await get_tree().create_timer(5).timeout 
+	if Global.gano == true:
+		Global.gano = false
+		await get_tree().create_timer(3).timeout 
 		_agregar_mensaje("Muy bien pasaste de nivel, ahora dirígete hacia: " + Global.objetivo_nivel)
-	if Global.termino:
-		_agregar_mensaje("Calculando...")
-		await get_tree().create_timer(3).timeout
-		$UIFinal.show()
-		
-	
+		_agregar_mensaje("Muy bien pasaste de nivel, ahora dirígete hacia: " + Global.objetivo_nivel)
+		change_state(State.READY)
 		
 
 func change_state(next_state):
@@ -140,6 +138,8 @@ func _on_reiniciar_button_pressed():
 	$UIPausa.hide()
 
 func _on_terminar_button_pressed():
+	_agregar_mensaje("Calculando...")
+	await get_tree().create_timer(3).timeout
 	$UIFinal.show()
 	$UIFinal/Tolerancia.text = $UIFinal/Tolerancia.text + str(Global.tolerancia)
 

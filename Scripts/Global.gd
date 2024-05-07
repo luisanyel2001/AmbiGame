@@ -12,7 +12,7 @@ var habia_entrado = false
 var reiniciar = false
 var is_paused: bool = false
 var termino: bool = false
-var tolerancia = -1.0
+var tolerancia = 0.7245
 
 enum State{
 	 READY,
