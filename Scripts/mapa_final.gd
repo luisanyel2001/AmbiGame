@@ -76,7 +76,7 @@ func _carga_nivel(result, response_code, headers, body):
 	print("Mapa actualizado correctamente")
 	
 	# Reposicionar el vehículo al iniciador después del reinicio
-	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.numero_nivel_actual]) + "/Iniciador").get_global_position())
+	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.inicio_nivel]) + "/Iniciador").get_global_position())
 	# Reiniciar la velocidad lineal del vehículo a cero
 	var carro = $player_car as VehicleBody3D
 	carro.linear_velocity = Vector3(0, 0, 0)

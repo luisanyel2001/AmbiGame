@@ -38,7 +38,6 @@ func _ready():
 	textbox_container.visible = true
 	mostrar_texto_inicio()
 	
-	
 func queue_text(next_text):
 	text_queue.push_back(next_text)
 
@@ -99,6 +98,11 @@ func deteccion():
 	if Global.gano:
 		await get_tree().create_timer(5).timeout 
 		_agregar_mensaje("Muy bien pasaste de nivel, ahora dirígete hacia: " + Global.objetivo_nivel)
+	if Global.termino:
+		_agregar_mensaje("Calculando...")
+		await get_tree().create_timer(3).timeout
+		$UIFinal.show()
+		
 	
 		
 
