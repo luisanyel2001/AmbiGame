@@ -99,22 +99,11 @@ func _interseccion_area(body):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#_vista_desarrollador(1,false) #Descomentar para ver vista previa
+	
 	add_child(http_request)
 	http_request.request_completed.connect(self._carga_nivel)
 	_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	#await get_tree().create_timer(5).timeout 
-	#_peticion_http("https://luisanyel.000webhostapp.com/test2.json")
-	
-	#_vista_desarrollador(1,false) #Descomentar para ver vista previa
 	
 	
 func _peticion_http(url):
@@ -122,102 +111,6 @@ func _peticion_http(url):
 	var error = http_request.request(url)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
-
-"""
-func _process(delta):
-	pass
-#----------------------------UI-----------------------------
-
-#UI
-enum State{
-	 READY,
-	 READING,
-	 FINISHED,
-	 INACTIVE
-}
-
-var current_state = State.INACTIVE
-var text_queue = []
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Global.reiniciar:
-		get_node("car").position = Vector3(10,8,0)
-		Global.reiniciar = false
-		
-		tiempoTotal += delta
-		print("Normal:" + str(Global.current_state))
-		match Global.current_state:
-			State.INACTIVE:
-				pass
-			State.READY:
-				if !text_queue.is_empty():
-					display_text()
-			State.READING:
-				if not is_text_displayed and current_char < current_text.length():
-					char_timer += delta
-					if char_timer > CHAR_READ_RATE:
-						label.text += current_text[current_char]
-						current_char += 1
-						char_timer = 0.0
-				else:
-					# Detener el proceso cuando se haya mostrado todo el texto
-					is_text_displayed = true  # Se ha mostrado todo el texto
-					hide_textbox()
-					change_state(State.FINISHED)
-
-			State.FINISHED:
-				if Input.is_action_just_pressed("ui_accept"): #Al finalizar presionar enter para quitar textbox
-					#hide_textbox()
-					change_state(State.READY)
-					hide_textbox()	
-
-#animacion letras
-var current_text = ""
-var current_char = 0
-var char_timer = 0.0
-var is_text_displayed = false 
-
-func queue_text(next_text):
-	text_queue.push_back(next_text)
-
-func hide_textbox():
-	start_symbol.text = ""
-	end_symbol.text = ""
-	label.text = ""
-	textbox_container.hide()
-
-func show_textbox():
-	start_symbol.text = "*"
-	textbox_container.show()
-
-func display_text():
-	#if current_state == State.READY:
-		var next_text = text_queue.pop_front()
-		current_text = next_text
-		change_state(State.READING)
-		#label.text = ""
-		show_textbox()
-		current_char = 0
-		char_timer = 0.0
-		is_text_displayed = false  # Reiniciar is_text_displayed cuando se agrega nuevo texto
-
-
-func change_state(next_state):
-	current_state = next_state
-	Global.current_state = next_state
-	match current_state:
-		State.READY:
-			print("Cambiando estado a: State.READY")
-		State.READING:
-			print("Cambiando estado a: State.READING")
-		State.FINISHED:
-			print("Cambiando estado a: State.FINISHED")
-		State.INACTIVE:
-			print("Cambiando estado a: State.INACTIVE")
-
-"""
-
 
 
 func _vista_desarrollador(nivel,visible_):
@@ -246,3 +139,11 @@ func _vista_desarrollador(nivel,visible_):
 		get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/medio").text = "medio"
 		get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/medio").visible = visible_
 		
+
+func _reinicar():
+	if Global.reiniciar == true:
+		$player_car.position = $Ciudades/Ciudad_1/Iniciador.position
+		
+func _process(delta):
+	_reinicar()
+	

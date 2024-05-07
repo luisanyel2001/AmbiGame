@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://q73y7b2rbxe7"]
+[gd_scene load_steps=38 format=3 uid="uid://q73y7b2rbxe7"]
 
 [ext_resource type="Script" path="res://Scripts/prototipo_carrovr.gd" id="1_n8n7x"]
 [ext_resource type="Texture2D" uid="uid://cidwtim2kexb7" path="res://Propts/material/godot-material-concrete-1.0.1/godot-material-concrete-1.0.1/materials/concrete_hd/concrete_height.png" id="2_4fgqn"]
@@ -175,6 +175,13 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s04le"]
+size = Vector3(10.7, 1.8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q54ao"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c7enf"]
 
 [node name="prototipoCarro" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0151138, 0, 0.45536)
@@ -900,5 +907,21 @@ visible = false
 
 [node name="car" parent="." instance=ExtResource("15_0htuc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12671, 7.40001, 129.891)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87671, 8.68444, 137.597)
+shape = SubResource("BoxShape3D_s04le")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(8.7, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.8, 137.9)
+mesh = SubResource("BoxMesh_q54ao")
+
+[node name="Iniciador" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 9.7, 119.5)
+mesh = SubResource("BoxMesh_c7enf")
+
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 
 [editable path="MenuPausa3"]

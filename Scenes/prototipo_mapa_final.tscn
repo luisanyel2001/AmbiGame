@@ -1846,8 +1846,8 @@ mesh = SubResource("BoxMesh_q2c6e")
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 2.5, 0)
 
 [node name="Viewport2Din3D" parent="player_car" instance=ExtResource("17_c1jr5")]
-transform = Transform3D(-4.37114e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.37114e-11, -3.1, 0.4, 0)
-screen_size = Vector2(1152, 648)
+transform = Transform3D(-4.37114e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.37114e-11, -2.1, 1.1, 0)
+screen_size = Vector2(1920, 1080)
 scene = ExtResource("18_xilgu")
 viewport_size = Vector2(1152, 648)
 

@@ -61,7 +61,7 @@ func _process(delta):
 			reiniciar = false
 		
 		tiempoTotal += delta
-		print("Normal:" + str(current_state))
+		#print("Normal:" + str(current_state))
 		match current_state:
 			State.INACTIVE:
 				pass
@@ -389,3 +389,10 @@ func _interseccion_salida(body):
 	var tiempoDecision = Time.get_ticks_msec() - tiempoInicioDecicion
 	tiempoTotalDeciciones += tiempoInicioDecicion
 	numDecisiones += 1
+
+
+func _on_area_3d_body_exited(body):
+	var carro = $car as VehicleBody3D
+	$car.set_global_position($Iniciador.get_global_position())
+	$car.set_global_rotation(Vector3(0,0,0))
+	carro.linear_velocity = Vector3(0,0,0)

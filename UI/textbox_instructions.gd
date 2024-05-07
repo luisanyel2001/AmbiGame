@@ -27,9 +27,9 @@ var is_text_displayed = false
 
 func mostrar_texto_inicio():
 	_agregar_mensaje("Bienvendo, en esta experiencia virtual tendras que llegar a una ciudad objetivo")
-	#await get_tree().create_timer(7).timeout 
+	await get_tree().create_timer(10).timeout 
 	_agregar_mensaje("Tu primer objetivo es: " + Global.objetivo_nivel)
-	#await get_tree().create_timer(5).timeout 
+	await get_tree().create_timer(6).timeout 
 	_agregar_mensaje("Al presionar el boton meta, podras acceder a pausa")
 	
 	
@@ -137,5 +137,5 @@ func _on_reiniciar_button_pressed():
 
 func _on_terminar_button_pressed():
 	$UIFinal.show()
-	$UIFinal/Tolerancia.text = $UIFinal/Tolerancia.text + Global.tolerancia 
+	$UIFinal/Tolerancia.text = $UIFinal/Tolerancia.text + str(Global.tolerancia)
 
