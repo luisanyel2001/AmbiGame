@@ -1,4 +1,4 @@
-#@tool #Descomentar para ver vista previa
+@tool #Descomentar para ver vista previa
 extends Node3D
 
 

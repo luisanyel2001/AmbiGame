@@ -319,9 +319,11 @@ func _carga_IA(gano):
 	if gano:
 		print("DEBUG GANASTE")
 		destinosCorrectos += 1
+		_calculoToleranciaAmbiguedad()
 	else:
 		print("DEBUG PERDISTE")
 		destinosIncorrectos += 1		
+		_calculoToleranciaAmbiguedad()
 		
 		
 func _calculoToleranciaAmbiguedad():
