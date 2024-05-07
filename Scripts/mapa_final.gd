@@ -26,15 +26,8 @@ func _deteccion_area_ciudad(id, body):
 	
 	if id == Global.objetivo_nivel:
 		Global.gano = true
-		#_cargar_siguiente_nivel()
-		#$MenuPausa3/Label/Label.text = "Tu objetivo es: " + objetivo_nivel
-	else:
-		Global.perdio = true
-		
-	#reiniciar = true
-	#_carga_UI(gano)
+		_cargar_siguiente_nivel()
 
-	
 
 func _carga_nivel(result, response_code, headers, body):
 	var json = JSON.new()
@@ -81,6 +74,13 @@ func _carga_nivel(result, response_code, headers, body):
 			get_node("Tuneles/intersection_tunnel"+str(interseccion)+"/doble_signs_med/right_signs/Label3D"+str(letrero)).text = response.niveles[str(Global.numero_nivel_actual)]["intersecciones"][str(interseccion)]["seniales_med"]["derecha"][str(letrero)]
 		
 	print("Mapa actualizado correctamente")
+	
+	# Reposicionar el vehículo al iniciador después del reinicio
+	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.numero_nivel_actual]) + "/Iniciador").get_global_position())
+	# Reiniciar la velocidad lineal del vehículo a cero
+	var carro = $player_car as VehicleBody3D
+	carro.linear_velocity = Vector3(0, 0, 0)
+	$player_car.set_global_rotation(Vector3(0, 0, 0))
 	
 	
 func _interseccion_area(body):
@@ -154,15 +154,9 @@ func _process(delta):
 	
 	
 func _cargar_siguiente_nivel():
-	Global.numero_nivel_actual += 1
-	_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
+	Global.gano = false
+	if Global.numero_nivel_actual <= 4:
+		Global.numero_nivel_actual += 1
+		_peticion_http("https://luisanyel.000webhostapp.com/mapa.json")
 	
 		
-"""
-# Reposicionar el vehículo al iniciador después del reinicio
-	$player_car.set_global_position(get_node("Ciudades/Ciudad_" + str(ciudades_to_num[Global.ultima_ciudad]) + "/Iniciador").get_global_position())
-	# Reiniciar la velocidad lineal del vehículo a cero
-	var carro = $player_car as VehicleBody3D
-	carro.linear_velocity = Vector3(0, 0, 0)
-	$player_car.set_global_rotation(Vector3(0, 0, 0))
-"""

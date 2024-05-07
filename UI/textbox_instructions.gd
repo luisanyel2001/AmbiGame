@@ -39,7 +39,6 @@ func _ready():
 	mostrar_texto_inicio()
 	
 	
-	
 func queue_text(next_text):
 	text_queue.push_back(next_text)
 
@@ -98,7 +97,8 @@ func _process(delta):
 
 func deteccion():
 	if Global.gano:
-		_agregar_mensaje("Muy bien, ahora dirígete hacia : " + Global.objetivo_nivel)
+		await get_tree().create_timer(5).timeout 
+		_agregar_mensaje("Muy bien pasaste de nivel, ahora dirígete hacia: " + Global.objetivo_nivel)
 	
 		
 
