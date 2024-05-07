@@ -12,5 +12,6 @@ albedo_color = Color(0.556863, 0.529412, 0.603922, 1)
 script = ExtResource("1_ddta3")
 
 [node name="Piso" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92497, 0, 0)
 mesh = SubResource("BoxMesh_i80qg")
 surface_material_override/0 = SubResource("ORMMaterial3D_v4spq")
